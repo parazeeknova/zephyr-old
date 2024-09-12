@@ -61,4 +61,10 @@ export default [
       'react/prop-types': 'off',
     },
   },
+  {
+    files: ['README.md'],
+    rules: {
+      'prettier/prettier': 'off',
+    },
+  },
 ];
