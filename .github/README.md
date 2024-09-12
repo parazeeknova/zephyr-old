@@ -1,7 +1,6 @@
 ## Zephyr: Accelerating Your Blogging Experience
 
-> [!IMPORTANT]
-> **Note:** This is a fictional project proposal created for overview (current). The content and features described below are purely speculative and do not represent an actual product or service to be implemented.
+> [!IMPORTANT] > **Note:** This is a fictional project proposal created for overview (current). The content and features described below are purely speculative and do not represent an actual product or service to be implemented.
 
 #### _<div align="left"><sub>// Project Overview</sub></div>_
 
@@ -29,51 +28,24 @@
 
 <br>
 
-##### _<div align="right"><sub>// Additional Features (Future Content)</sub></div>_
+##### _<div align="right"><sub>// Development Setup (For Contributers)</sub></div>_
 
-- User Roles and Permissions
-- Monetization Options (e.g., premium features, sponsored content)
-- Public API for Third-party Integrations
-- Mobile Apps for iOS and Android
-- Accessibility Features
-- AI-assisted Content Moderation
-- Gamification Elements (e.g., reputation systems, badges)
-- Offline Support via Progressive Web App (PWA) features
-- Robust Data Privacy and Security Measures (maybe)
-- Community Building Features (e.g., user groups, virtual events)
+###### _<div align="left"><sub>// Prerequisites</sub></div>_
 
-##### _<div align="right"><sub>// Phases</sub></div>_
+Make sure you have bun installed on your system. If not, you can download it from the official website: [bun](https://bun.sh/)
 
-1. **MVP Development** (8-12 weeks)
+```bash
+git clone https://github.com/parazeeknova/zephyr.git # Clone the repository
+cd zephyr # Change directory to the project folder
+bun install OR bun i # Install dependencies
+bun dev OR bun d # Start the development server
+```
 
-   - Basic user authentication
-   - Content creation and editing
-   - AI-powered summarization
-   - Simple tagging and categorization
-   - Basic search functionality
+###### _<div align="left"><sub>// VSCode Extentions</sub></div>_
 
-2. **Core Features Enhancement** (12-16 weeks)
-
-   - Collaborative editing
-   - Advanced AI-driven tagging and categorization
-   - Improved search and discovery features
-   - Content recommendation engine
-   - User profiles and customizable feeds
-
-3. **Advanced Features and Scaling** (16-20 weeks)
-
-   - Peer review system
-   - Citation and reference management
-   - Interactive visualizations
-   - Multi-language support
-   - Mobile app development
-
-4. **Optimization and Expansion** (Ongoing)
-   - Performance optimization
-   - Security enhancements
-   - API development for third-party integrations
-   - Community features
-   - Monetization strategies
+- [x] **ESLint**: For linting and code formatting.
+- [x] **Prettier**: For code formatting.
+- [ ] **tailwind CSS IntelliSense**: For Tailwind CSS support.
 
 <br>
 
