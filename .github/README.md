@@ -1,6 +1,14 @@
-## Zephyr: Accelerating Your Blogging Experience
+<div align="center">
 
-> [!IMPORTANT] > **Note:** This is a fictional project proposal created for overview (current). The content and features described below are purely speculative and do not represent an actual product or service to be implemented.
+  <a href="https://github.com/parazeeknova/zephyr">
+    <img src="assets/Zephyr-banner.png" alt="Logo" width="98%">
+  </a>
+</div>
+
+<br>
+
+> [!IMPORTANT]
+> **Note:** This is a fictional project proposal created for overview (current). The content and features described below are purely speculative and do not represent an actual product or service to be implemented.
 
 #### _<div align="left"><sub>// Project Overview</sub></div>_
 
