@@ -7,8 +7,7 @@
 
 <br>
 
-> [!IMPORTANT]
-> **Note:** This is a fictional project proposal created for overview (current). The content and features described below are purely speculative and do not represent an actual product or service to be implemented.
+> [!IMPORTANT] > **Note:** This is a fictional project proposal created for overview (current). The content and features described below are purely speculative and do not represent an actual product or service to be implemented.
 
 #### _<div align="left"><sub>// Project Overview</sub></div>_
 
@@ -36,11 +35,13 @@
 
 <br>
 
-##### _<div align="right"><sub>// Development Setup (For Contributers)</sub></div>_
+#### _<div align="left"><sub>// Development Setup (For Contributers)</sub></div>_
 
-###### _<div align="left"><sub>// Prerequisites</sub></div>_
+###### _<div align="right"><sub>// Prerequisites</sub></div>_
 
-Make sure you have bun installed on your system. If not, you can download it from the official website: [bun](https://bun.sh/)
+- [Bun](https://bun.sh/) - Blazing fast task runner for modern web development.
+- [NodeJS](https://nodejs.org/) - JavaScript runtime built on Chrome's V8 JavaScript engine.
+- [Git](https://git-scm.com/) - git is git
 
 ```bash
 git clone https://github.com/parazeeknova/zephyr.git # Clone the repository
@@ -49,7 +50,7 @@ bun install OR bun i # Install dependencies
 bun dev OR bun d # Start the development server
 ```
 
-###### _<div align="left"><sub>// VSCode Extentions</sub></div>_
+###### _<div align="right"><sub>// VSCode Extentions</sub></div>_
 
 - [x] **ESLint**: For linting and code formatting.
 - [x] **Prettier**: For code formatting.
