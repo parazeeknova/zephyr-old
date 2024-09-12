@@ -8,45 +8,57 @@ import eslintPluginPrettier from 'eslint-plugin-prettier';
 import prettier from 'eslint-config-prettier';
 import prettierConfig from './prettier.config.js';
 
+const baseConfig = {
+  plugins: {
+    '@typescript-eslint': tseslint.plugin,
+    'react-hooks': reactHooks,
+    'react-refresh': reactRefresh,
+    react,
+    prettier: eslintPluginPrettier,
+  },
+  languageOptions: {
+    parser: tseslint.parser,
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+    globals: {
+      ...globals.browser,
+    },
+  },
+  settings: {
+    react: { version: '18.3' },
+  },
+  rules: {
+    ...js.configs.recommended.rules,
+    ...tseslint.configs.recommendedTypeChecked.rules,
+    ...tseslint.configs.stylisticTypeChecked.rules,
+    ...reactHooks.configs.recommended.rules,
+    ...react.configs.recommended.rules,
+    ...react.configs['jsx-runtime'].rules,
+    'react-refresh/only-export-components': [
+      'warn',
+      { allowConstantExport: true },
+    ],
+    'prettier/prettier': ['error', prettierConfig],
+    ...prettier.rules,
+  },
+};
+
 export default [
   {
-    ignores: ['dist']
+    ignores: ['dist'],
   },
   {
     files: ['**/*.{ts,tsx}', 'vite.config.ts', 'vitest.config.ts'],
-    plugins: {
-      '@typescript-eslint': tseslint.plugin,
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-      react,
-      prettier: eslintPluginPrettier,
-    },
-    languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      globals: {
-        ...globals.browser
-      },
-    },
-    settings: { 
-      react: { version: '18.3' } 
-    },
+    ...baseConfig,
+  },
+  {
+    files: ['src/components/ui/**/*.tsx'],
+    ...baseConfig,
     rules: {
-      ...js.configs.recommended.rules,
-      ...tseslint.configs.recommendedTypeChecked.rules,
-      ...tseslint.configs.stylisticTypeChecked.rules,
-      ...reactHooks.configs.recommended.rules,
-      ...react.configs.recommended.rules,
-      ...react.configs['jsx-runtime'].rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-      'prettier/prettier': ['error', prettierConfig],
-      ...prettier.rules,
+      ...baseConfig.rules,
+      'react/prop-types': 'off',
     },
-  }
+  },
 ];
