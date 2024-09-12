@@ -58,6 +58,17 @@ bun dev OR bun d # Start the development server
 
 <br>
 
+#### _<div align="left"><sub>// Preview</sub></div>_
+
+<div align="center">
+
+  <a href="https://github.com/parazeeknova/zephyr">
+    <img src="assets/preview.png" alt="Logo" width="95%">
+  </a>
+</div>
+
+<br>
+
 <div align="right">
-  <a href="#zephyr-accelerating-your-blogging-experience"><kbd> <br> 🡅 <br> </kbd></a>
+  <a href="#-project-overview"><kbd> <br> 🡅 <br> </kbd></a>
 </div>
