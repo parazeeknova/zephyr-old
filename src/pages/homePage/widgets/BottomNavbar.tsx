@@ -8,6 +8,7 @@ import {
   Search,
   MessageCircle,
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface BottomNavbarProps {
   isDarkMode: boolean;
@@ -77,7 +78,9 @@ export const BottomNavbar: React.FC<BottomNavbarProps> = ({
                 size="icon"
                 className="rounded-full transition-all duration-300 hover:bg-gray-200 dark:hover:bg-gray-700"
               >
-                <Home className="h-6 w-6" />
+                <Link to="/">
+                  <Home className="h-6 w-6" />
+                </Link>
               </Button>
               <Button
                 variant="ghost"
@@ -91,7 +94,9 @@ export const BottomNavbar: React.FC<BottomNavbarProps> = ({
                 size="icon"
                 className="rounded-full transition-all duration-300 hover:bg-gray-200 dark:hover:bg-gray-700"
               >
-                <UserCircle className="h-6 w-6" />
+                <Link to="/profile">
+                  <UserCircle className="h-6 w-6" />
+                </Link>
               </Button>
             </div>
           </>
