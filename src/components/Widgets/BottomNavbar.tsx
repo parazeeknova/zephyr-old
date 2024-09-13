@@ -29,8 +29,8 @@ export const BottomNavbar: React.FC<BottomNavbarProps> = ({
   return (
     <nav
       className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-full shadow-lg transition-all duration-300 ease-in-out ${
-        isScrolled ? 'w-12 h-12' : 'w-[calc(100%-2rem)] max-w-2xl h-14'
-      } ${isExpanded ? 'h-auto p-4' : ''}`}
+        isScrolled ? 'w-300 h-30' : 'w-[calc(100%-2rem)] max-w-2xl h-14'
+      } ${isExpanded ? ' h-auto p-4' : ''}`}
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
     >
@@ -38,7 +38,7 @@ export const BottomNavbar: React.FC<BottomNavbarProps> = ({
         className={`flex items-center justify-between h-full ${isExpanded ? 'flex-col space-y-4' : ''}`}
       >
         {!isExpanded && (
-          <div className="flex-1 px-4 flex items-center">
+          <div className="flex-1 px-1 py-1 flex items-center">
             <Input
               type="search"
               placeholder="Search..."
@@ -47,7 +47,7 @@ export const BottomNavbar: React.FC<BottomNavbarProps> = ({
             <Button
               variant="ghost"
               size="icon"
-              className="ml-2 bg-orange-500 rounded-full transition-all duration-300 hover:bg-orange-600"
+              className="ml-2 bg-orange-500 rounded-full transition-all duration-300 my-1 mx-0 p-2 hover:bg-orange-600"
               onClick={() => setIsChatOpen(true)}
             >
               <MessageCircle className="h-5 w-5 text-white" />
@@ -60,12 +60,12 @@ export const BottomNavbar: React.FC<BottomNavbarProps> = ({
               <Input
                 type="search"
                 placeholder="Search..."
-                className={`w-full bg-transparent border-none focus:ring-0 ${isDarkMode ? 'placeholder-gray-400 text-white' : 'placeholder-gray-500 text-gray-900'} transition-all duration-300`}
+                className={`w-full bg-transparent border-none focus:ring-0 p-2 ${isDarkMode ? 'placeholder-gray-400 text-white' : 'placeholder-gray-500 text-gray-900'} transition-all duration-300`}
               />
               <Button
                 variant="ghost"
                 size="icon"
-                className="ml-2 bg-orange-500 rounded-full transition-all duration-300 hover:bg-orange-600"
+                className="ml-2 bg-orange-500 rounded-full transition-all duration-300 300 my-1 mx-0 p-2 hover:bg-orange-600"
                 onClick={() => setIsChatOpen(true)}
               >
                 <MessageCircle className="h-5 w-5 text-white" />
@@ -100,7 +100,7 @@ export const BottomNavbar: React.FC<BottomNavbarProps> = ({
           <Button
             variant="ghost"
             size="icon"
-            className="rounded-full transition-all duration-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+            className="rounded-full transition-all duration-300 hover:bg-gray-200 dark:hover:bg-gray-700 pr-2"
           >
             <Search className="h-6 w-6" />
           </Button>
