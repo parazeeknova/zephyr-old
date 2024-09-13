@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Header } from './components/Widgets/MainHeader';
-import { Sidebar } from './components/Widgets/MainSidebar';
-import { MainContent } from './components/Widgets/MainContent';
-import { RightSidebar } from './components/Widgets/RightSidebar';
-import { BottomNavbar } from './components/Widgets/BottomNavbar';
-import { FloatingChat } from './components/Widgets/FloatingChat';
-import { Footer } from './components/Widgets/MainFooter';
+import { Header } from './widgets/MainHeader';
+import { Sidebar } from './widgets/MainSidebar';
+import { MainContent } from './widgets/MainContent';
+import { RightSidebar } from './widgets/RightSidebar';
+import { BottomNavbar } from './widgets/BottomNavbar';
+import { FloatingChat } from './widgets/FloatingChat';
+import { Footer } from './widgets/MainFooter';
 
 export default function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false);

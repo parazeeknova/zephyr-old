@@ -6,11 +6,11 @@
 
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import Zephyr from './zephyr';
 
-describe('App Component', () => {
+describe('Zephyr Component', () => {
   it('renders the Zephyr heading', () => {
-    render(<App />);
+    render(<Zephyr />);
     const headingElement = screen.getByText(/Zephyr/i);
     expect(headingElement).toBeInTheDocument();
   });
