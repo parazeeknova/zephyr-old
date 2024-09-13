@@ -6,7 +6,9 @@ import { Card, CardContent } from '@/components/ui/card';
 const AIGeneratedPosts: React.FC = () => (
   <Card className="mb-6">
     <CardContent className="p-6">
-      <h2 className="text-lg font-semibold mb-4">AI Generated Posts</h2>
+      <h2 className="text-sm font-semibold uppercase mb-4 text-gray-500">
+        Synthetic Posts
+      </h2>
       <div className="space-y-4">
         {[
           {

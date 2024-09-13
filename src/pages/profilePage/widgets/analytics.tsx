@@ -5,7 +5,9 @@ import { ThumbsUp, Eye } from 'lucide-react';
 const Analytics: React.FC = () => (
   <Card className="mb-6">
     <CardContent className="p-6">
-      <h2 className="text-lg font-semibold mb-4">Analytics</h2>
+      <h2 className="text-sm font-semibold mb-4 uppercase text-gray-500">
+        Analytics
+      </h2>
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">

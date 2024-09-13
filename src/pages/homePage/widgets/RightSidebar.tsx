@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
+import { Link } from 'react-router-dom';
 import { ImageIcon, Video, Cast, MoreHorizontal } from 'lucide-react';
 
 interface RightSidebarProps {
@@ -42,7 +43,9 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({ isDarkMode }) => (
           </div>
           <div>
             <h2 className="font-bold text-lg flex items-center">
-              Parazeeeknova <span className="ml-1 text-blue-500">✓</span>
+              <Link to="/profile">
+                Parazeeeknova <span className="ml-1 text-blue-500">✓</span>
+              </Link>
             </h2>
             <p
               className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
@@ -66,6 +69,14 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({ isDarkMode }) => (
               className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
             >
               Following
+            </p>
+          </div>
+          <div>
+            <p className="font-bold">69</p>
+            <p
+              className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
+            >
+              Aura
             </p>
           </div>
         </div>

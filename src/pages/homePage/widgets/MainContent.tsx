@@ -18,22 +18,22 @@ const playlists = [
   {
     title: 'Functional Fury',
     creator: 'Beth Binary',
-    image: '/placeholder.png?height=200&width=200&text=Functional+Fury',
+    image: '/placeholderI.png?height=200&width=200&text=Functional+Fury',
   },
   {
     title: 'React Rendezvous',
     creator: 'Ethan Byte',
-    image: '/placeholder.png?height=200&width=200&text=React+Rendezvous',
+    image: '/placeholderII.jpg?height=200&width=200&text=React+Rendezvous',
   },
   {
     title: 'Stateful Symphony',
     creator: 'Beth Binary',
-    image: '/placeholder.png?height=200&width=200&text=Stateful+Symphony',
+    image: '/placeholderIII.jpg?height=200&width=200&text=Stateful+Symphony',
   },
   {
     title: 'Async Awakenings',
     creator: 'Nina Netcode',
-    image: '/placeholder.png?height=200&width=200&text=Async+Awakenings',
+    image: '/placeholderVI.jpg?height=200&width=200&text=Async+Awakenings',
   },
   {
     title: 'The Art of Reusability',
@@ -117,7 +117,7 @@ export const MainContent: React.FC<MainContentProps> = ({ isDarkMode }) => (
           {[...Array(4)].map((_, index) => (
             <img
               key={index}
-              src={`/zy.png?height=200&width=300`}
+              src={`/placeholder.png?height=200&width=300`}
               alt={`Product ${index + 1}`}
               className="w-full h-40 object-cover rounded-lg"
             />
@@ -169,7 +169,7 @@ export const MainContent: React.FC<MainContentProps> = ({ isDarkMode }) => (
           peek with you all! 🎨📚 #ChildrensBook #Illustration
         </p>
         <img
-          src="/zephyr.png?height=400&width=600&text=Children's+Book+Illustration"
+          src="/Banner.png?height=400&width=600&text=Children's+Book+Illustration"
           alt="Children's book illustration"
           className="w-full h-80 object-cover rounded-lg mb-4"
         />

@@ -1,12 +1,17 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from '../src/pages/homePage/homePage';
-// import userProfile from './pages/profilePage/userProfile';
+import UserProfile from './pages/profilePage/userProfile';
 
 function Zephyr() {
   return (
-    <div className="App">
-      <HomePage />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/profile" element={<UserProfile />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
-
 export default Zephyr;

@@ -5,13 +5,15 @@ import { MapPin } from 'lucide-react';
 
 const Experience: React.FC = () => (
   <div className="space-y-4">
-    <h2 className="text-lg font-semibold">Experience</h2>
+    <h2 className="text-sm font-semibold uppercase text-gray-500 pt-5">
+      Experience
+    </h2>
     {[
       {
-        company: 'Google',
-        role: 'Lead UX Designer',
+        company: 'PeskyCorp',
+        role: 'CEO',
         period: 'Oct 2020 - Present',
-        location: 'California',
+        location: 'Github',
       },
       {
         company: 'Facebook',
@@ -35,7 +37,7 @@ const Experience: React.FC = () => (
       >
         <Avatar>
           <AvatarImage
-            src={`/placeholder.svg?height=40&width=40&text=${job.company[0]}`}
+            src={`/placeholder.png?height=40&width=40&text=${job.company[0]}`}
           />
           <AvatarFallback>{job.company[0]}</AvatarFallback>
         </Avatar>

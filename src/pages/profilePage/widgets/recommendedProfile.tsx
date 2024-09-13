@@ -9,7 +9,9 @@ const Recommendations: React.FC = () => (
   <Card>
     <CardContent className="p-6">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold">Recommendations</h2>
+        <h2 className="text-sm font-semibold uppercase text-gray-500">
+          Endorsements based on your activity :
+        </h2>
         <Button variant="link" className="text-orange-600">
           View all <ChevronRight className="ml-1 h-4 w-4" />
         </Button>

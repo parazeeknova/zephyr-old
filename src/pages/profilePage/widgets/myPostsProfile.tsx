@@ -16,7 +16,9 @@ const MyPosts: React.FC = () => (
   <Card>
     <CardContent className="p-6">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold">My Posts</h2>
+        <h2 className="text-lg font-semibold uppercase text-gray-500">
+          My Posts
+        </h2>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -56,21 +58,21 @@ const MyPosts: React.FC = () => (
                 date: '2 days ago',
                 likes: 24,
                 comments: 8,
-                image: '/placeholder.svg?height=200&width=300',
+                image: '/Banner.png?height=200&width=300',
               },
               {
                 title: 'Designing for Accessibility',
                 date: '1 week ago',
                 likes: 56,
                 comments: 12,
-                image: '/placeholder.svg?height=200&width=300',
+                image: '/placeholderI.png?height=200&width=300',
               },
               {
                 title: 'Mobile-First Design Principles',
                 date: '2 weeks ago',
                 likes: 42,
                 comments: 15,
-                image: '/placeholder.svg?height=200&width=300',
+                image: '/zy.png?height=200&width=300',
               },
             ].map((post, index) => (
               <motion.div

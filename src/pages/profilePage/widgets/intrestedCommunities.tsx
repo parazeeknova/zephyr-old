@@ -6,7 +6,9 @@ import { Button } from '@/components/ui/button';
 const InterestedCommunities: React.FC = () => (
   <Card>
     <CardContent className="p-6">
-      <h2 className="text-lg font-semibold mb-4">Interested Communities</h2>
+      <h2 className="text-sm font-semibold mb-4 uppercase text-gray-500">
+        Interested Communities
+      </h2>
       <div className="space-y-4">
         {['UX/UI Designers', 'Tech Innovators', 'Accessibility Advocates'].map(
           (community, index) => (

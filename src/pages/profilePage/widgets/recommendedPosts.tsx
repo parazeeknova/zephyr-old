@@ -3,62 +3,64 @@ import { motion } from 'framer-motion';
 
 const RecommendedPosts: React.FC = () => (
   <div className="mt-8">
-    <h2 className="text-lg font-semibold mb-4">Recommended Posts</h2>
+    <h2 className="text-2xl font-bold mb-10 mt-10 text-left text-gray-500 uppercase">
+      Curated chronicles
+    </h2>
     <div className="grid grid-cols-3 gap-4">
       {[
         {
           title: 'The Impact of AI on UX Design',
           author: 'Jane Doe',
           likes: 120,
-          image: '/placeholder.svg?height=150&width=250',
+          image: '/placeholderII.jpg?height=150&width=250',
         },
         {
           title: 'Designing for Accessibility: Best Practices',
           author: 'John Smith',
           likes: 89,
-          image: '/placeholder.svg?height=150&width=250',
+          image: 'Banner.png?height=150&width=250',
         },
         {
           title: 'The Future of Mobile UI',
           author: 'Emily Johnson',
           likes: 156,
-          image: '/placeholder.svg?height=150&width=250',
+          image: '/placeholderIII.jpg?height=150&width=250',
         },
         {
           title: 'Color Theory in Web Design',
           author: 'Michael Brown',
           likes: 72,
-          image: '/placeholder.svg?height=150&width=250',
+          image: '/zy.png?height=150&width=250',
         },
         {
           title: 'UX Writing: The Art of Microcopy',
           author: 'Sarah Lee',
           likes: 95,
-          image: '/placeholder.svg?height=150&width=250',
+          image: '/placeholderIV.jpg?height=150&width=250',
         },
         {
           title: 'The Psychology of User Interfaces',
           author: 'David Chen',
           likes: 108,
-          image: '/placeholder.svg?height=150&width=250',
+          image: '/placeholderI.png?height=150&width=250',
         },
         {
           title: 'Responsive Design Trends for 2024',
           author: 'Emma Wilson',
           likes: 134,
-          image: '/placeholder.svg?height=150&width=250',
+          image: '/placeholderV.jpg?height=150&width=250',
         },
         {
           title: 'Designing for Voice Interfaces',
           author: 'Alex Rodriguez',
           likes: 87,
-          image: '/placeholder.svg?height=150&width=250',
+          image: '/placeholder.png?height=150&width=250',
         },
         {
           title: 'The Role of Animation in UX',
           author: 'Olivia Taylor',
           likes: 112,
-          image: '/placeholder.svg?height=150&width=250',
+          image: '/placeholderVI.jpg?height=150&width=250',
         },
       ].map((post, index) => (
         <motion.div

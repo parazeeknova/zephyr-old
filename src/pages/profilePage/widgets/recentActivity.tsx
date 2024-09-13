@@ -5,7 +5,9 @@ import { Card, CardContent } from '@/components/ui/card';
 const RecentActivity: React.FC = () => (
   <Card className="mb-6">
     <CardContent className="p-6">
-      <h2 className="text-lg font-semibold mb-4">Recent Activity</h2>
+      <h2 className="text-sm font-semibold mb-4 uppercase text-gray-500">
+        Recent Activity
+      </h2>
       <div className="space-y-4">
         {[
           {

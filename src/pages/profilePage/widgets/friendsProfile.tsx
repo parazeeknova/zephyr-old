@@ -5,7 +5,9 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 const Friends: React.FC = () => (
   <Card className="mb-6">
     <CardContent className="p-6">
-      <h2 className="text-lg font-semibold mb-4">My Friends</h2>
+      <h2 className="text-sm font-semibold mb-4 uppercase text-gray-500">
+        My Friends
+      </h2>
       <div className="space-y-4">
         {[
           { name: 'Alice Johnson', role: 'UX Researcher' },

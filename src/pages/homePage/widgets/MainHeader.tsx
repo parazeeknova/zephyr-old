@@ -1,6 +1,7 @@
 import React from 'react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,9 +31,13 @@ export const Header: React.FC<HeaderProps> = ({
     className={`sticky top-0 z-10 flex items-center justify-between px-4 py-2 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-b`}
   >
     <div className="flex items-center space-x-4">
-      <h1 className="text-2xl font-bold text-orange-500">Zephyr.</h1>
+      <Link to="/">
+        <h1 className="text-2xl font-bold text-orange-500">Zephyr.</h1>
+      </Link>
       <Button variant="ghost" size="icon">
-        <Home className="h-5 w-5" />
+        <Link to="/">
+          <Home className="h-5 w-5" />
+        </Link>
       </Button>
       <Button variant="ghost" size="icon">
         <MessageSquare className="h-5 w-5" />
@@ -70,7 +75,9 @@ export const Header: React.FC<HeaderProps> = ({
           align="end"
           className={isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}
         >
-          <DropdownMenuItem>Profile</DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link to="/profile">Profile</Link>
+          </DropdownMenuItem>
           <DropdownMenuItem>Settings</DropdownMenuItem>
           <DropdownMenuItem>Preferences</DropdownMenuItem>
           <DropdownMenuItem>Log out</DropdownMenuItem>
