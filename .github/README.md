@@ -5,6 +5,8 @@
   </a>
 </div>
 
+---
+
 <br>
 
 <div align="center">
@@ -12,10 +14,6 @@
   <a href="https://github.com//parazeeknova/zephyr#-preview"><kbd> <br> Preview <br> </kbd></a>&ensp;&ensp;
   <a href="https://github.com/parazeeknova/zephyr/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp;
 </div>
-
----
-
-<br>
 
 ###### _<div align="right"><sub>// Disclaimer</sub></div>_
 
@@ -51,8 +49,6 @@ bun dev OR bun d # Start the development server
 - [ ] **tailwind CSS IntelliSense**: For Tailwind CSS support. (Optional)
 
 ---
-
-<br>
 
 #### _<div align="left"><sub>// Preview</sub></div>_
 
