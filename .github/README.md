@@ -1,4 +1,14 @@
 <div align="center">
+	<a href="https://github.com/parazeeknova/zephyr/stargazers">
+		<img alt="Stargazers" src="https://img.shields.io/github/stars/parazeeknova/zephyr?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41"></a>
+	<a href="https://github.com/parazeeknova/zephyr/issues">
+		<img alt="Issues" src="https://img.shields.io/github/issues/parazeeknova/zephyr?style=for-the-badge&logo=gitbook&color=B5E8E0&logoColor=D9E0EE&labelColor=302D41"></a>
+    <a href="https://github.com/parazeeknova/zephyr/releases">
+    <img alt="Maintained" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge&logo=github&color=F2CDCD&logoColor=D9E0EE&labelColor=302D41"/></a>
+	</a>
+</div>
+
+<div align="center">
 
   <a href="https://github.com/parazeeknova/zephyr">
     <img src="assets/Zephyr-banner.png" alt="Logo" width="98%">
@@ -7,8 +17,15 @@
 
 <br>
 
-> [!IMPORTANT]
-> **Note:** This is a fictional project proposal created for overview (current). The content and features described below are purely speculative and do not represent an actual product or service to be implemented.
+<div align="center">
+  <a href="https://github.com//parazeeknova/zephyr#-development-setup-for-contributers"><kbd> <br> Development <br> </kbd></a>&ensp;&ensp;
+  <a href="https://github.com//parazeeknova/zephyr#-preview"><kbd> <br> Preview <br> </kbd></a>&ensp;&ensp;
+  <a href="https://github.com/parazeeknova/zephyr/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp;
+</div>
+
+<br>
+
+> [!IMPORTANT] > **Note:** This is a project proposal created for overview (current). The content and features described below are purely speculative and do not represent an actual product or service to be implemented.
 
 #### _<div align="left"><sub>// Project Overview</sub></div>_
 
@@ -18,21 +35,11 @@
 
 <br>
 
-#### _<div align="left"><sub>// Core Features (Expected)</sub></div>_
+#### _<div align="left"><sub>// Wiki</sub></div>_
 
-- [ ] **AI-Powered Content Summarization**: Automatically generate highlights and summaries from long-form content.
-- [ ] **Dynamic Profile Generation**: Create and update user profiles based on their content and interactions.
-- [ ] **Automatic Tagging and Categorization**: Use AI to analyze content and assign relevant tags and categories.
-- [ ] **Collaborative Editing**: Implement GitHub-like version control and collaboration features for text content.
-- [ ] **Advanced Search Functionality**: Enable searching based on topics, tags, and content summaries.
-- [ ] **Content Recommendation Engine**: Suggest relevant posts to users based on their preferences and behavior.
-- [ ] **Citation and Reference Management**: Integrate tools for managing and tracking academic sources.
-- [ ] **Interactive Visualizations**: Allow embedding of charts, graphs, and data visualizations within posts.
-- [ ] **Peer Review System**: Implement a structured review process for academic or scientific content.
-- [ ] **Customizable Content Feeds**: Enable users to create personalized feeds based on their interests.
-- [ ] **In-line Annotations and Discussions**: Foster focused conversations on specific parts of a post.
-- [ ] **Content Analytics**: Provide authors with detailed metrics on their posts' performance.
-- [ ] **Multi-language Support**: Implement automatic translation for global accessibility.
+<p align="center">
+For more information on the project, please refer to the [Wiki](https://github.com/parazeeknova/zephyr/wiki) section.
+</p>
 
 <br>
 
@@ -61,12 +68,9 @@ bun dev OR bun d # Start the development server
 
 #### _<div align="left"><sub>// Preview</sub></div>_
 
-<div align="center">
-
-  <a href="https://github.com/parazeeknova/zephyr">
-    <img src="assets/preview.png" alt="Logo" width="95%">
-  </a>
-</div>
+| Home                                         | Profile                                           |
+| -------------------------------------------- | ------------------------------------------------- |
+| ![Zephyr - Home](assets/zephyr-homepage.png) | ![Zephyr - Search](assets/zephyr-porfilepage.png) |
 
 <br>
 
