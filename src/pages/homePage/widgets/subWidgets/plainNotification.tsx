@@ -1,60 +1,62 @@
 import React from 'react';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+import { Link } from 'lucide-react';
 
-interface PlainNotificationProps {
+interface FileNotificationProps {
   avatarInitial: string;
   avatarColor: string;
   userName: string;
   action: string;
-  fileName?: string;
-  message?: string;
+  fileName: string;
   timeAgo: string;
   project: string;
-  showApprovalButtons?: boolean;
+  imageUrl: string;
+  description: string;
+  linkUrl: string;
 }
 
-const PlainNotification: React.FC<PlainNotificationProps> = ({
+const FileNotification: React.FC<FileNotificationProps> = ({
   avatarInitial,
   avatarColor,
   userName,
   action,
   fileName,
-  message,
   timeAgo,
   project,
-  showApprovalButtons = false,
+  imageUrl,
+  description,
+  linkUrl,
 }) => {
   return (
-    <div className="flex items-start space-x-3 mb-4 pt-2">
-      <Avatar className={h-8 w-8 ${avatarColor}}>
+    <div className="flex items-start space-x-3">
+      <Avatar className={`h-8 w-8 ${avatarColor}`}>
         <AvatarFallback>{avatarInitial}</AvatarFallback>
       </Avatar>
       <div className="flex-1">
         <p className="text-sm">
-          <span className="font-semibold">{userName}</span> {action}
+          <span className="font-semibold">{userName}</span> {action} {fileName}
         </p>
-        {fileName && <p className="text-xs text-gray-400">{fileName}</p>}
-        {message && <p className="text-xs text-gray-700">{message}</p>}
         <p className="text-xs text-gray-500">
           {timeAgo} • {project}
         </p>
-        {showApprovalButtons && (
-          <div className="mt-2 space-x-2">
-            <Button variant="outline" size="sm" className="text-xs px-3 py-1">
-              Deny
-            </Button>
-            <Button
-              size="sm"
-              className="bg-orange-500 text-gray-200 text-xs px-3 py-1"
-            >
-              Approve
-            </Button>
+        <div className="mt-2 p-3 rounded bg-gray-800">
+          <p className="text-xs font-semibold flex items-center">
+            <img
+              src={imageUrl}
+              alt={`${fileName} preview`}
+              className="mr-1 rounded w-8 h-8"
+            />
+          </p>
+          <p className="text-xs mt-1 text-gray-400">{description}</p>
+          <p className="text-xs text-orange-500 mt-2">Link preview</p>
+          <div className="flex items-center text-xs text-gray-400 mt-1">
+            <Link className="w-4 h-4 mr-1" />
+            {linkUrl}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
 };
 
-export default PlainNotification;
+export default FileNotification;
