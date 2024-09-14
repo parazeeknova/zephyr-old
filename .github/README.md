@@ -21,7 +21,7 @@ This is a project proposal created for overview (current). The content and featu
 
 #### _<div align="left"><sub>// Project Overview</sub></div>_
 
-<p align="center">
+<p align="left">
 <strong>Zephyr</strong> is an Blog/Search Accelerator & social media platform designed to revamp how blog and research writers create, share, and collaborate on content. With AI-powered content summarization, dynamic profile generation, and advanced search functionality, Zephyr aims to streamline the content creation process and enhance user engagement. Whether you're a seasoned blogger, an academic researcher, or a content enthusiast, Zephyr provides the tools and features to elevate your writing experience.
 </p>
 
