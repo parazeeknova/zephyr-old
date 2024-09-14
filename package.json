@@ -1,36 +1,81 @@
 {
-	"name": "zephyr-blogaccelerator",
-	"version": "0.0.1",
-	"description": "AI-powered social platform for content creators and researchers. Featuring smart summarization, collaborative editing, and community-driven knowledge sharing.",
-	"author": "Parazeeknova - dev.hashcodes@gmail.com",
+  "name": "zephyr",
+  "version": "0.0.1-alpha",
+  "description": "AI-powered social platform for content creators and researchers. Featuring smart summarization, collaborative editing, and community-driven knowledge sharing.",
   "repository": {
-		"type": "git",
-		"url": "https://github.com/parazeeknova/zephyr.git"
-	},
-	"homepage": "https://github.com/parazeeknova/zephyr/wiki",
-	"bugs": {
-		"url": "https://github.com/parazeeknova/zephyr/issues"
-	},
-	"private": true,
-	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
-		"start": "next start",
-		"lint": "next lint"
-	},
-	"dependencies": {
-		"react": "^18",
-		"react-dom": "^18",
-		"next": "14.2.11"
-	},
-	"devDependencies": {
-		"@types/node": "^22.5.5",
-		"@types/react": "^18.3.5",
-		"@types/react-dom": "^18.3.0",
-		"eslint": "^9.10.0",
-		"eslint-config-next": "^14.2.11",
-		"postcss": "^8",
-		"tailwindcss": "^3.4.1",
-		"typescript": "^5.6.2"
-	}
+    "type": "git",
+    "url": "https://github.com/Parazeeknova/zephyr.git"
+  },
+  "author": "Parazeeknova, Hashcodes",
+  "homepage": "https://github.com/Parazeeknova/zephyr/wiki",
+  "maintainers": [
+    {
+      "name": "Harsh",
+      "email": "dev.hashcodes@gmail.com"
+    }
+  ],
+  "keywords": [
+    "AI",
+    "social",
+    "platform",
+    "content",
+    "creators",
+    "researchers",
+    "blogpost",
+    "summarization",
+    "collaborative",
+    "knowledge",
+    "sharing",
+    "blogging",
+    "research",
+    "writing",
+    "publishing",
+    "blog accelerator",
+    "research accelerator",
+    "writing accelerator",
+    "collaborative accelerator",
+    "smart accelerator",
+    "AI accelerator"
+  ],
+  "directories": {
+    "frontend": "./frontend",
+    "backend": "./backend"
+  },
+  "main": "app/page.tsx",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "prepare": "husky init",
+    "check": "bun run lint && bun run format"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.5.0",
+    "@typescript-eslint/parser": "^8.5.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-jsx-a11y": "^6.10.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.36.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "next": "^14.2.11",
+    "prettier": "^3.3.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.5",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.11",
+    "postcss": "^8.4.45",
+    "tailwindcss": "^3.4.11",
+    "typescript": "^5.6.2"
+  }
 }
