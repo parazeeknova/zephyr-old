@@ -13,25 +13,19 @@
   <a href="https://github.com/parazeeknova/zephyr/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp;
 </div>
 
+---
+
 <br>
 
-> [!IMPORTANT] > **Note:** This is a project proposal created for overview (current). The content and features described below are purely speculative and do not represent an actual product or service to be implemented.
+###### _<div align="right"><sub>// Disclaimer</sub></div>_
+
+This is a project proposal created for overview (current). The content and features described below are purely speculative and do not represent an actual product or service to be implemented.
 
 #### _<div align="left"><sub>// Project Overview</sub></div>_
 
 <p align="center">
 <strong>Zephyr</strong> is an Blog/Search Accelerator & social media platform designed to revamp how blog and research writers create, share, and collaborate on content. With AI-powered content summarization, dynamic profile generation, and advanced search functionality, Zephyr aims to streamline the content creation process and enhance user engagement. Whether you're a seasoned blogger, an academic researcher, or a content enthusiast, Zephyr provides the tools and features to elevate your writing experience.
 </p>
-
-<div align="center">
-	<a href="https://github.com/parazeeknova/zephyr/stargazers">
-		<img alt="Stargazers" src="https://img.shields.io/github/stars/parazeeknova/zephyr?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41"></a>
-	<a href="https://github.com/parazeeknova/zephyr/issues">
-		<img alt="Issues" src="https://img.shields.io/github/issues/parazeeknova/zephyr?style=for-the-badge&logo=gitbook&color=B5E8E0&logoColor=D9E0EE&labelColor=302D41"></a>
-    <a href="https://github.com/parazeeknova/zephyr/releases">
-    <img alt="Maintained" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge&logo=github&color=F2CDCD&logoColor=D9E0EE&labelColor=302D41"/></a>
-	</a>
-</div>
 
 <br>
 
@@ -56,6 +50,8 @@ bun dev OR bun d # Start the development server
 - [x] **Prettier**: For code formatting.
 - [ ] **tailwind CSS IntelliSense**: For Tailwind CSS support. (Optional)
 
+---
+
 <br>
 
 #### _<div align="left"><sub>// Preview</sub></div>_
@@ -69,3 +65,5 @@ bun dev OR bun d # Start the development server
 <div align="right">
   <a href="#-project-overview"><kbd> <br> 🡅 <br> </kbd></a>
 </div>
+
+---
