@@ -33,7 +33,9 @@ export const Header: React.FC<HeaderProps> = ({
   toggleDarkMode,
 }) => {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('inbox');
+  const [activeTab, setActiveTab] = useState<
+    'inbox' | 'following' | 'archived'
+  >('inbox');
 
   const toggleNotification = () => setIsNotificationOpen(!isNotificationOpen);
 
@@ -101,8 +103,6 @@ export const Header: React.FC<HeaderProps> = ({
             linkUrl="earthfund.io/technology/donate..."
           />
         );
-      default:
-        return null;
     }
   };
 
@@ -207,7 +207,11 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="flex border-b border-gray-200 text-sm">
               <Button
                 variant="ghost"
-                className={flex-1 py-2 px-4 font-semibold ${activeTab === 'inbox' ? 'text-orange-500 border-b-2' : 'text-gray-400'}}
+                className={`flex-1 py-2 px-4 font-semibold ${
+                  activeTab === 'inbox'
+                    ? 'text-orange-500 border-b-2 border-orange-500'
+                    : 'text-gray-400'
+                }`}
                 onClick={() => setActiveTab('inbox')}
               >
                 Inbox{' '}
@@ -217,17 +221,25 @@ export const Header: React.FC<HeaderProps> = ({
               </Button>
               <Button
                 variant="ghost"
-                className={flex-1 py-2 px-4  font-semibold ${activeTab === 'following' ? 'text-orange-500 border-b-2' : 'text-gray-400'}}
+                className={`flex-1 py-2 px-4 font-semibold ${
+                  activeTab === 'following'
+                    ? 'text-orange-500 border-b-2 border-orange-500'
+                    : 'text-gray-400'
+                }`}
                 onClick={() => setActiveTab('following')}
               >
                 Following{' '}
-                <span className="ml-1 bg-red-500 text-white rounded-full px-1.5 py-0.5 text-xs  font-semibold">
+                <span className="ml-1 bg-red-500 text-white rounded-full px-1.5 py-0.5 text-xs font-semibold">
                   24
                 </span>
               </Button>
               <Button
                 variant="ghost"
-                className={flex-1 py-2 px-4  font-semibold ${activeTab === 'archived' ? 'text-orange-500 border-b-2' : 'text-gray-400'}}
+                className={`flex-1 py-2 px-4 font-semibold ${
+                  activeTab === 'archived'
+                    ? 'text-orange-500 border-b-2 border-orange-500'
+                    : 'text-gray-400'
+                }`}
                 onClick={() => setActiveTab('archived')}
               >
                 Archived
@@ -251,4 +263,4 @@ export const Header: React.FC<HeaderProps> = ({
   );
 };
 
-export default Header;
+export default Header;
