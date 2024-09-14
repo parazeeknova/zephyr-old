@@ -1,14 +1,4 @@
 <div align="center">
-	<a href="https://github.com/parazeeknova/zephyr/stargazers">
-		<img alt="Stargazers" src="https://img.shields.io/github/stars/parazeeknova/zephyr?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41"></a>
-	<a href="https://github.com/parazeeknova/zephyr/issues">
-		<img alt="Issues" src="https://img.shields.io/github/issues/parazeeknova/zephyr?style=for-the-badge&logo=gitbook&color=B5E8E0&logoColor=D9E0EE&labelColor=302D41"></a>
-    <a href="https://github.com/parazeeknova/zephyr/releases">
-    <img alt="Maintained" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge&logo=github&color=F2CDCD&logoColor=D9E0EE&labelColor=302D41"/></a>
-	</a>
-</div>
-
-<div align="center">
 
   <a href="https://github.com/parazeeknova/zephyr">
     <img src="assets/Zephyr-banner.png" alt="Logo" width="98%">
@@ -33,13 +23,15 @@
 <strong>Zephyr</strong> is an Blog/Search Accelerator & social media platform designed to revamp how blog and research writers create, share, and collaborate on content. With AI-powered content summarization, dynamic profile generation, and advanced search functionality, Zephyr aims to streamline the content creation process and enhance user engagement. Whether you're a seasoned blogger, an academic researcher, or a content enthusiast, Zephyr provides the tools and features to elevate your writing experience.
 </p>
 
-<br>
-
-#### _<div align="left"><sub>// Wiki</sub></div>_
-
-<p align="center">
-For more information on the project, please refer to the [Wiki](https://github.com/parazeeknova/zephyr/wiki) section.
-</p>
+<div align="center">
+	<a href="https://github.com/parazeeknova/zephyr/stargazers">
+		<img alt="Stargazers" src="https://img.shields.io/github/stars/parazeeknova/zephyr?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41"></a>
+	<a href="https://github.com/parazeeknova/zephyr/issues">
+		<img alt="Issues" src="https://img.shields.io/github/issues/parazeeknova/zephyr?style=for-the-badge&logo=gitbook&color=B5E8E0&logoColor=D9E0EE&labelColor=302D41"></a>
+    <a href="https://github.com/parazeeknova/zephyr/releases">
+    <img alt="Maintained" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge&logo=github&color=F2CDCD&logoColor=D9E0EE&labelColor=302D41"/></a>
+	</a>
+</div>
 
 <br>
 
