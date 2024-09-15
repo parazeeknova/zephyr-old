@@ -51,13 +51,15 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ isDarkMode }) => {
 
   return (
     <aside
-      className={`w-80 p-4 space-y-4 overflow-y-auto ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}
+      className={`w-80 p-4 space-y-4 overflow-y-auto ${
+        isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'
+      }`}
     >
       <ProfileCard isDarkMode={isDarkMode} {...profileData} />
+      <YourSkills isDarkMode={isDarkMode} skills={skills} />
       <ThoughtShare isDarkMode={isDarkMode} username={profileData.username} />
       <LatestActivity isDarkMode={isDarkMode} activities={activities} />
       <SuggestedConnections isDarkMode={isDarkMode} connections={connections} />
-      <YourSkills isDarkMode={isDarkMode} skills={skills} />
     </aside>
   );
 };

@@ -13,26 +13,56 @@ interface ThoughtShareProps {
 }
 
 const ThoughtShare: React.FC<ThoughtShareProps> = ({ isDarkMode, username }) => (
-  <Card className={isDarkMode ? 'bg-gray-700 shadow-md' : 'bg-white shadow-md'}>
+  <Card className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
     <CardContent className="p-4">
-      <h3 className="font-semibold mb-2">What do you think, {username}?</h3>
+      <h3 className={`font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+        What do you think, {username}?
+      </h3>
       <Textarea
         placeholder="Share your thoughts..."
-        className={`mb-2 ${isDarkMode ? 'bg-gray-600 text-white' : 'bg-gray-100 text-gray-900'}`}
+        className={`mb-2 ${
+          isDarkMode
+            ? 'bg-gray-700 text-white placeholder-gray-400'
+            : 'bg-gray-100 text-gray-900 placeholder-gray-500'
+        }`}
       />
       <div className="grid grid-cols-2 gap-2 mb-2">
-        <Button variant="outline" size="sm" className="flex items-center justify-center">
+        <Button
+          variant={isDarkMode ? 'outline' : 'secondary'}
+          size="sm"
+          className={`flex items-center justify-center ${
+            isDarkMode
+              ? 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white border-gray-600'
+              : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+          }`}
+        >
           <ImageIcon className="w-4 h-4 mr-2" />
-          Image
+          Fleet
         </Button>
-        <Button variant="outline" size="sm" className="flex items-center justify-center">
+        <Button
+          variant={isDarkMode ? 'outline' : 'secondary'}
+          size="sm"
+          className={`flex items-center justify-center ${
+            isDarkMode
+              ? 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white border-gray-600'
+              : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+          }`}
+        >
           <Video className="w-4 h-4 mr-2" />
-          Video
+          Blog
         </Button>
       </div>
-      <Button variant="outline" size="sm" className="w-full flex items-center justify-center">
+      <Button
+        variant={isDarkMode ? 'outline' : 'secondary'}
+        size="sm"
+        className={`w-full flex items-center justify-center ${
+          isDarkMode
+            ? 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white border-gray-600'
+            : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+        }`}
+      >
         <Cast className="w-4 h-4 mr-2" />
-        Streaming
+        Research
       </Button>
     </CardContent>
   </Card>
