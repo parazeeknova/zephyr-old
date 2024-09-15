@@ -1,1 +1,1 @@
-bun test
+bun run check && bunx lint-staged

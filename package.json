@@ -49,7 +49,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
-    "prepare": "husky init",
+    "prepare": "husky",
     "check": "bun run lint && bun run format"
   },
   "dependencies": {
