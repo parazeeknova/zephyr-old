@@ -77,19 +77,7 @@ const posts = [
     width: 800,
     height: 800,
     tags: ['8bit', 'Animation', 'Games', 'Commissions'],
-  },
-  {
-    author: 'CodeMaster',
-    avatar: '/useriii.jpg',
-    time: '2 days ago',
-    content:
-      "Just released a new open-source library for React that simplifies state management. It's lightweight, easy to use, and perfect for small to medium-sized projects. Check it out on GitHub and let me know what you think! 💻🚀 #ReactJS #OpenSource #WebDevelopment",
-    images: ['/blogii.png', '/blogiii.png'],
-    comments: 0,
-    shares: 0,
-    width: 1400,
-    height: 900,
-    tags: ['Web Development', 'React', 'Open Source'],
+    aura: 100,
   },
   {
     author: 'Sarah Johnson',
@@ -103,6 +91,7 @@ const posts = [
     width: 1200,
     height: 800,
     tags: ['Illustration', 'Desiger', 'Art'],
+    aura: 200,
   },
   {
     author: 'Tech Insider',
@@ -116,6 +105,21 @@ const posts = [
     width: 0,
     height: 0,
     tags: ['Technology', 'AI', 'Innovation'],
+    aura: 300,
+  },
+  {
+    author: 'CodeMaster',
+    avatar: '/useriii.jpg',
+    time: '2 days ago',
+    content:
+      "Just released a new open-source library for React that simplifies state management. It's lightweight, easy to use, and perfect for small to medium-sized projects. Check it out on GitHub and let me know what you think! 💻🚀 #ReactJS #OpenSource #WebDevelopment",
+    images: ['/blogii.png', '/blogiii.png'],
+    comments: 0,
+    shares: 0,
+    width: 1400,
+    height: 900,
+    tags: ['Web Development', 'React', 'Open Source'],
+    aura: 400,
   },
   {
     author: 'Alvin Elian',
@@ -134,6 +138,21 @@ const posts = [
     width: 800,
     height: 400,
     tags: ['Anime', 'Art', 'Design', 'Illustration'],
+    aura: 690,
+  },
+  {
+    author: 'Babu Rao',
+    avatar: '/user-boyalt-default.png',
+    time: '2 hours ago',
+    content:
+      'Fhir is a new AI model called Hera fhiri that can generate realistic images from text descriptions. It uses a combination of natural language processing and computer vision to create images that are indistinguishable from real ones. #AI #Art #Technology',
+    images: [],
+    comments: 0,
+    shares: 0,
+    width: 0,
+    height: 0,
+    tags: ['Technology', 'AI', 'Innovation'],
+    aura: 69,
   },
 ];
 
@@ -141,7 +160,6 @@ export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isHovering, setIsHovering] = useState(false);
 
   const checkScrollButtons = () => {
@@ -169,6 +187,9 @@ export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
     }
   };
 
+  const scribbles = posts.filter((post) => post.images.length === 0);
+  const snapshots = posts.filter((post) => post.images.length > 0);
+
   return (
     <main className={`flex-1 p-6 overflow-y-auto pb-24 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
@@ -189,7 +210,7 @@ export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
             >
               <div
                 ref={scrollRef}
-                className={`flex space-x-4 overflow-x-hidden`}
+                className={`flex space-x-4 overflow-x-hidden ${isHovering ? 'scrollbar-show' : 'scrollbar-hide'}`}
                 onScroll={checkScrollButtons}
                 style={{ paddingBottom: '10px' }}
               >
@@ -230,11 +251,50 @@ export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
             <h2
               className={`text-2xl font-bold mb-2 text-left ${isDarkMode ? 'text-gray-300' : 'text-gray-500'} uppercase`}
             >
-              Latest Posts
+              Scribbles
             </h2>
-            {posts.map((post, index) => (
-              <PostCard key={index} post={post} isDarkMode={isDarkMode} />
-            ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr">
+              {scribbles.slice(0, 4).map((post, index) => (
+                <div key={`scribble-${index}`} className="h-full">
+                  <PostCard post={post} isDarkMode={isDarkMode} />
+                </div>
+              ))}
+            </div>
+            {scribbles.length > 4 && (
+              <div className="mt-4">
+                <h3
+                  className={`text-xl font-semibold mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
+                >
+                  More Scribbles
+                </h3>
+                <div className="space-y-4">
+                  {scribbles.slice(4).map((post, index) => (
+                    <PostCard key={`scribble-extra-${index}`} post={post} isDarkMode={isDarkMode} />
+                  ))}
+                </div>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
+        <Card className={`mb-8 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <CardContent className="p-4">
+            <h2
+              className={`text-2xl font-bold mb-2 text-left ${isDarkMode ? 'text-gray-300' : 'text-gray-500'} uppercase`}
+            >
+              Snapshots
+            </h2>
+            <div className="space-y-8">
+              {snapshots.map((post, index) => (
+                <PostCard key={`snapshot-${index}`} post={post} isDarkMode={isDarkMode} />
+              ))}
+            </div>
           </CardContent>
         </Card>
       </motion.div>
@@ -242,7 +302,7 @@ export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
         className={`text-center py-8 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}
       >
         <p>You&apos;ve reached the end of your feed.</p>
