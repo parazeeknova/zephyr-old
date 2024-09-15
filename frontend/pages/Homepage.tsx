@@ -1,15 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import Footer from '@/C/Footer';
 import { default as FeedView } from '@/CL/FeedView';
+import FloatingActionBar from '@/CL/FloatingActionBar';
 import Header from '@/CL/Header';
 import LeftSideBar from '@/CL/LeftSideBar';
 import RightSideBar from '@/CL/RightSideBar';
 
-export default function ZephyrHomepage() {
+export default function ZephyrHomePage() {
+  //eslint-disable-next-line
+  const [isScrolled, setIsScrolled] = useState(false);
+  //eslint-disable-next-line
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const handleScroll = useCallback(() => {
+    setIsScrolled(window.scrollY > 50);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -25,6 +39,7 @@ export default function ZephyrHomepage() {
         <LeftSideBar isDarkMode={isDarkMode} />
         <FeedView isDarkMode={isDarkMode} />
         <RightSideBar isDarkMode={isDarkMode} />
+        <FloatingActionBar isDarkMode={isDarkMode} setIsChatOpen={setIsChatOpen} />
       </div>
 
       <Footer isDarkMode={isDarkMode} />
