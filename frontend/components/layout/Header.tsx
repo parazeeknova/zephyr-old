@@ -50,7 +50,9 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
               fileName="Earthfund - Master"
               timeAgo="21 hours ago"
               project="AstroClash UI Kit"
-              imageUrl="/Banner.png?height=200&width=200&text=Thinking+Components"
+              imageUrl="/Banner.png"
+              width={400}
+              height={200}
               description="Everything you need to make a difference. Join the EarthFund community and help us decentralize the way we tackle humanity's biggest problems."
               linkUrl="earthfund.io/technology/donate..."
             />
@@ -66,17 +68,7 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
           </>
         );
       case 'following':
-        return (
-          <PlainNotification
-            avatarInitial="D"
-            avatarColor="bg-orange-500"
-            userName="Dylan"
-            action="has sent a message."
-            message="Hi my friend how are you"
-            timeAgo="20 hours ago"
-            project="AstroClash UI Kit"
-          />
-        );
+        return <p className="text-center text-gray-500">You have no following notifications</p>;
       case 'archived':
         return (
           <FileNotification
@@ -87,7 +79,9 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
             fileName="Earthfund - Master"
             timeAgo="21 hours ago"
             project="AstroClash UI Kit"
-            imageUrl="/placeholderIII.jpg?height=200&width=200&text=Thinking+Components"
+            imageUrl="/placeholderIII.jpg"
+            width={400}
+            height={200}
             description="Everything you need to make a difference. Join the EarthFund community and help us decentralize the way we tackle humanity's biggest problems."
             linkUrl="earthfund.io/technology/donate..."
           />

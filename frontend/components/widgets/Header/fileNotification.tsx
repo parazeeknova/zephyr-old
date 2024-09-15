@@ -17,6 +17,8 @@ interface FileNotificationProps {
   imageUrl: string;
   description: string;
   linkUrl: string;
+  width: number;
+  height: number;
 }
 
 const FileNotification: React.FC<FileNotificationProps> = ({
@@ -30,6 +32,8 @@ const FileNotification: React.FC<FileNotificationProps> = ({
   imageUrl,
   description,
   linkUrl,
+  width,
+  height,
 }) => {
   return (
     <div className="flex items-start space-x-3">
@@ -45,7 +49,13 @@ const FileNotification: React.FC<FileNotificationProps> = ({
         </p>
         <div className="mt-2 p-3 rounded bg-gray-800">
           <p className="text-xs font-semibold flex items-center">
-            <Image src={imageUrl} alt={`${fileName} preview`} className="mr-1 rounded w-15 h-15" />
+            <Image
+              src={imageUrl}
+              alt={`${fileName} preview`}
+              className="mr-1 rounded w-15 h-15"
+              width={width}
+              height={height}
+            />
           </p>
           <p className="text-xs mt-1 text-gray-400">{description}</p>
           <p className="text-xs text-orange-500 mt-2">Link preview</p>
