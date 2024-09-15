@@ -42,6 +42,14 @@ bun install OR bun i # Install dependencies
 bun dev OR bun d # Start the development server
 ```
 
+###### _<div align="right"><sub>// Some bun commands are:</sub></div>_
+
+```bash
+bun run dev # Start the development server
+bun run check # Run lint and format
+bunx lint-staged # Run lint-staged
+```
+
 ###### _<div align="right"><sub>// VSCode Extentions</sub></div>_
 
 - [x] **ESLint**: For linting and code formatting.

@@ -13,6 +13,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
+  ignorePatterns: ['app/components/ui/*'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
