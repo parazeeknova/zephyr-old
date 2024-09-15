@@ -60,9 +60,9 @@ bunx lint-staged # Run lint-staged
 
 #### _<div align="left"><sub>// Preview</sub></div>_
 
-| Home                                         | Profile                                           |
-| -------------------------------------------- | ------------------------------------------------- |
-| ![Zephyr - Home](assets/zephyr-homepage.png) | ![Zephyr - Search](assets/zephyr-porfilepage.png) |
+| Homepage - Light Mode                   | Homepage - Dark Mode with Search                                   |
+| --------------------------------------- | ------------------------------------------------------------------ |
+| ![Zephyr - Home](assets/Homescreen.png) | ![Zephyr - Search](assets/Homescreen%20with%20search%20Opened.png) |
 
 <br>
 
