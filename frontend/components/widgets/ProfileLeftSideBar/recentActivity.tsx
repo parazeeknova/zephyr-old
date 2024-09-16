@@ -5,28 +5,25 @@ import React from 'react';
 
 import { Card, CardContent } from '@/components/ui/card';
 
-const RecentActivity: React.FC = () => (
-  <Card className="mb-6">
+interface RecentActivityProps {
+  activities: Array<{
+    action: string;
+    target: string;
+    time: string;
+  }>;
+  isDarkMode: boolean;
+}
+
+const RecentActivity: React.FC<RecentActivityProps> = ({ activities, isDarkMode }) => (
+  <Card className={`mb-6 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}`}>
     <CardContent className="p-6">
-      <h2 className="text-sm font-semibold mb-4 uppercase text-gray-500">Recent Activity</h2>
+      <h2
+        className={`text-sm font-semibold mb-4 uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
+      >
+        Recent Activity
+      </h2>
       <div className="space-y-4">
-        {[
-          {
-            action: 'Commented on',
-            target: '"The Role of AI in UX Design"',
-            time: '2 hours ago',
-          },
-          {
-            action: 'Liked',
-            target: '"Responsive Design Best Practices"',
-            time: '1 day ago',
-          },
-          {
-            action: 'Shared',
-            target: '"UX Trends for 2024"',
-            time: '3 days ago',
-          },
-        ].map((activity, index) => (
+        {activities.map((activity, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, x: -20 }}
@@ -37,7 +34,9 @@ const RecentActivity: React.FC = () => (
             <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
             <p className="text-sm">
               <span className="font-semibold">{activity.action}</span> {activity.target}
-              <span className="text-gray-500 ml-2">{activity.time}</span>
+              <span className={`ml-2 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                {activity.time}
+              </span>
             </p>
           </motion.div>
         ))}

@@ -4,7 +4,7 @@ import React from 'react';
 
 import Footer from '@/C/Footer';
 import Header from '@/CL/Header';
-import MainContent from '@/CL/ProfileFeediew';
+import ProfileFeedView from '@/CL/ProfileFeediew';
 import LeftSidebar from '@/CL/ProfileLeftSideBar';
 import RightSidebar from '@/CL/ProfileRightSideBar';
 
@@ -16,16 +16,14 @@ const ProfilePage: React.FC = () => {
   };
 
   return (
-    <div
-      className={`flex flex-col min-h-screen ${
-        isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'
-      }`}
-    >
+    <div className={`flex flex-col min-h-screen ${isDarkMode ? 'dark' : ''}`}>
       <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-      <div className="flex flex-1">
-        <LeftSidebar />
-        <MainContent />
-        <RightSidebar />
+      <div className="flex flex-1 bg-gray-100 dark:bg-gray-900">
+        <LeftSidebar isDarkMode={isDarkMode} />
+        <div className="flex-1 max-w-5.1xl mx-auto">
+          <ProfileFeedView isDarkMode={isDarkMode} />
+        </div>
+        <RightSidebar isDarkMode={isDarkMode} />
       </div>
       <Footer isDarkMode={isDarkMode} />
     </div>

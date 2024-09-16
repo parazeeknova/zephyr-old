@@ -16,8 +16,26 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-const MyPosts: React.FC = () => (
-  <Card>
+interface MyPostsProps {
+  data: {
+    blogs: Array<{
+      title: string;
+      date: string;
+      likes: number;
+      comments: number;
+      image: string;
+    }>;
+    researchPapers: Array<{
+      title: string;
+      date: string;
+      citations: number;
+    }>;
+  };
+  isDarkMode: boolean;
+}
+
+const MyPosts: React.FC<MyPostsProps> = ({ data, isDarkMode }) => (
+  <Card className={isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}>
     <CardContent className="p-6">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold uppercase text-gray-500">My Posts</h2>
@@ -51,35 +69,19 @@ const MyPosts: React.FC = () => (
         </TabsList>
         <TabsContent value="blogs">
           <div className="grid grid-cols-2 gap-4">
-            {[
-              {
-                title: 'The Future of UX Design',
-                date: '2 days ago',
-                likes: 24,
-                comments: 8,
-                image: '/Banner.png?height=200&width=300',
-              },
-              {
-                title: 'Designing for Accessibility',
-                date: '1 week ago',
-                likes: 56,
-                comments: 12,
-                image: '/placeholderI.png?height=200&width=300',
-              },
-              {
-                title: 'Mobile-First Design Principles',
-                date: '2 weeks ago',
-                likes: 42,
-                comments: 15,
-                image: '/zy.png?height=200&width=300',
-              },
-            ].map((post, index) => (
+            {data.blogs.map((post, index) => (
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.05 }}
                 className="relative overflow-hidden rounded-lg shadow-md"
               >
-                <Image src={post.image} alt={post.title} className="w-full h-40 object-cover" />
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-40 object-cover"
+                  width={200}
+                  height={250}
+                />
                 <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                   <h3 className="font-semibold text-white">{post.title}</h3>
                   <p className="text-sm text-gray-300">{post.date}</p>
@@ -94,18 +96,7 @@ const MyPosts: React.FC = () => (
         </TabsContent>
         <TabsContent value="research">
           <div className="space-y-4">
-            {[
-              {
-                title: 'Impact of AI on UX Design Processes',
-                date: '1 month ago',
-                citations: 15,
-              },
-              {
-                title: 'User Behavior in AR Interfaces',
-                date: '3 months ago',
-                citations: 22,
-              },
-            ].map((paper, index) => (
+            {data.researchPapers.map((paper, index) => (
               <div
                 key={index}
                 className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"

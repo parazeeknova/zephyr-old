@@ -8,28 +8,29 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
-const Recommendations: React.FC = () => (
-  <Card>
+interface RecommendationsProps {
+  people: Array<{
+    name: string;
+    role: string;
+    comment: string;
+    avatar: string;
+  }>;
+  isDarkMode: boolean;
+}
+
+const Recommendations: React.FC<RecommendationsProps> = ({ people, isDarkMode }) => (
+  <Card className={isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}>
     <CardContent className="p-6">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-sm font-semibold uppercase text-gray-500">
-          Endorsements based on your activity :
+          Endorsements based on your activity:
         </h2>
         <Button variant="link" className="text-orange-600">
           View all <ChevronRight className="ml-1 h-4 w-4" />
         </Button>
       </div>
       <div className="space-y-4">
-        {[
-          {
-            name: 'Leon Ward, CEO',
-            comment: 'It was so good to work with Jean. Shes very creative.',
-          },
-          {
-            name: 'Keith Scott, Project Manager',
-            comment: 'Jean is a super-talented individual with a constant eager...',
-          },
-        ].map((rec, index) => (
+        {people.map((rec, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 20 }}
@@ -38,12 +39,13 @@ const Recommendations: React.FC = () => (
             className="flex items-start space-x-4"
           >
             <Avatar>
-              <AvatarImage src={`/placeholder.svg?height=40&width=40&text=${rec.name[0]}`} />
+              <AvatarImage src={rec.avatar} alt={rec.name} width={64} height={64} />
               <AvatarFallback>{rec.name[0]}</AvatarFallback>
             </Avatar>
             <div>
               <h3 className="font-semibold">{rec.name}</h3>
-              <p className="text-sm text-gray-600">{rec.comment}</p>
+              <p className="text-xs text-gray-500">{rec.role}</p>
+              <p className="text-sm text-gray-600 mt-1">{rec.comment}</p>
             </div>
           </motion.div>
         ))}
