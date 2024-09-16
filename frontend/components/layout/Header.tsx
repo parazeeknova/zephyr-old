@@ -134,7 +134,9 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
               align="end"
               className={isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}
             >
-              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <Link href="/profile">
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+              </Link>
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuItem>Preferences</DropdownMenuItem>
               <DropdownMenuItem>Log out</DropdownMenuItem>

@@ -1,7 +1,5 @@
-'use client';
-
 import ProfilePage from '@/FP/Profilepage';
 
-export default function UserProfilePage() {
+export default function Profile() {
   return <ProfilePage />;
 }
