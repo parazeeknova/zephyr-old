@@ -153,7 +153,9 @@ const FloatingActionBar: React.FC<FloatingActionBarProps> = ({ isDarkMode, setIs
                 className="ml-2 bg-orange-500 rounded-full transition-all duration-300 p-2 hover:bg-orange-600"
                 onClick={() => setIsChatOpen(true)}
               >
-                <MessageCircle className="h-5 w-5 text-white" />
+                <Link href="/chat">
+                  <MessageCircle className="h-5 w-5 text-white" />
+                </Link>
               </Button>
             </div>
             {isExpanded && (
@@ -179,7 +181,9 @@ const FloatingActionBar: React.FC<FloatingActionBarProps> = ({ isDarkMode, setIs
                   size="icon"
                   className="rounded-full transition-all duration-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                 >
-                  <UserCircle className="h-6 w-6" />
+                  <Link href="/profile">
+                    <UserCircle className="h-6 w-6" />
+                  </Link>
                 </Button>
               </div>
             )}

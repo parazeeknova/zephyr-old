@@ -1,30 +1,28 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
 
-import Header from '@/CL/Header';
 import ChatArea from '@/CW/Chats/chatArea';
 import SharedFiles from '@/CW/Chats/sharedFile';
 import SharedPhotos from '@/CW/Chats/sharedPhoto';
 import Sidebar from '@/CW/Chats/sideBar';
 import TypeBar from '@/CW/Chats/typeBar';
-import { Chat, ProfileInfo, SharedFile } from '@/CW/Chats/types';
+import { Chat, SharedFile } from '@/CW/Chats/types';
+import UploadButton from '@/CW/Chats/uploadButton';
 import ProfileCard from '@/CW/RightSideBar/profileCard';
 
-// interface RightSidebarProps {
-//     isDarkMode: boolean;
-//   }
+interface ChatSectionProps {
+  isDarkMode: boolean;
+}
 
-const ChatInterface: React.FC = () => {
-  const router = useRouter();
+const ChatSection: React.FC<ChatSectionProps> = ({ isDarkMode }) => {
   const pathname = usePathname();
   const [activeChat, setActiveChat] = useState<string>('2');
   const [activeSection, setActiveSection] = useState<string>('chats');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [page, setPage] = useState<number>(0);
-  const [direction, setDirection] = useState<number>(0);
+  const [page] = useState<number>(0);
+  const [direction] = useState<number>(0);
   const [messages, setMessages] = useState<Array<{ id: number; sender: string; content: string }>>(
     [],
   );
@@ -67,15 +65,6 @@ const ChatInterface: React.FC = () => {
     [],
   );
 
-  const profileInfo: ProfileInfo = useMemo(
-    () => ({
-      name: 'Audrey Kelly',
-      title: 'Graphic Designer',
-      avatarUrl: '',
-    }),
-    [],
-  );
-
   const sharedFiles: SharedFile[] = useMemo(
     () => [
       { type: 'ZIP', name: 'Marketing Brochure.zip', color: 'blue' },
@@ -87,12 +76,12 @@ const ChatInterface: React.FC = () => {
 
   const sharedPhotos = useMemo(
     () => [
-      '/Banner.png',
-      '/Banner.png',
-      '/Banner.png',
-      '/Banner.png',
-      '/Banner.png',
-      '/Banner.png',
+      '/placeholderi.jpg',
+      '/placeholderii.jpg',
+      '/placeholderiii.jpg',
+      '/placeholderiv.jpg',
+      '/placeholderv.jpg',
+      '/placeholderi.jpg',
     ],
     [],
   );
@@ -113,14 +102,18 @@ const ChatInterface: React.FC = () => {
     () => chats.find((chat) => chat.id === activeChat) || chats[0],
     [chats, activeChat],
   );
-  const profileData = {
-    avatarSrc: '/useriii.jpg',
-    username: 'Noviciusss',
-    profession: 'Programmer',
-    followers: 100,
-    following: 10,
-    aura: 100,
-  };
+
+  const profileData = useMemo(
+    () => ({
+      avatarSrc: '/useriii.jpg',
+      username: 'Noviciusss',
+      profession: 'Programmer',
+      followers: 100,
+      following: 10,
+      aura: 100,
+    }),
+    [],
+  );
 
   useEffect(() => {
     if (currentChat) {
@@ -133,7 +126,6 @@ const ChatInterface: React.FC = () => {
   }, [currentChat]);
 
   useEffect(() => {
-    // Extract the chat ID from the pathname
     const chatId = pathname.split('/').pop();
     if (chatId && chats.some((chat) => chat.id === chatId)) {
       setActiveChat(chatId);
@@ -153,46 +145,39 @@ const ChatInterface: React.FC = () => {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col bg-gray-100">
-      <Header />
-      <div className="flex-1 flex overflow-hidden ">
-        <Sidebar
-          searchTerm={searchTerm}
-          setSearchTerm={handleSetSearchTerm}
-          activeSection={activeSection}
-          setActiveSection={handleSetActiveSection}
-          page={page}
-          direction={direction}
-          filteredChats={filteredChats}
-          activeChat={activeChat}
-          setActiveChat={handleSetActiveChat}
-          sections={sections}
-          user={{
-            name: 'Aaron Stanley',
-            initials: 'AS',
-            status: 'Online',
-          }}
-        />
-        <div className="flex-1 flex flex-col ">
-          <ChatArea chat={currentChat} messages={messages} />
-          <TypeBar onSendMessage={handleSendMessage} />
-        </div>
-        <div className="w-80 p-4 space-y-4 overflow-y-auto">
-          <ProfileCard {...profileData} />
-          <SharedFiles
-            files={[
-              { type: 'PDF', name: 'Document.pdf', color: 'red' },
-              { type: 'DOC', name: 'Report.docx', color: 'blue' },
-              { type: 'XLS', name: 'Spreadsheet.xlsx', color: 'green' },
-              // ... more files
-            ]}
-            initialDisplayCount={3}
-          />
-          <SharedPhotos photos={sharedPhotos} initialDisplayCount={6} />
-        </div>
+    <div className="flex-1 flex overflow-hidden">
+      <Sidebar
+        searchTerm={searchTerm}
+        setSearchTerm={handleSetSearchTerm}
+        activeSection={activeSection}
+        setActiveSection={handleSetActiveSection}
+        page={page}
+        direction={direction}
+        filteredChats={filteredChats}
+        activeChat={activeChat}
+        setActiveChat={handleSetActiveChat}
+        sections={sections}
+        user={{
+          name: 'Aaron Stanley',
+          initials: 'AS',
+          status: 'Online',
+        }}
+        isDarkMode={isDarkMode}
+      />
+      <div className="flex-1 flex flex-col">
+        <ChatArea chat={currentChat} messages={messages} isDarkMode={isDarkMode} />
+        <TypeBar onSendMessage={handleSendMessage} isDarkMode={isDarkMode} />
+      </div>
+      <div
+        className={`w-80 p-4 space-y-4 overflow-y-auto ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
+      >
+        <ProfileCard {...profileData} isDarkMode={isDarkMode} />
+        <SharedFiles files={sharedFiles} initialDisplayCount={3} isDarkMode={isDarkMode} />
+        <SharedPhotos photos={sharedPhotos} initialDisplayCount={6} isDarkMode={isDarkMode} />
+        <UploadButton isDarkMode={isDarkMode} />
       </div>
     </div>
   );
 };
 
-export default ChatInterface;
+export default ChatSection;

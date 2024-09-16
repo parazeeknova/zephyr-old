@@ -12,9 +12,14 @@ interface SharedFile {
 interface SharedFilesProps {
   files: SharedFile[];
   initialDisplayCount?: number;
+  isDarkMode: boolean;
 }
 
-const SharedFiles: React.FC<SharedFilesProps> = ({ files, initialDisplayCount = 3 }) => {
+const SharedFiles: React.FC<SharedFilesProps> = ({
+  files,
+  initialDisplayCount = 3,
+  isDarkMode,
+}) => {
   const [displayCount, setDisplayCount] = useState(initialDisplayCount);
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
@@ -33,9 +38,13 @@ const SharedFiles: React.FC<SharedFilesProps> = ({ files, initialDisplayCount = 
   };
 
   return (
-    <div className="mb-4 bg-white p-2 border rounded-xl shadow-md">
+    <div
+      className={`mb-4 p-2 border rounded-xl shadow-md ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}
+    >
       <div className="flex justify-between items-center mb-2">
-        <h4 className="font-semibold">Shared Files</h4>
+        <h4 className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+          Shared Files
+        </h4>
         {files.length > initialDisplayCount && (
           <button onClick={toggleExpand} className="text-orange-500 text-sm flex items-center">
             {isExpanded ? (
@@ -52,19 +61,32 @@ const SharedFiles: React.FC<SharedFilesProps> = ({ files, initialDisplayCount = 
       </div>
       <ul className="space-y-2">
         {files.slice(0, displayCount).map((file, index) => (
-          <li
-            key={index}
-            className={`flex items-center space-x-2 p-2 rounded-lg cursor-pointer transition-colors duration-200 ${
-              selectedFile === file.name ? 'bg-orange-100' : 'hover:bg-gray-100'
-            }`}
-            onClick={() => handleFileClick(file.name)}
-          >
-            <div
-              className={`w-8 h-8 bg-${file.color}-100 rounded flex items-center justify-center`}
+          <li key={index}>
+            <button
+              className={`w-full flex items-center space-x-2 p-2 rounded-lg cursor-pointer transition-colors duration-200 ${
+                selectedFile === file.name
+                  ? isDarkMode
+                    ? 'bg-gray-700'
+                    : 'bg-orange-100'
+                  : isDarkMode
+                    ? 'hover:bg-gray-700'
+                    : 'hover:bg-gray-100'
+              }`}
+              onClick={() => handleFileClick(file.name)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleFileClick(file.name);
+                }
+              }}
             >
-              <span className={`text-${file.color}-600 text-xs`}>{file.type}</span>
-            </div>
-            <span>{file.name}</span>
+              <div
+                className={`w-8 h-8 bg-${file.color}-100 rounded flex items-center justify-center`}
+              >
+                <span className={`text-${file.color}-600 text-xs`}>{file.type}</span>
+              </div>
+              <span className={isDarkMode ? 'text-white' : 'text-gray-900'}>{file.name}</span>
+            </button>
           </li>
         ))}
       </ul>

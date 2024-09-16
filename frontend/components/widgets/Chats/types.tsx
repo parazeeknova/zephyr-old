@@ -1,13 +1,7 @@
 export interface Chat {
-  id: number;
+  id: string;
   name: string;
   lastMessage: string;
-}
-
-export interface ProfileInfo {
-  name: string;
-  title: string;
-  avatarUrl: string;
 }
 
 export interface SharedFile {

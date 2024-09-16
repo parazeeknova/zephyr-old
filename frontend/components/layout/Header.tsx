@@ -100,14 +100,16 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
           <Link href="/">
             <h1 className="text-2xl font-bold text-orange-500">Zephyr.</h1>
           </Link>
-          <Button variant="ghost" size="icon">
-            <Link href="/">
+          <Link href="/">
+            <Button variant="ghost" size="icon">
               <Home className="h-5 w-5" />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon">
-            <MessageSquare className="h-5 w-5" />
-          </Button>
+            </Button>
+          </Link>
+          <Link href="/chat">
+            <Button variant="ghost" size="icon">
+              <MessageSquare className="h-5 w-5" />
+            </Button>
+          </Link>
           <Button variant="ghost" size="icon" onClick={toggleNotification}>
             <Bell className="h-5 w-5" />
           </Button>
@@ -123,7 +125,7 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex items-center space-x-2">
                 <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" alt="User avatar" />
+                  <AvatarImage src="/useri.jpg" alt="User avatar" />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
                 <span className="font-medium">Parazeeknova</span>

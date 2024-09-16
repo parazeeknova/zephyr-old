@@ -1,51 +1,28 @@
 'use client';
 
-import { ChevronDown, ChevronUp, Upload, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import Image from 'next/image';
 import React, { useState } from 'react';
-import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 
 interface SharedPhotosProps {
   photos: string[];
   initialDisplayCount?: number;
+  isDarkMode: boolean;
 }
 
-interface UploadFile {
-  name: string;
-  size: number;
-}
-
-const SharedPhotos: React.FC<SharedPhotosProps> = ({ photos, initialDisplayCount = 6 }) => {
+const SharedPhotos: React.FC<SharedPhotosProps> = ({
+  photos,
+  initialDisplayCount = 6,
+  isDarkMode,
+}) => {
   const [displayCount, setDisplayCount] = useState(initialDisplayCount);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isUploadOpen, setIsUploadOpen] = useState(false);
-  const [uploadFiles, setUploadFiles] = useState<UploadFile[]>([]);
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
-  const dragControls = useDragControls();
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
     setDisplayCount(isExpanded ? initialDisplayCount : photos.length);
-  };
-
-  const toggleUpload = () => {
-    setIsUploadOpen(!isUploadOpen);
-  };
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (files) {
-      const newFiles: UploadFile[] = Array.from(files).map((file) => ({
-        name: file.name,
-        size: file.size,
-      }));
-      setUploadFiles(newFiles);
-    }
-  };
-
-  const formatFileSize = (bytes: number): string => {
-    if (bytes < 1024) return bytes + ' B';
-    if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
-    return (bytes / 1048576).toFixed(1) + ' MB';
   };
 
   const handlePhotoClick = (photo: string) => {
@@ -53,9 +30,13 @@ const SharedPhotos: React.FC<SharedPhotosProps> = ({ photos, initialDisplayCount
   };
 
   return (
-    <div className="bg-white border rounded-xl shadow-md p-2 relative">
+    <div
+      className={`border rounded-xl shadow-md p-2 relative ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}
+    >
       <div className="flex justify-between items-center mb-2">
-        <h4 className="font-semibold">Shared Images</h4>
+        <h4 className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+          Shared Images
+        </h4>
         {photos.length > initialDisplayCount && (
           <motion.button
             onClick={toggleExpand}
@@ -84,14 +65,16 @@ const SharedPhotos: React.FC<SharedPhotosProps> = ({ photos, initialDisplayCount
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="bg-gray-200 aspect-square rounded overflow-hidden cursor-pointer relative"
+              className={`aspect-square rounded overflow-hidden cursor-pointer relative ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'}`}
               onClick={() => handlePhotoClick(photo)}
               whileHover={{ scale: 1.5, zIndex: 10 }}
             >
-              <img
+              <Image
                 src={photo}
-                alt={`Shared photo ${index + 1}`}
-                className="w-full h-full object-cover rounded"
+                alt={`Shared content ${index + 1}`}
+                layout="fill"
+                objectFit="cover"
+                className="rounded"
               />
               {selectedPhoto === photo && (
                 <motion.div
@@ -105,61 +88,6 @@ const SharedPhotos: React.FC<SharedPhotosProps> = ({ photos, initialDisplayCount
           ))}
         </AnimatePresence>
       </motion.div>
-      <motion.div
-        className="absolute bottom-4 right-4"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <motion.button
-          onClick={toggleUpload}
-          className="bg-orange-500 text-white rounded-full p-4 shadow-md hover:bg-orange-600 transition-colors"
-        >
-          <Upload className="w-8 h-8" />
-        </motion.button>
-      </motion.div>
-      <AnimatePresence>
-        {isUploadOpen && (
-          <motion.div
-            drag
-            dragControls={dragControls}
-            dragMomentum={false}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-24 right-8 bg-white border rounded-xl shadow-lg p-6 w-80"
-          >
-            <div className="flex justify-between items-center mb-4">
-              <h5 className="font-semibold text-lg">Upload Files</h5>
-              <motion.button
-                onClick={toggleUpload}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <X className="w-6 h-6 text-gray-500" />
-              </motion.button>
-            </div>
-            <input
-              type="file"
-              multiple
-              onChange={handleFileChange}
-              className="mb-4 w-full p-2 border rounded"
-            />
-            <div className="max-h-40 overflow-y-auto">
-              {uploadFiles.map((file, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-sm mb-2 p-2 bg-gray-100 rounded"
-                >
-                  <span className="font-medium">{file.name}</span>
-                  <span className="text-gray-500 ml-2">{formatFileSize(file.size)}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 };
