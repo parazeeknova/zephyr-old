@@ -1,9 +1,9 @@
-import Homepage from '@/FP/Homepage';
+import ZephyrHomePage from '@/FP/Homepage';
 
 export default function Home() {
   return (
     <main>
-      <Homepage />
+      <ZephyrHomePage />
     </main>
   );
 }

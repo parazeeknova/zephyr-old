@@ -37,7 +37,7 @@ const LatestActivity: React.FC<LatestActivityProps> = ({ isDarkMode, activities 
             {activities.map((activity, index) => (
               <div key={index} className="flex items-start space-x-2">
                 <Avatar className="w-8 h-8">
-                  <AvatarImage src="/placeholder.svg?height=32&width=32" alt="User avatar" />
+                  <AvatarImage src="/user-boy-default.png" alt="User avatar" />
                   <AvatarFallback>U</AvatarFallback>
                 </Avatar>
                 <div>
