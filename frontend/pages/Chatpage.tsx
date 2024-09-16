@@ -8,7 +8,8 @@ import FloatingActionBar from '@/CL/FloatingActionBar';
 import Header from '@/CL/Header';
 
 export default function ChatPage() {
-  const [setIsChatOpen] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
