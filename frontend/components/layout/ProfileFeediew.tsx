@@ -24,7 +24,7 @@ const tempData = {
         date: '1 week ago',
         likes: 56,
         comments: 12,
-        image: '/blogii.png',
+        image: '/placeholderiii.jpg',
       },
       {
         title: 'Mobile-First Design Principles',
@@ -32,6 +32,13 @@ const tempData = {
         likes: 42,
         comments: 15,
         image: '/blogiii.png',
+      },
+      {
+        title: 'Mobile-First Design Principles',
+        date: '2 weeks ago',
+        likes: 42,
+        comments: 15,
+        image: '/placeholderii.jpg',
       },
     ],
     researchPapers: [
@@ -59,6 +66,12 @@ const tempData = {
       author: 'John Smith',
       likes: 89,
       image: '/placeholderii.jpg',
+    },
+    {
+      title: 'Designing for Accessibility: Best Practices',
+      author: 'John Smith',
+      likes: 89,
+      image: '/placeholderiii.jpg',
     },
   ],
   recommendedPeople: [

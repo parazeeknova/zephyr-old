@@ -2,12 +2,12 @@
 
 import { motion } from 'framer-motion';
 import { Plus, Edit, BookOpen, Upload, Settings } from 'lucide-react';
-import Image from 'next/image';
 import React from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { DirectionAwareHover } from '@/components/ui/direction-aware-hover';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -90,27 +90,22 @@ const MyPosts: React.FC<MyPostsProps> = ({ data, isDarkMode }) => (
           </TabsTrigger>
         </TabsList>
         <TabsContent value="blogs">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-4 gap-2">
             {data.blogs.map((post, index) => (
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.05 }}
                 className="relative overflow-hidden rounded-lg shadow-md"
               >
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-40 object-cover"
-                  width={200}
-                  height={250}
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                  <h3 className="font-semibold text-white">{post.title}</h3>
-                  <p className="text-sm text-gray-300">{post.date}</p>
-                  <div className="flex items-center space-x-4 mt-2">
-                    <span className="text-sm text-white">{post.likes} likes</span>
-                    <span className="text-sm text-white">{post.comments} comments</span>
-                  </div>
+                <div className="h-[25rem] w-full relative  flex items-center justify-center">
+                  <DirectionAwareHover imageUrl={post.image} className="w-full h-full object-cover">
+                    <h3 className="font-semibold text-white">{post.title}</h3>
+                    <p className="text-sm text-gray-300">{post.date}</p>
+                    <div className="flex items-center space-x-4 mt-2">
+                      <span className="text-sm text-white">{post.likes} likes</span>
+                      <span className="text-sm text-white">{post.comments} comments</span>
+                    </div>
+                  </DirectionAwareHover>
                 </div>
               </motion.div>
             ))}
