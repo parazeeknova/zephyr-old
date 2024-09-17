@@ -7,13 +7,19 @@ import ChatArea from '@/CW/Chats/chatArea';
 import SharedFiles from '@/CW/Chats/sharedFile';
 import SharedPhotos from '@/CW/Chats/sharedPhoto';
 import Sidebar from '@/CW/Chats/sideBar';
-import TypeBar from '@/CW/Chats/typeBar';
 import { Chat, SharedFile } from '@/CW/Chats/types';
 import UploadButton from '@/CW/Chats/uploadButton';
 import ProfileCard from '@/CW/RightSideBar/profileCard';
 
 interface ChatSectionProps {
   isDarkMode: boolean;
+}
+
+interface Message {
+  id: number;
+  sender: 'Sam' | 'Randi';
+  content: string;
+  timestamp: string;
 }
 
 const ChatSection: React.FC<ChatSectionProps> = ({ isDarkMode }) => {
@@ -23,9 +29,7 @@ const ChatSection: React.FC<ChatSectionProps> = ({ isDarkMode }) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [page] = useState<number>(0);
   const [direction] = useState<number>(0);
-  const [messages, setMessages] = useState<Array<{ id: number; sender: string; content: string }>>(
-    [],
-  );
+  const [messages, setMessages] = useState<Message[]>([]);
 
   const chats: Chat[] = useMemo(
     () => [
@@ -86,13 +90,6 @@ const ChatSection: React.FC<ChatSectionProps> = ({ isDarkMode }) => {
     [],
   );
 
-  const handleSendMessage = useCallback((message: string) => {
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { id: prevMessages.length + 1, sender: 'self', content: message },
-    ]);
-  }, []);
-
   const filteredChats = useMemo(
     () => chats.filter((chat) => chat.name.toLowerCase().includes(searchTerm.toLowerCase())),
     [chats, searchTerm],
@@ -110,20 +107,10 @@ const ChatSection: React.FC<ChatSectionProps> = ({ isDarkMode }) => {
       profession: 'Programmer',
       followers: 100,
       following: 10,
-      aura: 100,
+      aura: 1000,
     }),
     [],
   );
-
-  useEffect(() => {
-    if (currentChat) {
-      setMessages([
-        { id: 1, sender: 'other', content: `Hi Aaron, this is ${currentChat.name}` },
-        { id: 2, sender: 'self', content: `Hello ${currentChat.name}, how can I help you?` },
-        { id: 3, sender: 'other', content: currentChat.lastMessage },
-      ]);
-    }
-  }, [currentChat]);
 
   useEffect(() => {
     const chatId = pathname.split('/').pop();
@@ -144,8 +131,46 @@ const ChatSection: React.FC<ChatSectionProps> = ({ isDarkMode }) => {
     setActiveChat(chatId);
   }, []);
 
+  const handleSendMessage = useCallback(
+    (message: string) => {
+      const newMessage: Message = {
+        id: messages.length + 1,
+        sender: 'Sam',
+        content: message,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      };
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
+    },
+    [messages],
+  );
+
+  useEffect(() => {
+    if (currentChat) {
+      setMessages([
+        {
+          id: 1,
+          sender: 'Randi',
+          content: `Hi Aaron, this is ${currentChat.name}`,
+          timestamp: '09:00 AM',
+        },
+        {
+          id: 2,
+          sender: 'Sam',
+          content: `Hello ${currentChat.name}, how can I help you?`,
+          timestamp: '09:02 AM',
+        },
+        {
+          id: 3,
+          sender: 'Randi',
+          content: currentChat.lastMessage,
+          timestamp: '09:05 AM',
+        },
+      ]);
+    }
+  }, [currentChat]);
+
   return (
-    <div className="flex-1 flex overflow-hidden">
+    <div className="flex-1 flex overflow-hidden h-screen">
       <Sidebar
         searchTerm={searchTerm}
         setSearchTerm={handleSetSearchTerm}
@@ -165,16 +190,24 @@ const ChatSection: React.FC<ChatSectionProps> = ({ isDarkMode }) => {
         isDarkMode={isDarkMode}
       />
       <div className="flex-1 flex flex-col">
-        <ChatArea chat={currentChat} messages={messages} isDarkMode={isDarkMode} />
-        <TypeBar onSendMessage={handleSendMessage} isDarkMode={isDarkMode} />
+        <ChatArea
+          chat={currentChat}
+          messages={messages}
+          isDarkMode={isDarkMode}
+          onSendMessage={handleSendMessage}
+        />
       </div>
       <div
-        className={`w-80 p-4 space-y-4 overflow-y-auto ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
+        className={`w-80 flex flex-col h-screen overflow-hidden ${
+          isDarkMode ? 'bg-gray-800' : 'bg-white'
+        }`}
       >
-        <ProfileCard {...profileData} isDarkMode={isDarkMode} />
-        <SharedFiles files={sharedFiles} initialDisplayCount={3} isDarkMode={isDarkMode} />
-        <SharedPhotos photos={sharedPhotos} initialDisplayCount={6} isDarkMode={isDarkMode} />
-        <UploadButton isDarkMode={isDarkMode} />
+        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <ProfileCard {...profileData} isDarkMode={isDarkMode} />
+          <SharedFiles files={sharedFiles} initialDisplayCount={3} isDarkMode={isDarkMode} />
+          <SharedPhotos photos={sharedPhotos} initialDisplayCount={6} isDarkMode={isDarkMode} />
+          <UploadButton isDarkMode={isDarkMode} />
+        </div>
       </div>
     </div>
   );
