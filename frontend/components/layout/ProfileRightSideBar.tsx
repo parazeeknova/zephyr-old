@@ -73,10 +73,16 @@ interface RightSidebarProps {
 }
 
 const RightSidebar: React.FC<RightSidebarProps> = ({ isDarkMode }) => (
-  <aside className="w-96 bg-white dark:bg-gray-800 p-6 overflow-auto flex flex-col">
-    <div className="space-y-6">
+  <aside
+    className={`w-96 p-6 pt-0 overflow-auto flex flex-col ${
+      isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'
+    }`}
+  >
+    <div className="space-y-12">
       <ProfileCard data={tempData.userDetails} isDarkMode={isDarkMode} />
       <Experience data={tempData.experience} isDarkMode={isDarkMode} />
+    </div>
+    <div className="space-y-5 pt-5">
       <FollowedTopics topics={tempData.followedTopics} isDarkMode={isDarkMode} />
       <InterestedCommunities communities={tempData.interestedCommunities} isDarkMode={isDarkMode} />
     </div>

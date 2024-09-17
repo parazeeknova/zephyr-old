@@ -101,9 +101,13 @@ interface ProfileFeedViewProps {
 }
 
 const ProfileFeedView: React.FC<ProfileFeedViewProps> = ({ isDarkMode }) => (
-  <main className="flex-1 p-8 overflow-auto bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+  <main
+    className={`flex-1 p-8 overflow-auto ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}
+  >
     <div className="flex justify-between items-center mb-6">
-      <h1 className="text-2xl font-bold mb-2 text-left text-gray-500 dark:text-gray-400 uppercase">
+      <h1
+        className={`text-2xl font-bold mb-2 text-left uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
+      >
         User Profile
       </h1>
       <Button className="bg-orange-500 hover:bg-orange-600 text-white">Engage</Button>

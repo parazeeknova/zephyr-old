@@ -60,7 +60,11 @@ interface LeftSidebarProps {
 }
 
 const LeftSidebar: React.FC<LeftSidebarProps> = ({ isDarkMode }) => (
-  <aside className="w-96 bg-white dark:bg-gray-800 p-6 overflow-auto flex flex-col">
+  <aside
+    className={`w-96 p-6 overflow-auto flex flex-col ${
+      isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'
+    }`}
+  >
     <AIGeneratedPosts posts={tempData.aiGeneratedPosts} isDarkMode={isDarkMode} />
     <RecentActivity activities={tempData.recentActivity} isDarkMode={isDarkMode} />
     <Analytics data={tempData.analytics} isDarkMode={isDarkMode} />

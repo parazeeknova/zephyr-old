@@ -70,10 +70,10 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ data, isDarkMode }) => (
             size="sm"
             className={`w-full justify-evenly ${isDarkMode ? 'bg-gray-700 text-white' : ''}`}
           >
-            {social.platform === 'Twitter' && <TwitterIcon className="h-2 w-2 mr-2" />}
-            {social.platform === 'Instagram' && <InstagramIcon className="h-2 w-2 mr-2" />}
-            {social.platform === 'GitHub' && <GitHubIcon className="h-2 w-2 mr-2" />}
-            {social.platform === 'Reddit' && <RedditIcon className="h-2 w-2 mr-2" />}
+            {social.platform === 'Twitter' && <TwitterIcon className="h-4 w-4 mr-2" />}
+            {social.platform === 'Instagram' && <InstagramIcon className="h-4 w-4 mr-2" />}
+            {social.platform === 'GitHub' && <GitHubIcon className="h-4 w-4 mr-2" />}
+            {social.platform === 'Reddit' && <RedditIcon className="h-4 w-4 mr-2" />}
             <span>{social.username}</span>
           </Button>
         ))}

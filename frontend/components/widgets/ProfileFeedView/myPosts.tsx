@@ -36,9 +36,13 @@ interface MyPostsProps {
 
 const MyPosts: React.FC<MyPostsProps> = ({ data, isDarkMode }) => (
   <Card className={isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}>
-    <CardContent className="p-6">
+    <CardContent className="p-4">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold uppercase text-gray-500">My Posts</h2>
+        <h2
+          className={`text-lg font-semibold uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
+        >
+          My Posts
+        </h2>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white">
@@ -63,9 +67,27 @@ const MyPosts: React.FC<MyPostsProps> = ({ data, isDarkMode }) => (
         </DropdownMenu>
       </div>
       <Tabs defaultValue="blogs" className="mb-4">
-        <TabsList>
-          <TabsTrigger value="blogs">Blogs</TabsTrigger>
-          <TabsTrigger value="research">Research Papers</TabsTrigger>
+        <TabsList className={isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}>
+          <TabsTrigger
+            value="blogs"
+            className={`${
+              isDarkMode
+                ? 'data-[state=active]:bg-gray-800 data-[state=active]:text-white text-gray-300'
+                : 'data-[state=active]:bg-white data-[state=active]:text-gray-900 text-gray-600'
+            } hover:text-gray-900 dark:hover:text-white transition-colors`}
+          >
+            Blogs
+          </TabsTrigger>
+          <TabsTrigger
+            value="research"
+            className={`${
+              isDarkMode
+                ? 'data-[state=active]:bg-gray-800 data-[state=active]:text-white text-gray-300'
+                : 'data-[state=active]:bg-white data-[state=active]:text-gray-900 text-gray-600'
+            } hover:text-gray-900 dark:hover:text-white transition-colors`}
+          >
+            Research Papers
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="blogs">
           <div className="grid grid-cols-2 gap-4">
@@ -99,11 +121,15 @@ const MyPosts: React.FC<MyPostsProps> = ({ data, isDarkMode }) => (
             {data.researchPapers.map((paper, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+                className={`flex items-center justify-between p-4 rounded-lg ${
+                  isDarkMode ? 'bg-gray-700' : 'bg-gray-50'
+                }`}
               >
                 <div>
                   <h3 className="font-semibold">{paper.title}</h3>
-                  <p className="text-sm text-gray-500">{paper.date}</p>
+                  <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}>
+                    {paper.date}
+                  </p>
                 </div>
                 <Badge variant="secondary">{paper.citations} citations</Badge>
               </div>
