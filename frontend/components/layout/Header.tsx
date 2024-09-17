@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { Cover } from '@/components/ui/cover';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -98,7 +99,9 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
       >
         <div className="flex items-center space-x-4">
           <Link href="/">
-            <h1 className="text-2xl font-bold text-orange-500">Zephyr.</h1>
+            <h1 className="text-2xl font-bold text-orange-500">
+              <Cover>Zephyr.</Cover>
+            </h1>
           </Link>
           <Link href="/">
             <Button variant="ghost" size="icon">
