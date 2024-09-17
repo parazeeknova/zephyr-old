@@ -13,7 +13,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  ignorePatterns: ['app/components/ui/*'],
+  ignorePatterns: ['app/components/ui/*', 'app/components/magicui/*'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',

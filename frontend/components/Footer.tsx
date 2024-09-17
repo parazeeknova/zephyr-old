@@ -1,10 +1,12 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { Variants, motion } from 'framer-motion';
 import Link from 'next/link';
 import React from 'react';
+import { FaFacebook, FaTwitter, FaGithub, FaWhatsapp } from 'react-icons/fa';
 
-import { Button } from '@/components/ui/button';
+import { Dock, DockIcon } from '@/components/magicui/dock';
+import { Meteors } from '@/CW/Meteors';
 
 interface FooterProps {
   isDarkMode: boolean;
@@ -15,9 +17,7 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode }) => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.1 },
     },
   };
 
@@ -31,103 +31,126 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode }) => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className={`mt-12 py-8 ${
-        isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'
-      }`}
+      className={`relative py-12 px-4 md:px-6 overflow-hidden ${
+        isDarkMode
+          ? 'bg-gray-900 text-white shadow-lg shadow-gray-800/50'
+          : 'bg-gray-100 text-gray-900 shadow-lg shadow-gray-300/50'
+      } rounded-t-xl`}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex flex-wrap justify-between items-start">
-          <motion.div variants={itemVariants} className="w-full md:w-1/3 mb-6 md:mb-0">
-            <h2 className="text-2xl font-bold text-orange-500 mb-2">Zephyr.</h2>
-            <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              Connecting people, one post at a time.
-            </p>
-          </motion.div>
-          <motion.div variants={itemVariants} className="w-full md:w-1/3 mb-6 md:mb-0">
-            <h3
-              className={`text-lg font-semibold mb-2 ${
-                isDarkMode ? 'text-white' : 'text-gray-800'
-              }`}
-            >
-              Quick Links
-            </h3>
-            <ul className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              {['About Us', 'Privacy Policy', 'Terms of Service', 'Contact Us'].map((item) => (
-                <motion.li
-                  key={item}
-                  className="mb-1"
-                  whileHover={{ x: 5 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                >
-                  <Link href="#" className="hover:text-orange-500">
-                    {item}
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-          <motion.div variants={itemVariants} className="w-full md:w-1/3">
-            <h3
-              className={`text-lg font-semibold mb-2 ${
-                isDarkMode ? 'text-white' : 'text-gray-800'
-              }`}
-            >
-              Stay Connected
-            </h3>
-            <div className="flex space-x-4">
-              {['facebook', 'twitter', 'instagram'].map((social) => (
-                <motion.div key={social} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                  <Button variant="outline" size="icon" className="rounded-full">
-                    <SocialIcon name={social} />
-                  </Button>
-                </motion.div>
-              ))}
+      <div className="absolute inset-0 overflow-hidden">
+        <Meteors number={14} />
+      </div>
+      <div className="container mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-start mb-8">
+          <div className="flex flex-col items-start">
+            <div className="text-3xl font-bold mb-4 text-orange-500">Zephyr.</div>
+            <div className="flex items-center">
+              <Dock direction="middle">
+                <DockIcon>
+                  <FaFacebook className="size-6" />
+                </DockIcon>
+                <DockIcon>
+                  <FaTwitter className="size-6" />
+                </DockIcon>
+                <DockIcon>
+                  <FaGithub className="size-6" />
+                </DockIcon>
+                <DockIcon>
+                  <FaWhatsapp className="size-6" />
+                </DockIcon>
+              </Dock>
             </div>
-          </motion.div>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <FooterColumn
+              isDarkMode={isDarkMode}
+              title="GO"
+              links={['Integrations', 'Help Center', 'Pricing']}
+              itemVariants={itemVariants}
+            />
+            <FooterColumn
+              isDarkMode={isDarkMode}
+              title="COMPANY"
+              links={['About Us', 'Blog', 'Case Studies', 'Talk to Sales', 'Support']}
+              itemVariants={itemVariants}
+            />
+            <FooterColumn
+              isDarkMode={isDarkMode}
+              title="SOLUTIONS"
+              links={[
+                'Social Community',
+                'Marketplace',
+                'Dating',
+                'On-Demand',
+                'Edu-Tech',
+                'Live Streaming',
+              ]}
+              itemVariants={itemVariants}
+            />
+          </div>
         </div>
-        <motion.div
-          variants={itemVariants}
-          className={`mt-8 pt-8 border-t ${
-            isDarkMode ? 'border-gray-700 text-gray-400' : 'border-gray-200 text-gray-600'
-          } text-center text-sm`}
-        >
-          © {new Date().getFullYear()} Zephyr. All rights reserved.
-        </motion.div>
+        <FooterBottom isDarkMode={isDarkMode} itemVariants={itemVariants} />
       </div>
     </motion.footer>
   );
 };
 
-const SocialIcon: React.FC<{ name: string }> = ({ name }) => {
-  const icons = {
-    facebook: <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>,
-    twitter: (
-      <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-    ),
-    instagram: (
-      <>
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-      </>
-    ),
-  };
+const FooterColumn: React.FC<{
+  title: string;
+  links: string[];
+  isDarkMode: boolean;
+  itemVariants: Variants;
+}> = ({ title, links, isDarkMode, itemVariants }) => (
+  <motion.div variants={itemVariants}>
+    <h3 className={`font-bold mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{title}</h3>
+    <ul className="space-y-2">
+      {links.map((link) => (
+        <li key={link}>
+          <Link
+            href="#"
+            className={`hover:underline ${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
+          >
+            {link}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </motion.div>
+);
 
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      {icons[name as keyof typeof icons]}
-    </svg>
-  );
-};
+const FooterBottom: React.FC<{ isDarkMode: boolean; itemVariants: Variants }> = ({
+  isDarkMode,
+  itemVariants,
+}) => (
+  <motion.div
+    variants={itemVariants}
+    className={`mt-12 pt-8 border-t ${
+      isDarkMode ? 'border-gray-700' : 'border-gray-300'
+    } flex flex-col md:flex-row justify-between items-center`}
+  >
+    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+      © {new Date().getFullYear()} Zephyr — Terms & Privacy Policy
+    </p>
+    <div className="flex items-center mt-4 md:mt-0">
+      <span className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'} mr-2`}>
+        MADE WITH
+      </span>
+      <svg
+        className={`h-6 w-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+    </div>
+  </motion.div>
+);
 
 export default Footer;
