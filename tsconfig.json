@@ -24,7 +24,8 @@
       "@/C/*": ["./frontend/components/*"],
       "@/CW/*": ["./frontend/components/widgets/*"],
       "@/CL/*": ["./frontend/components/layout/*"],
-      "@/FP/*": ["./frontend/pages/*"]
+      "@/FP/*": ["./frontend/pages/*"],
+      "@/BE/*": ["./backend/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
