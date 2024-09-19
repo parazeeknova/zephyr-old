@@ -31,7 +31,7 @@ const ProfilePage: React.FC = () => {
 
   return (
     <div
-      className={`flex flex-col min-h-screen ${
+      className={`flex min-h-screen flex-col ${
         isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'
       }`}
     >
@@ -39,7 +39,7 @@ const ProfilePage: React.FC = () => {
 
       <div className="flex flex-1 overflow-hidden">
         <LeftSidebar isDarkMode={isDarkMode} />
-        <div className="flex-1 max-w-5xl mx-auto overflow-y-auto">
+        <div className="mx-auto max-w-5xl flex-1 overflow-y-auto">
           <ProfileFeedView isDarkMode={isDarkMode} />
         </div>
         <RightSidebar isDarkMode={isDarkMode} />

@@ -37,7 +37,7 @@ interface MyPostsProps {
 const MyPosts: React.FC<MyPostsProps> = ({ data, isDarkMode }) => (
   <Card className={isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}>
     <CardContent className="p-4">
-      <div className="flex justify-between items-center mb-4">
+      <div className="mb-4 flex items-center justify-between">
         <h2
           className={`text-lg font-semibold uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
         >
@@ -45,8 +45,8 @@ const MyPosts: React.FC<MyPostsProps> = ({ data, isDarkMode }) => (
         </h2>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white">
-              <Plus className="h-4 w-4 mr-2" />
+            <Button size="sm" className="bg-orange-500 text-white hover:bg-orange-600">
+              <Plus className="mr-2 h-4 w-4" />
               New Post
             </Button>
           </DropdownMenuTrigger>
@@ -72,9 +72,9 @@ const MyPosts: React.FC<MyPostsProps> = ({ data, isDarkMode }) => (
             value="blogs"
             className={`${
               isDarkMode
-                ? 'data-[state=active]:bg-gray-800 data-[state=active]:text-white text-gray-300'
-                : 'data-[state=active]:bg-white data-[state=active]:text-gray-900 text-gray-600'
-            } hover:text-gray-900 dark:hover:text-white transition-colors`}
+                ? 'text-gray-300 data-[state=active]:bg-gray-800 data-[state=active]:text-white'
+                : 'text-gray-600 data-[state=active]:bg-white data-[state=active]:text-gray-900'
+            } transition-colors hover:text-gray-900 dark:hover:text-white`}
           >
             Blogs
           </TabsTrigger>
@@ -82,9 +82,9 @@ const MyPosts: React.FC<MyPostsProps> = ({ data, isDarkMode }) => (
             value="research"
             className={`${
               isDarkMode
-                ? 'data-[state=active]:bg-gray-800 data-[state=active]:text-white text-gray-300'
-                : 'data-[state=active]:bg-white data-[state=active]:text-gray-900 text-gray-600'
-            } hover:text-gray-900 dark:hover:text-white transition-colors`}
+                ? 'text-gray-300 data-[state=active]:bg-gray-800 data-[state=active]:text-white'
+                : 'text-gray-600 data-[state=active]:bg-white data-[state=active]:text-gray-900'
+            } transition-colors hover:text-gray-900 dark:hover:text-white`}
           >
             Research Papers
           </TabsTrigger>
@@ -97,11 +97,11 @@ const MyPosts: React.FC<MyPostsProps> = ({ data, isDarkMode }) => (
                 whileHover={{ scale: 1.05 }}
                 className="relative overflow-hidden rounded-lg shadow-md"
               >
-                <div className="h-[25rem] w-full relative  flex items-center justify-center">
-                  <DirectionAwareHover imageUrl={post.image} className="w-full h-full object-cover">
+                <div className="relative flex h-[25rem] w-full items-center justify-center">
+                  <DirectionAwareHover imageUrl={post.image} className="h-full w-full object-cover">
                     <h3 className="font-semibold text-white">{post.title}</h3>
                     <p className="text-sm text-gray-300">{post.date}</p>
-                    <div className="flex items-center space-x-4 mt-2">
+                    <div className="mt-2 flex items-center space-x-4">
                       <span className="text-sm text-white">{post.likes} likes</span>
                       <span className="text-sm text-white">{post.comments} comments</span>
                     </div>
@@ -116,7 +116,7 @@ const MyPosts: React.FC<MyPostsProps> = ({ data, isDarkMode }) => (
             {data.researchPapers.map((paper, index) => (
               <div
                 key={index}
-                className={`flex items-center justify-between p-4 rounded-lg ${
+                className={`flex items-center justify-between rounded-lg p-4 ${
                   isDarkMode ? 'bg-gray-700' : 'bg-gray-50'
                 }`}
               >

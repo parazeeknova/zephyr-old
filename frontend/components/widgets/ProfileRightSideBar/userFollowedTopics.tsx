@@ -15,11 +15,11 @@ const FollowedTopics: React.FC<FollowedTopicsProps> = ({ topics, isDarkMode }) =
   <Card className={isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}>
     <CardContent className="p-6">
       <h2
-        className={`text-sm font-semibold mb-4 uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
+        className={`mb-4 text-sm font-semibold uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
       >
         Followed Topics
       </h2>
-      <div className="flex flex-wrap gap-2 mb-4">
+      <div className="mb-4 flex flex-wrap gap-2">
         {topics.map((topic) => (
           <motion.div key={topic} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
             <Badge

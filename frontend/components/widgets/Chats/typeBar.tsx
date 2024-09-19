@@ -19,17 +19,17 @@ const TypeBar: React.FC<TypeBarProps> = ({ onSendMessage, isDarkMode }) => {
   };
 
   return (
-    <div className="flex justify-center items-center w-full px-4 mb-4">
+    <div className="mb-4 flex w-full items-center justify-center px-4">
       <div
-        className={`w-[500px] p-4 border-t flex items-center space-x-2 rounded-xl shadow-md ${
-          isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+        className={`flex w-[500px] items-center space-x-2 rounded-xl border-t p-4 shadow-md ${
+          isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
         }`}
       >
         <input
-          className={`flex-1 p-2 border rounded-full ${
+          className={`flex-1 rounded-full border p-2 ${
             isDarkMode
-              ? 'bg-gray-700 border-gray-600 text-white'
-              : 'bg-white border-gray-300 text-gray-900'
+              ? 'border-gray-600 bg-gray-700 text-white'
+              : 'border-gray-300 bg-white text-gray-900'
           }`}
           placeholder="Type in your messages..."
           value={message}
@@ -37,11 +37,11 @@ const TypeBar: React.FC<TypeBarProps> = ({ onSendMessage, isDarkMode }) => {
           onKeyPress={(e) => e.key === 'Enter' && handleSend()}
         />
         <button
-          className="p-2 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition-colors duration-200"
+          className="rounded-full bg-orange-500 p-2 text-white transition-colors duration-200 hover:bg-orange-600"
           onClick={handleSend}
           aria-label="Send message"
         >
-          <Send className="w-5 h-5" />
+          <Send className="h-5 w-5" />
         </button>
       </div>
     </div>

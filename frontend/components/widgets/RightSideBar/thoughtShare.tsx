@@ -15,7 +15,7 @@ interface ThoughtShareProps {
 const ThoughtShare: React.FC<ThoughtShareProps> = ({ isDarkMode, username }) => (
   <Card className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
     <CardContent className="p-4">
-      <h3 className={`font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+      <h3 className={`mb-2 font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
         What do you think, {username}?
       </h3>
       <Textarea
@@ -26,17 +26,17 @@ const ThoughtShare: React.FC<ThoughtShareProps> = ({ isDarkMode, username }) => 
             : 'bg-gray-100 text-gray-900 placeholder-gray-500'
         }`}
       />
-      <div className="grid grid-cols-2 gap-2 mb-2">
+      <div className="mb-2 grid grid-cols-2 gap-2">
         <Button
           variant={isDarkMode ? 'outline' : 'secondary'}
           size="sm"
           className={`flex items-center justify-center ${
             isDarkMode
-              ? 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white border-gray-600'
+              ? 'border-gray-600 bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
               : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
           }`}
         >
-          <ImageIcon className="w-4 h-4 mr-2" />
+          <ImageIcon className="mr-2 h-4 w-4" />
           Fleet
         </Button>
         <Button
@@ -44,24 +44,24 @@ const ThoughtShare: React.FC<ThoughtShareProps> = ({ isDarkMode, username }) => 
           size="sm"
           className={`flex items-center justify-center ${
             isDarkMode
-              ? 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white border-gray-600'
+              ? 'border-gray-600 bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
               : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
           }`}
         >
-          <Video className="w-4 h-4 mr-2" />
+          <Video className="mr-2 h-4 w-4" />
           Blog
         </Button>
       </div>
       <Button
         variant={isDarkMode ? 'outline' : 'secondary'}
         size="sm"
-        className={`w-full flex items-center justify-center ${
+        className={`flex w-full items-center justify-center ${
           isDarkMode
-            ? 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white border-gray-600'
+            ? 'border-gray-600 bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
             : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
         }`}
       >
-        <Cast className="w-4 h-4 mr-2" />
+        <Cast className="mr-2 h-4 w-4" />
         Research
       </Button>
     </CardContent>

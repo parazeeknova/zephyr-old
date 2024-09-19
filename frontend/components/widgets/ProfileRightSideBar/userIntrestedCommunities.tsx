@@ -18,7 +18,7 @@ const InterestedCommunities: React.FC<InterestedCommunitiesProps> = ({
   <Card className={isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}>
     <CardContent className="p-6">
       <h2
-        className={`text-sm font-semibold mb-4 uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
+        className={`mb-4 text-sm font-semibold uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
       >
         Interested Communities
       </h2>

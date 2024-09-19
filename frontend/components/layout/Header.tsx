@@ -94,7 +94,7 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
     <>
       <header
         className={`sticky top-0 z-10 flex items-center justify-between px-4 py-2 ${
-          isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+          isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
         } border-b`}
       >
         <div className="flex items-center space-x-4">
@@ -158,17 +158,17 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
             transition={{ duration: 0.2 }}
             className={`fixed right-4 top-16 w-96 ${
               isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'
-            } shadow-lg z-50 overflow-hidden rounded-lg border ${
+            } z-50 overflow-hidden rounded-lg border shadow-lg ${
               isDarkMode ? 'border-gray-700' : 'border-gray-200'
             }`}
           >
-            <div className="flex justify-between items-center p-4 border-b border-gray-200">
+            <div className="flex items-center justify-between border-b border-gray-200 p-4">
               <h2 className="text-lg font-semibold uppercase text-gray-500">Notifications</h2>
               <div className="flex items-center space-x-2">
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="bg-orange-500 text-gray-200 hover:text-orange-500 text-xs font-semibold"
+                  className="bg-orange-500 text-xs font-semibold text-gray-200 hover:text-orange-500"
                 >
                   Mark all as read
                 </Button>
@@ -180,37 +180,37 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
             <div className="flex border-b border-gray-200 text-sm">
               <Button
                 variant="ghost"
-                className={`flex-1 py-2 px-4 font-semibold ${
+                className={`flex-1 px-4 py-2 font-semibold ${
                   activeTab === 'inbox'
-                    ? 'text-orange-500 border-b-2 border-orange-500'
+                    ? 'border-b-2 border-orange-500 text-orange-500'
                     : 'text-gray-400'
                 }`}
                 onClick={() => setActiveTab('inbox')}
               >
                 Inbox{' '}
-                <span className="ml-1 bg-red-500 text-white rounded-full px-1.5 py-0.5 text-xs font-semibold">
+                <span className="ml-1 rounded-full bg-red-500 px-1.5 py-0.5 text-xs font-semibold text-white">
                   8
                 </span>
               </Button>
               <Button
                 variant="ghost"
-                className={`flex-1 py-2 px-4 font-semibold ${
+                className={`flex-1 px-4 py-2 font-semibold ${
                   activeTab === 'following'
-                    ? 'text-orange-500 border-b-2 border-orange-500'
+                    ? 'border-b-2 border-orange-500 text-orange-500'
                     : 'text-gray-400'
                 }`}
                 onClick={() => setActiveTab('following')}
               >
                 Following{' '}
-                <span className="ml-1 bg-red-500 text-white rounded-full px-1.5 py-0.5 text-xs font-semibold">
+                <span className="ml-1 rounded-full bg-red-500 px-1.5 py-0.5 text-xs font-semibold text-white">
                   24
                 </span>
               </Button>
               <Button
                 variant="ghost"
-                className={`flex-1 py-2 px-4 font-semibold ${
+                className={`flex-1 px-4 py-2 font-semibold ${
                   activeTab === 'archived'
-                    ? 'text-orange-500 border-b-2 border-orange-500'
+                    ? 'border-b-2 border-orange-500 text-orange-500'
                     : 'text-gray-400'
                 }`}
                 onClick={() => setActiveTab('archived')}
@@ -218,13 +218,13 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
                 Archived
               </Button>
             </div>
-            <div className="p-4 max-h-[calc(100vh-200px)] overflow-y-auto">
+            <div className="max-h-[calc(100vh-200px)] overflow-y-auto p-4">
               {renderNotificationContent()}
             </div>
-            <div className="p-4 border-t border-gray-200">
+            <div className="border-t border-gray-200 p-4">
               <Button
                 variant="ghost"
-                className="w-full text-sm text-gray-600 font-semibold hover:text-gray-300"
+                className="w-full text-sm font-semibold text-gray-600 hover:text-gray-300"
               >
                 View all notifications
               </Button>

@@ -23,14 +23,14 @@ const Analytics: React.FC<AnalyticsProps> = ({ data, isDarkMode }) => (
   <Card className={`mb-6 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}`}>
     <CardContent className="p-6">
       <h2
-        className={`text-sm font-semibold mb-4 uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
+        className={`mb-4 text-sm font-semibold uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
       >
         Analytics
       </h2>
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <ThumbsUp className="w-5 h-5 text-orange-500" />
+            <ThumbsUp className="h-5 w-5 text-orange-500" />
             <span className="font-medium">Most Liked Post</span>
           </div>
           <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
@@ -40,9 +40,9 @@ const Analytics: React.FC<AnalyticsProps> = ({ data, isDarkMode }) => (
         <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`}>
           &quot;{data.mostLikedPost.title}&quot;
         </p>
-        <div className="flex items-center justify-between mt-4">
+        <div className="mt-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Eye className="w-5 h-5 text-orange-500" />
+            <Eye className="h-5 w-5 text-orange-500" />
             <span className="font-medium">Most Viewed Post</span>
           </div>
           <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>

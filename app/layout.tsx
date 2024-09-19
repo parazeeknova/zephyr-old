@@ -14,7 +14,10 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Zephyr',
+  title: {
+    template: '%s | Zephyr',
+    default: 'Zephyr',
+  },
   description:
     'The Next-Generation Blog Accelerator for Content Creation and Collaboration platform',
   keywords:
@@ -37,6 +40,9 @@ export const metadata: Metadata = {
     description:
       'The Next-Generation Blog Accelerator for Content Creation and Collaboration platform',
     images: ['/Banner.png'],
+  },
+  icons: {
+    icon: '/favicon.ico',
   },
 };
 

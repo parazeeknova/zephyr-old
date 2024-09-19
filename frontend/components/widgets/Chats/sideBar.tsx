@@ -131,23 +131,23 @@ const Sidebar: React.FC<SidebarProps> = ({
           }}
           className={`flex-1 overflow-hidden ${isExpanded ? 'w-80' : 'w-0'} transition-all duration-300`}
         >
-          <div className={`h-full flex flex-col p-3 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
+          <div className={`flex h-full flex-col p-3 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
             {/* User profile section */}
             {isExpanded && (
               <div
-                className={`flex items-center space-x-3 mb-4 p-2 rounded-lg ${isDarkMode ? 'bg-gray-700' : 'bg-white'}`}
+                className={`mb-4 flex items-center space-x-3 rounded-lg p-2 ${isDarkMode ? 'bg-gray-700' : 'bg-white'}`}
               >
-                <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-500 font-bold text-white">
                   {user.initials}
                 </div>
                 <div className="overflow-hidden">
                   <h3
-                    className={`font-semibold truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
+                    className={`truncate font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
                   >
                     {user.name}
                   </h3>
                   <p
-                    className={`text-sm truncate ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
+                    className={`truncate text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
                   >
                     {user.status}
                   </p>
@@ -161,10 +161,10 @@ const Sidebar: React.FC<SidebarProps> = ({
                 <input
                   type="text"
                   placeholder="Search..."
-                  className={`w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500 ${
+                  className={`w-full rounded-full border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 ${
                     isDarkMode
-                      ? 'bg-gray-700 border-gray-600 text-white'
-                      : 'bg-white border-gray-300 text-gray-900'
+                      ? 'border-gray-600 bg-gray-700 text-white'
+                      : 'border-gray-300 bg-white text-gray-900'
                   }`}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -176,7 +176,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             {/* Content section */}
             {isExpanded && (
               <ScrollArea
-                className={`flex-1 w-full pr-1 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
+                className={`w-full flex-1 pr-1 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
               >
                 <motion.ul
                   className="space-y-2"
@@ -196,28 +196,28 @@ const Sidebar: React.FC<SidebarProps> = ({
                           key={chat.id}
                           variants={listItemVariants}
                           custom={index}
-                          className={`flex items-center space-x-3 p-2 m-1 border rounded-xl cursor-pointer overflow-hidden ${
+                          className={`m-1 flex cursor-pointer items-center space-x-3 overflow-hidden rounded-xl border p-2 ${
                             activeChat === chat.id
                               ? isDarkMode
-                                ? 'bg-gray-700 border-gray-600'
-                                : 'bg-orange-100 border-orange-200'
+                                ? 'border-gray-600 bg-gray-700'
+                                : 'border-orange-200 bg-orange-100'
                               : isDarkMode
-                                ? 'hover:bg-gray-700 border-gray-700'
-                                : 'hover:bg-gray-100 border-gray-200'
+                                ? 'border-gray-700 hover:bg-gray-700'
+                                : 'border-gray-200 hover:bg-gray-100'
                           }`}
                           onClick={() => setActiveChat(chat.id)}
                         >
                           <div
-                            className={`w-10 h-10 rounded-full flex-shrink-0 ${isDarkMode ? 'bg-gray-600' : 'bg-gray-200'}`}
+                            className={`h-10 w-10 flex-shrink-0 rounded-full ${isDarkMode ? 'bg-gray-600' : 'bg-gray-200'}`}
                           ></div>
-                          <div className="flex-1 min-w-0">
+                          <div className="min-w-0 flex-1">
                             <h3
-                              className={`font-semibold truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
+                              className={`truncate font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
                             >
                               {chat.name}
                             </h3>
                             <p
-                              className={`text-sm truncate ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
+                              className={`truncate text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
                             >
                               {chat.lastMessage}
                             </p>
@@ -229,10 +229,10 @@ const Sidebar: React.FC<SidebarProps> = ({
                           key={index}
                           variants={listItemVariants}
                           custom={index}
-                          className={`p-2 rounded-lg cursor-pointer truncate ${
+                          className={`cursor-pointer truncate rounded-lg p-2 ${
                             isDarkMode
-                              ? 'bg-gray-700 hover:bg-gray-600 text-white'
-                              : 'bg-gray-100 hover:bg-gray-200 text-gray-900'
+                              ? 'bg-gray-700 text-white hover:bg-gray-600'
+                              : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
                           }`}
                           onClick={() => console.log(`Clicked on ${item}`)}
                         >

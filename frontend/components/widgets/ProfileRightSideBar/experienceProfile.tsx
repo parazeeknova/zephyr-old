@@ -22,7 +22,7 @@ const Experience: React.FC<ExperienceProps> = ({ data, isDarkMode }) => (
   <Card className={`${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}`}>
     <CardContent className="p-4">
       <h2
-        className={`text-sm font-semibold uppercase mb-4 ${
+        className={`mb-4 text-sm font-semibold uppercase ${
           isDarkMode ? 'text-gray-300' : 'text-gray-500'
         }`}
       >
@@ -50,11 +50,11 @@ const Experience: React.FC<ExperienceProps> = ({ data, isDarkMode }) => (
                 {job.period}
               </p>
               <div
-                className={`flex items-center text-sm mt-1 ${
+                className={`mt-1 flex items-center text-sm ${
                   isDarkMode ? 'text-gray-400' : 'text-gray-500'
                 }`}
               >
-                <MapPin className="h-4 w-4 mr-1" />
+                <MapPin className="mr-1 h-4 w-4" />
                 {job.location}
               </div>
             </div>

@@ -105,7 +105,7 @@ const FloatingActionBar: React.FC<FloatingActionBarProps> = ({ isDarkMode, setIs
   return (
     <>
       <nav
-        className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 ${
+        className={`fixed bottom-4 left-1/2 -translate-x-1/2 transform ${
           isDarkMode ? 'bg-gray-800' : 'bg-white'
         } rounded-full shadow-lg transition-all duration-300 ease-in-out ${
           isScrolled ? 'w-auto' : 'w-[calc(100%-2rem)] max-w-2xl'
@@ -119,30 +119,30 @@ const FloatingActionBar: React.FC<FloatingActionBarProps> = ({ isDarkMode, setIs
           <Button
             variant="ghost"
             size="icon"
-            className="absolute bottom-20 right-4 bg-orange-500 rounded-full transition-all duration-300 p-2 hover:bg-orange-600"
+            className="absolute bottom-20 right-4 rounded-full bg-orange-500 p-2 transition-all duration-300 hover:bg-orange-600"
             onClick={scrollToTop}
           >
             <ArrowUp className="h-5 w-5 text-white" />
           </Button>
         ) : (
           <div
-            className={`flex items-center justify-between h-full ${isExpanded ? 'flex-col space-y-4' : ''}`}
+            className={`flex h-full items-center justify-between ${isExpanded ? 'flex-col space-y-4' : ''}`}
           >
-            <div className={`w-full flex items-center ${isExpanded ? '' : 'justify-between'}`}>
+            <div className={`flex w-full items-center ${isExpanded ? '' : 'justify-between'}`}>
               <div className="relative w-full">
                 <Input
                   type="search"
                   placeholder="Search..."
-                  className={`w-full bg-transparent border-none focus:ring-0 pl-10 ${
+                  className={`w-full border-none bg-transparent pl-10 focus:ring-0 ${
                     isDarkMode
-                      ? 'placeholder-gray-400 text-white'
-                      : 'placeholder-gray-500 text-gray-900'
+                      ? 'text-white placeholder-gray-400'
+                      : 'text-gray-900 placeholder-gray-500'
                   } transition-all duration-300`}
                   onClick={handleSearchClick}
                   readOnly
                 />
                 <Search
-                  className={`absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 ${
+                  className={`absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform ${
                     isDarkMode ? 'text-gray-400' : 'text-gray-500'
                   }`}
                 />
@@ -150,7 +150,7 @@ const FloatingActionBar: React.FC<FloatingActionBarProps> = ({ isDarkMode, setIs
               <Button
                 variant="ghost"
                 size="icon"
-                className="ml-2 bg-orange-500 rounded-full transition-all duration-300 p-2 hover:bg-orange-600"
+                className="ml-2 rounded-full bg-orange-500 p-2 transition-all duration-300 hover:bg-orange-600"
                 onClick={() => setIsChatOpen(true)}
               >
                 <Link href="/chat">
@@ -159,7 +159,7 @@ const FloatingActionBar: React.FC<FloatingActionBarProps> = ({ isDarkMode, setIs
               </Button>
             </div>
             {isExpanded && (
-              <div className="flex justify-around w-full">
+              <div className="flex w-full justify-around">
                 <Button
                   variant="ghost"
                   size="icon"

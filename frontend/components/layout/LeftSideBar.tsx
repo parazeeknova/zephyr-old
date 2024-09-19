@@ -48,7 +48,7 @@ const LeftSideBar: React.FC<LeftSideBarProps> = ({ isDarkMode }) => {
   ];
 
   return (
-    <aside className={`w-64 p-4 space-y-4 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
+    <aside className={`w-64 space-y-4 p-4 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
       <MyGroups isDarkMode={isDarkMode} groups={myGroupsData} />
       <Friends isDarkMode={isDarkMode} friends={friendsData} />
       <TrendingTopics isDarkMode={isDarkMode} topics={trendingTopicsData} />

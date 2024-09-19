@@ -19,7 +19,7 @@ const UpcomingEvents: React.FC<UpcomingEventsProps> = ({ isDarkMode, events }) =
   <Card className={isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}>
     <CardContent>
       <h2
-        className={`text-sm font-semibold uppercase mb-4 mt-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
+        className={`mb-4 mt-4 text-sm font-semibold uppercase ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
       >
         UPCOMING EVENTS
       </h2>

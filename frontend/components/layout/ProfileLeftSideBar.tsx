@@ -61,7 +61,7 @@ interface LeftSidebarProps {
 
 const LeftSidebar: React.FC<LeftSidebarProps> = ({ isDarkMode }) => (
   <aside
-    className={`w-96 p-6 overflow-auto flex flex-col ${
+    className={`flex w-96 flex-col overflow-auto p-6 ${
       isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'
     }`}
   >

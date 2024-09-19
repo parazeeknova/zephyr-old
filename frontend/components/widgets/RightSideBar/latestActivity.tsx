@@ -24,11 +24,11 @@ const LatestActivity: React.FC<LatestActivityProps> = ({ isDarkMode, activities 
   return (
     <Card className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
       <CardHeader className="p-4">
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <h3 className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
             Latest Activity
           </h3>
-          <MoreHorizontal className={`w-5 h-5 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} />
+          <MoreHorizontal className={`h-5 w-5 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} />
         </div>
       </CardHeader>
       <CardContent className="p-4">
@@ -36,7 +36,7 @@ const LatestActivity: React.FC<LatestActivityProps> = ({ isDarkMode, activities 
           <div className="space-y-4">
             {activities.map((activity, index) => (
               <div key={index} className="flex items-start space-x-2">
-                <Avatar className="w-8 h-8">
+                <Avatar className="h-8 w-8">
                   <AvatarImage src="/user-boy-default.png" alt="User avatar" />
                   <AvatarFallback>U</AvatarFallback>
                 </Avatar>
@@ -67,18 +67,18 @@ const LatestActivity: React.FC<LatestActivityProps> = ({ isDarkMode, activities 
                     {activity.time}
                   </p>
                   {activity.content && (
-                    <p className={`text-sm mt-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    <p className={`mt-1 text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                       {activity.content}
                     </p>
                   )}
                   {activity.type === 'follow' && (
-                    <div className="flex justify-between items-center mt-2">
+                    <div className="mt-2 flex items-center justify-between">
                       <Button
                         variant={isDarkMode ? 'outline' : 'secondary'}
                         size="sm"
                         className={
                           isDarkMode
-                            ? 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white border-gray-600'
+                            ? 'border-gray-600 bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
                             : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
                         }
                       >

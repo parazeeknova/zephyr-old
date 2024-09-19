@@ -21,7 +21,7 @@ interface RecommendationsProps {
 const Recommendations: React.FC<RecommendationsProps> = ({ people, isDarkMode }) => (
   <Card className={isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}>
     <CardContent className="p-6">
-      <div className="flex justify-between items-center mb-4">
+      <div className="mb-4 flex items-center justify-between">
         <h2 className="text-sm font-semibold uppercase text-gray-500">
           Endorsements based on your activity:
         </h2>
@@ -45,7 +45,7 @@ const Recommendations: React.FC<RecommendationsProps> = ({ people, isDarkMode })
             <div>
               <h3 className="font-semibold">{rec.name}</h3>
               <p className="text-xs text-gray-500">{rec.role}</p>
-              <p className="text-sm text-gray-600 mt-1">{rec.comment}</p>
+              <p className="mt-1 text-sm text-gray-600">{rec.comment}</p>
             </div>
           </motion.div>
         ))}

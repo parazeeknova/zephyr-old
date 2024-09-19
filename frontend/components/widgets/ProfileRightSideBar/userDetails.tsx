@@ -30,8 +30,8 @@ interface ProfileCardProps {
 const ProfileCard: React.FC<ProfileCardProps> = ({ data, isDarkMode }) => (
   <Card className={`sticky top-8 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}`}>
     <CardContent className="p-6">
-      <div className="flex items-center space-x-4 mb-4">
-        <Avatar className="w-16 h-16">
+      <div className="mb-4 flex items-center space-x-4">
+        <Avatar className="h-16 w-16">
           <AvatarImage src={data.avatar} alt={data.name} width={64} height={64} />
           <AvatarFallback>{data.name[0]}</AvatarFallback>
         </Avatar>
@@ -40,29 +40,29 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ data, isDarkMode }) => (
           <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>{data.role}</p>
         </div>
       </div>
-      <div className="flex justify-evenly mb-4">
+      <div className="mb-4 flex justify-evenly">
         <div>
           <p className="text-sm font-semibold">Followers</p>
-          <p className="text-lg pl-2">{data.followers.toLocaleString()}</p>
+          <p className="pl-2 text-lg">{data.followers.toLocaleString()}</p>
         </div>
         <div>
           <p className="text-sm font-semibold">Following</p>
-          <p className="text-lg pl-3">{data.following.toLocaleString()}</p>
+          <p className="pl-3 text-lg">{data.following.toLocaleString()}</p>
         </div>
         <div>
           <p className="text-sm font-semibold">Aura</p>
-          <p className="text-lg pl-1">{data.aura}</p>
+          <p className="pl-1 text-lg">{data.aura}</p>
         </div>
       </div>
-      <p className={`text-sm mb-4 text-center ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+      <p className={`mb-4 text-center text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
         {data.bio}
       </p>
-      <div className="flex justify-center items-center">
-        <Button className="w-full max-w-xs bg-orange-500 hover:bg-orange-600 text-white mb-2">
+      <div className="flex items-center justify-center">
+        <Button className="mb-2 w-full max-w-xs bg-orange-500 text-white hover:bg-orange-600">
           Edit Profile
         </Button>
       </div>
-      <div className="grid grid-cols-2 gap-2 mb-1 mt-2">
+      <div className="mb-1 mt-2 grid grid-cols-2 gap-2">
         {data.socialMedia.map((social, index) => (
           <Button
             key={index}
@@ -70,10 +70,10 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ data, isDarkMode }) => (
             size="sm"
             className={`w-full justify-evenly ${isDarkMode ? 'bg-gray-700 text-white' : ''}`}
           >
-            {social.platform === 'Twitter' && <TwitterIcon className="h-4 w-4 mr-2" />}
-            {social.platform === 'Instagram' && <InstagramIcon className="h-4 w-4 mr-2" />}
-            {social.platform === 'GitHub' && <GitHubIcon className="h-4 w-4 mr-2" />}
-            {social.platform === 'Reddit' && <RedditIcon className="h-4 w-4 mr-2" />}
+            {social.platform === 'Twitter' && <TwitterIcon className="mr-2 h-4 w-4" />}
+            {social.platform === 'Instagram' && <InstagramIcon className="mr-2 h-4 w-4" />}
+            {social.platform === 'GitHub' && <GitHubIcon className="mr-2 h-4 w-4" />}
+            {social.platform === 'Reddit' && <RedditIcon className="mr-2 h-4 w-4" />}
             <span>{social.username}</span>
           </Button>
         ))}

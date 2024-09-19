@@ -18,7 +18,7 @@ const RecentActivity: React.FC<RecentActivityProps> = ({ activities, isDarkMode 
   <Card className={`mb-6 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}`}>
     <CardContent className="p-6">
       <h2
-        className={`text-sm font-semibold mb-4 uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
+        className={`mb-4 text-sm font-semibold uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
       >
         Recent Activity
       </h2>
@@ -31,7 +31,7 @@ const RecentActivity: React.FC<RecentActivityProps> = ({ activities, isDarkMode 
             transition={{ delay: index * 0.1 }}
             className="flex items-center space-x-2"
           >
-            <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+            <div className="h-2 w-2 rounded-full bg-orange-500"></div>
             <p className="text-sm">
               <span className="font-semibold">{activity.action}</span> {activity.target}
               <span className={`ml-2 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>

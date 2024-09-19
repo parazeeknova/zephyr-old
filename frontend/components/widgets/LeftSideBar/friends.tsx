@@ -40,12 +40,12 @@ const Friends: React.FC<FriendsProps> = ({ isDarkMode, friends }) => (
                 </span>
               </div>
               {friend.status === 'online' && (
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <div className="h-2 w-2 rounded-full bg-green-500"></div>
               )}
               {friend.status === 'away' && (
-                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                <div className="h-2 w-2 rounded-full bg-yellow-500"></div>
               )}
-              {friend.status === 'busy' && <div className="w-2 h-2 bg-red-500 rounded-full"></div>}
+              {friend.status === 'busy' && <div className="h-2 w-2 rounded-full bg-red-500"></div>}
               {friend.status === 'offline' && (
                 <span className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
                   {friend.lastSeen}

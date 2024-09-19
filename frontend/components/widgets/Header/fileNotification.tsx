@@ -47,20 +47,20 @@ const FileNotification: React.FC<FileNotificationProps> = ({
         <p className="text-xs text-gray-500">
           {timeAgo} • {project}
         </p>
-        <div className="mt-2 p-3 rounded bg-gray-800">
-          <p className="text-xs font-semibold flex items-center">
+        <div className="mt-2 rounded bg-gray-800 p-3">
+          <p className="flex items-center text-xs font-semibold">
             <Image
               src={imageUrl}
               alt={`${fileName} preview`}
-              className="mr-1 rounded w-15 h-15"
+              className="w-15 h-15 mr-1 rounded"
               width={width}
               height={height}
             />
           </p>
-          <p className="text-xs mt-1 text-gray-400">{description}</p>
-          <p className="text-xs text-orange-500 mt-2">Link preview</p>
-          <div className="flex items-center text-xs text-gray-400 mt-1">
-            <Link href={linkUrl} className="w-4 h-4 mr-1">
+          <p className="mt-1 text-xs text-gray-400">{description}</p>
+          <p className="mt-2 text-xs text-orange-500">Link preview</p>
+          <div className="mt-1 flex items-center text-xs text-gray-400">
+            <Link href={linkUrl} className="mr-1 h-4 w-4">
               {linkUrl}
             </Link>
           </div>

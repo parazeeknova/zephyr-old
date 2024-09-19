@@ -51,7 +51,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ isDarkMode }) => {
 
   return (
     <aside
-      className={`w-80 p-4 space-y-4 overflow-y-auto ${
+      className={`w-80 space-y-4 overflow-y-auto p-4 ${
         isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'
       }`}
     >

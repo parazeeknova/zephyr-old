@@ -31,7 +31,7 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode }) => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className={`relative py-12 px-4 md:px-6 overflow-hidden ${
+      className={`relative overflow-hidden px-4 py-12 md:px-6 ${
         isDarkMode
           ? 'bg-gray-900 text-white shadow-lg shadow-gray-800/50'
           : 'bg-gray-100 text-gray-900 shadow-lg shadow-gray-300/50'
@@ -41,9 +41,9 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode }) => {
         <Meteors number={14} />
       </div>
       <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start mb-8">
+        <div className="mb-8 flex flex-col items-start justify-between md:flex-row">
           <div className="flex flex-col items-start">
-            <div className="text-3xl font-bold mb-4 text-orange-500">Zephyr.</div>
+            <div className="mb-4 text-3xl font-bold text-orange-500">Zephyr.</div>
             <div className="flex items-center">
               <Dock direction="middle">
                 <DockIcon>
@@ -61,7 +61,7 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode }) => {
               </Dock>
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             <FooterColumn
               isDarkMode={isDarkMode}
               title="GO"
@@ -102,7 +102,7 @@ const FooterColumn: React.FC<{
   itemVariants: Variants;
 }> = ({ title, links, isDarkMode, itemVariants }) => (
   <motion.div variants={itemVariants}>
-    <h3 className={`font-bold mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{title}</h3>
+    <h3 className={`mb-4 font-bold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{title}</h3>
     <ul className="space-y-2">
       {links.map((link) => (
         <li key={link}>
@@ -124,14 +124,14 @@ const FooterBottom: React.FC<{ isDarkMode: boolean; itemVariants: Variants }> = 
 }) => (
   <motion.div
     variants={itemVariants}
-    className={`mt-12 pt-8 border-t ${
+    className={`mt-12 border-t pt-8 ${
       isDarkMode ? 'border-gray-700' : 'border-gray-300'
-    } flex flex-col md:flex-row justify-between items-center`}
+    } flex flex-col items-center justify-between md:flex-row`}
   >
     <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
       © {new Date().getFullYear()} Zephyr — Terms & Privacy Policy
     </p>
-    <div className="flex items-center mt-4 md:mt-0">
+    <div className="mt-4 flex items-center md:mt-0">
       <span className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'} mr-2`}>
         MADE WITH
       </span>

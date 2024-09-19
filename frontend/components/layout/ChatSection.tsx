@@ -170,7 +170,7 @@ const ChatSection: React.FC<ChatSectionProps> = ({ isDarkMode }) => {
   }, [currentChat]);
 
   return (
-    <div className="flex-1 flex overflow-hidden h-screen">
+    <div className="flex h-screen flex-1 overflow-hidden">
       <Sidebar
         searchTerm={searchTerm}
         setSearchTerm={handleSetSearchTerm}
@@ -189,7 +189,7 @@ const ChatSection: React.FC<ChatSectionProps> = ({ isDarkMode }) => {
         }}
         isDarkMode={isDarkMode}
       />
-      <div className="flex-1 flex flex-col">
+      <div className="flex flex-1 flex-col">
         <ChatArea
           chat={currentChat}
           messages={messages}
@@ -198,11 +198,11 @@ const ChatSection: React.FC<ChatSectionProps> = ({ isDarkMode }) => {
         />
       </div>
       <div
-        className={`w-80 flex flex-col h-screen overflow-hidden ${
+        className={`flex h-screen w-80 flex-col overflow-hidden ${
           isDarkMode ? 'bg-gray-800' : 'bg-white'
         }`}
       >
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex-1 space-y-4 overflow-y-auto p-4">
           <ProfileCard {...profileData} isDarkMode={isDarkMode} />
           <SharedFiles files={sharedFiles} initialDisplayCount={3} isDarkMode={isDarkMode} />
           <SharedPhotos photos={sharedPhotos} initialDisplayCount={6} isDarkMode={isDarkMode} />

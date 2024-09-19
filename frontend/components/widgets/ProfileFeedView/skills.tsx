@@ -14,7 +14,7 @@ interface SkillsProps {
 const Skills: React.FC<SkillsProps> = ({ skills, isDarkMode }) => (
   <Card className={isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}>
     <CardContent className="p-6">
-      <h2 className="text-sm font-semibold mb-4 uppercase text-gray-500">Skills</h2>
+      <h2 className="mb-4 text-sm font-semibold uppercase text-gray-500">Skills</h2>
       <div className="flex flex-wrap gap-2">
         {skills.map((skill) => (
           <motion.div key={skill} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>

@@ -28,28 +28,28 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
 }) => (
   <Card className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
     <CardContent className="p-4">
-      <div className="flex items-center space-x-4 mb-4">
+      <div className="mb-4 flex items-center space-x-4">
         <div className="relative">
           <div
-            className={`w-20 h-20 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'} rounded-2xl overflow-hidden`}
+            className={`h-20 w-20 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'} overflow-hidden rounded-2xl`}
           >
             <Image
               src={avatarSrc}
               alt="Profile background"
-              className="w-full h-full object-cover"
+              className="h-full w-full object-cover"
               width={80}
               height={80}
             />
           </div>
           <Avatar
-            className={`absolute -bottom-2 -right-2 w-12 h-12 border-4 ${isDarkMode ? 'border-gray-800' : 'border-white'}`}
+            className={`absolute -bottom-2 -right-2 h-12 w-12 border-4 ${isDarkMode ? 'border-gray-800' : 'border-white'}`}
           >
             <AvatarImage src={avatarSrc} alt={`${username}'s avatar`} />
             <AvatarFallback>{username[0]}</AvatarFallback>
           </Avatar>
         </div>
         <div>
-          <h2 className="font-bold text-lg flex items-center">
+          <h2 className="flex items-center text-lg font-bold">
             <Link href="/profile" className={isDarkMode ? 'text-white' : 'text-gray-900'}>
               {username} <span className="ml-1 text-blue-500">✓</span>
             </Link>

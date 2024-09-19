@@ -31,7 +31,7 @@ export default function ZephyrHomePage() {
 
   return (
     <div
-      className={`flex flex-col min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}
+      className={`flex min-h-screen flex-col ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}
     >
       <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
 

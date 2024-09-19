@@ -27,7 +27,7 @@ const PlainNotification: React.FC<PlainNotificationProps> = ({
   project,
 }) => {
   return (
-    <div className="flex items-start space-x-3 mb-4 pt-2">
+    <div className="mb-4 flex items-start space-x-3 pt-2">
       <Avatar className={`h-8 w-8 ${avatarColor}`}>
         <AvatarFallback>{avatarInitial}</AvatarFallback>
       </Avatar>

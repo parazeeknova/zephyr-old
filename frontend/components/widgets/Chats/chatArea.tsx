@@ -31,12 +31,12 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, isDarkMode, onSendMessage
 
   return (
     <div
-      className={`flex-1 flex flex-col rounded-xl shadow-md overflow-hidden max-h-[calc(100vh-70px)] ${
+      className={`flex max-h-[calc(100vh-70px)] flex-1 flex-col overflow-hidden rounded-xl shadow-md ${
         isDarkMode ? 'bg-gray-800' : 'bg-gray-100'
       }`}
     >
-      <div className="flex-1 p-4 overflow-y-auto">
-        <div className="flex flex-col space-y-4 max-w-xl mx-auto">
+      <div className="flex-1 overflow-y-auto p-4">
+        <div className="mx-auto flex max-w-xl flex-col space-y-4">
           {messages.map((message) => (
             <div
               key={message.id}
@@ -47,7 +47,7 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, isDarkMode, onSendMessage
                   message.sender === 'Sam' ? 'flex-row-reverse' : 'flex-row'
                 } items-end space-x-2`}
               >
-                <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+                <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full">
                   <Image
                     src={message.sender === 'Sam' ? '/user-boyalt-default.png' : '/useriii.jpg'}
                     alt={`${message.sender} Avatar`}
@@ -56,7 +56,7 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, isDarkMode, onSendMessage
                   />
                 </div>
                 <div
-                  className={`p-3 rounded-lg max-w-[70%] ${
+                  className={`max-w-[70%] rounded-lg p-3 ${
                     message.sender === 'Sam'
                       ? 'bg-orange-500 text-white'
                       : isDarkMode
@@ -66,7 +66,7 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, isDarkMode, onSendMessage
                 >
                   <p>{message.content}</p>
                   <p
-                    className={`text-xs mt-1 ${
+                    className={`mt-1 text-xs ${
                       message.sender === 'Sam'
                         ? 'text-orange-200'
                         : isDarkMode
@@ -82,15 +82,15 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, isDarkMode, onSendMessage
           ))}
         </div>
       </div>
-      <div className={`p-4 border-t ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+      <div className={`border-t p-4 ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
         <div className="flex items-center justify-center space-x-2">
-          <div className="w-[500px] flex items-center space-x-2">
+          <div className="flex w-[500px] items-center space-x-2">
             <input
               type="text"
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
               placeholder="Enter a prompt here..."
-              className={`flex-1 p-2 rounded-lg ${
+              className={`flex-1 rounded-lg p-2 ${
                 isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'
               }`}
               onKeyPress={(e) => {
@@ -101,7 +101,7 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, isDarkMode, onSendMessage
             />
             <button
               onClick={handleSendMessage}
-              className="p-2 rounded-lg bg-orange-500 text-white"
+              className="rounded-lg bg-orange-500 p-2 text-white"
               aria-label="Send message"
             >
               <svg
@@ -109,7 +109,7 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, isDarkMode, onSendMessage
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                className="w-5 h-5"
+                className="h-5 w-5"
               >
                 <path
                   strokeLinecap="round"

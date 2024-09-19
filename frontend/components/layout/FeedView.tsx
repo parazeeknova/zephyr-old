@@ -191,12 +191,12 @@ export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
   const snapshots = posts.filter((post) => post.images.length > 0);
 
   return (
-    <main className={`flex-1 p-6 overflow-y-auto pb-24 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
+    <main className={`flex-1 overflow-y-auto p-6 pb-24 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
         <Card className={`mb-8 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <CardContent className="p-4">
             <h2
-              className={`text-2xl font-bold mb-2 text-left ${isDarkMode ? 'text-gray-300' : 'text-gray-500'} uppercase`}
+              className={`mb-2 text-left text-2xl font-bold ${isDarkMode ? 'text-gray-300' : 'text-gray-500'} uppercase`}
             >
               Stories
             </h2>
@@ -221,17 +221,17 @@ export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
               {showLeftButton && (
                 <button
                   onClick={() => scroll('left')}
-                  className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 shadow-md hover:bg-opacity-75 transition-all duration-200 focus:outline-none"
+                  className="absolute left-0 top-1/2 -translate-y-1/2 transform rounded-full bg-white bg-opacity-50 p-2 shadow-md transition-all duration-200 hover:bg-opacity-75 focus:outline-none"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="h-6 w-6" />
                 </button>
               )}
               {showRightButton && (
                 <button
                   onClick={() => scroll('right')}
-                  className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 shadow-md hover:bg-opacity-75 transition-all duration-200 focus:outline-none"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 transform rounded-full bg-white bg-opacity-50 p-2 shadow-md transition-all duration-200 hover:bg-opacity-75 focus:outline-none"
                 >
-                  <ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="h-6 w-6" />
                 </button>
               )}
             </div>
@@ -249,11 +249,11 @@ export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
         <Card className={`mb-8 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <CardContent className="p-4">
             <h2
-              className={`text-2xl font-bold mb-2 text-left ${isDarkMode ? 'text-gray-300' : 'text-gray-500'} uppercase`}
+              className={`mb-2 text-left text-2xl font-bold ${isDarkMode ? 'text-gray-300' : 'text-gray-500'} uppercase`}
             >
               Scribbles
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr">
+            <div className="grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2">
               {scribbles.slice(0, 4).map((post, index) => (
                 <div key={`scribble-${index}`} className="h-full">
                   <PostCard post={post} isDarkMode={isDarkMode} />
@@ -263,7 +263,7 @@ export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
             {scribbles.length > 4 && (
               <div className="mt-4">
                 <h3
-                  className={`text-xl font-semibold mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
+                  className={`mb-2 text-xl font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
                 >
                   More Scribbles
                 </h3>
@@ -286,7 +286,7 @@ export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
         <Card className={`mb-8 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <CardContent className="p-4">
             <h2
-              className={`text-2xl font-bold mb-2 text-left ${isDarkMode ? 'text-gray-300' : 'text-gray-500'} uppercase`}
+              className={`mb-2 text-left text-2xl font-bold ${isDarkMode ? 'text-gray-300' : 'text-gray-500'} uppercase`}
             >
               Snapshots
             </h2>
@@ -303,7 +303,7 @@ export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.6 }}
-        className={`text-center py-8 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}
+        className={`py-8 text-center ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}
       >
         <p>You&apos;ve reached the end of your feed.</p>
         <p>Check back later for more updates!</p>

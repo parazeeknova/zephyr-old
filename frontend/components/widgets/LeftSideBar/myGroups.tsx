@@ -18,7 +18,7 @@ const MyGroups: React.FC<MyGroupsProps> = ({ isDarkMode, groups }) => (
   <Card className={isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}>
     <CardContent className="p-4">
       <h2
-        className={`text-sm font-semibold uppercase mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
+        className={`mb-4 text-sm font-semibold uppercase ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
       >
         MY GROUP
       </h2>
@@ -26,7 +26,7 @@ const MyGroups: React.FC<MyGroupsProps> = ({ isDarkMode, groups }) => (
         {groups.map((group, index) => (
           <li key={index} className="flex items-center space-x-3">
             <div
-              className={`w-8 h-8 rounded-md ${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'} flex items-center justify-center text-lg`}
+              className={`h-8 w-8 rounded-md ${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'} flex items-center justify-center text-lg`}
             >
               {group.icon}
             </div>

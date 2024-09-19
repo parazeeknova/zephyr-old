@@ -27,7 +27,7 @@ const OptionNotification: React.FC<OptionNotificationProps> = ({
   project,
 }) => {
   return (
-    <div className="flex items-start space-x-3 mb-4 pt-2">
+    <div className="mb-4 flex items-start space-x-3 pt-2">
       <Avatar className={`h-8 w-8 ${avatarColor}`}>
         <AvatarFallback>{avatarInitial}</AvatarFallback>
       </Avatar>
@@ -41,10 +41,10 @@ const OptionNotification: React.FC<OptionNotificationProps> = ({
           {timeAgo} • {project}
         </p>
         <div className="mt-2 space-x-2">
-          <Button variant="outline" size="sm" className="text-xs px-3 py-1">
+          <Button variant="outline" size="sm" className="px-3 py-1 text-xs">
             Deny
           </Button>
-          <Button size="sm" className="bg-orange-500 text-gray-200 text-xs px-3 py-1">
+          <Button size="sm" className="bg-orange-500 px-3 py-1 text-xs text-gray-200">
             Approve
           </Button>
         </div>

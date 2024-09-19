@@ -31,26 +31,26 @@ const SharedPhotos: React.FC<SharedPhotosProps> = ({
 
   return (
     <div
-      className={`border rounded-xl shadow-md p-2 relative ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}
+      className={`relative rounded-xl border p-2 shadow-md ${isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'}`}
     >
-      <div className="flex justify-between items-center mb-2">
+      <div className="mb-2 flex items-center justify-between">
         <h4 className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
           Shared Images
         </h4>
         {photos.length > initialDisplayCount && (
           <motion.button
             onClick={toggleExpand}
-            className="text-orange-500 text-sm flex items-center"
+            className="flex items-center text-sm text-orange-500"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             {isExpanded ? (
               <>
-                See Less <ChevronUp className="w-4 h-4 ml-1" />
+                See Less <ChevronUp className="ml-1 h-4 w-4" />
               </>
             ) : (
               <>
-                See All <ChevronDown className="w-4 h-4 ml-1" />
+                See All <ChevronDown className="ml-1 h-4 w-4" />
               </>
             )}
           </motion.button>
@@ -65,7 +65,7 @@ const SharedPhotos: React.FC<SharedPhotosProps> = ({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className={`aspect-square rounded overflow-hidden cursor-pointer relative ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'}`}
+              className={`relative aspect-square cursor-pointer overflow-hidden rounded ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'}`}
               onClick={() => handlePhotoClick(photo)}
               whileHover={{ scale: 1.5, zIndex: 10 }}
             >
@@ -78,7 +78,7 @@ const SharedPhotos: React.FC<SharedPhotosProps> = ({
               />
               {selectedPhoto === photo && (
                 <motion.div
-                  className="absolute inset-0 border-4 border-orange-500 rounded pointer-events-none"
+                  className="pointer-events-none absolute inset-0 rounded border-4 border-orange-500"
                   initial={false}
                   animate={{ borderColor: 'rgb(249 115 22)' }}
                   transition={{ duration: 0.2 }}

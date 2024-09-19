@@ -172,20 +172,20 @@ const ProfileFeedView: React.FC<ProfileFeedViewProps> = ({ isDarkMode }) => (
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 0.5 }}
-    className={`flex-1 p-8 overflow-auto ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}
+    className={`flex-1 overflow-auto p-8 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}
   >
     <motion.div
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.2, duration: 0.5 }}
-      className="flex justify-between items-center mb-6"
+      className="mb-6 flex items-center justify-between"
     >
       <h1
-        className={`text-2xl font-bold mb-2 text-left uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
+        className={`mb-2 text-left text-2xl font-bold uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
       >
         User Profile
       </h1>
-      <Button className="bg-orange-500 hover:bg-orange-600 text-white">Engage</Button>
+      <Button className="bg-orange-500 text-white hover:bg-orange-600">Engage</Button>
     </motion.div>
     <motion.div
       initial={{ opacity: 0 }}

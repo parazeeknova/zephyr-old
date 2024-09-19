@@ -47,9 +47,9 @@ const UploadButton: React.FC<UploadButtonProps> = ({ isDarkMode }) => {
       >
         <motion.button
           onClick={toggleUpload}
-          className="bg-orange-500 text-white rounded-full p-4 shadow-md hover:bg-orange-600 transition-colors"
+          className="rounded-full bg-orange-500 p-4 text-white shadow-md transition-colors hover:bg-orange-600"
         >
-          <Upload className="w-8 h-8" />
+          <Upload className="h-8 w-8" />
         </motion.button>
       </motion.div>
       <AnimatePresence>
@@ -58,13 +58,13 @@ const UploadButton: React.FC<UploadButtonProps> = ({ isDarkMode }) => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className={`fixed bottom-24 right-8 border rounded-xl shadow-lg p-6 w-80 ${
-              isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+            className={`fixed bottom-24 right-8 w-80 rounded-xl border p-6 shadow-lg ${
+              isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
             }`}
           >
-            <div className="flex justify-between items-center mb-4">
+            <div className="mb-4 flex items-center justify-between">
               <h5
-                className={`font-semibold text-lg ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
+                className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
               >
                 Upload Files
               </h5>
@@ -73,17 +73,17 @@ const UploadButton: React.FC<UploadButtonProps> = ({ isDarkMode }) => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <X className={`w-6 h-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} />
+                <X className={`h-6 w-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} />
               </motion.button>
             </div>
             <input
               type="file"
               multiple
               onChange={handleFileChange}
-              className={`mb-4 w-full p-2 border rounded ${
+              className={`mb-4 w-full rounded border p-2 ${
                 isDarkMode
-                  ? 'bg-gray-700 border-gray-600 text-white'
-                  : 'bg-white border-gray-300 text-gray-900'
+                  ? 'border-gray-600 bg-gray-700 text-white'
+                  : 'border-gray-300 bg-white text-gray-900'
               }`}
             />
             <div className="max-h-40 overflow-y-auto">
@@ -92,7 +92,7 @@ const UploadButton: React.FC<UploadButtonProps> = ({ isDarkMode }) => {
                   key={index}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className={`text-sm mb-2 p-2 rounded ${
+                  className={`mb-2 rounded p-2 text-sm ${
                     isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-900'
                   }`}
                 >

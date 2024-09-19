@@ -39,21 +39,21 @@ const SharedFiles: React.FC<SharedFilesProps> = ({
 
   return (
     <div
-      className={`mb-4 p-2 border rounded-xl shadow-md ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}
+      className={`mb-4 rounded-xl border p-2 shadow-md ${isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'}`}
     >
-      <div className="flex justify-between items-center mb-2">
+      <div className="mb-2 flex items-center justify-between">
         <h4 className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
           Shared Files
         </h4>
         {files.length > initialDisplayCount && (
-          <button onClick={toggleExpand} className="text-orange-500 text-sm flex items-center">
+          <button onClick={toggleExpand} className="flex items-center text-sm text-orange-500">
             {isExpanded ? (
               <>
-                See Less <ChevronUp className="w-4 h-4 ml-1" />
+                See Less <ChevronUp className="ml-1 h-4 w-4" />
               </>
             ) : (
               <>
-                See All <ChevronDown className="w-4 h-4 ml-1" />
+                See All <ChevronDown className="ml-1 h-4 w-4" />
               </>
             )}
           </button>
@@ -63,7 +63,7 @@ const SharedFiles: React.FC<SharedFilesProps> = ({
         {files.slice(0, displayCount).map((file, index) => (
           <li key={index}>
             <button
-              className={`w-full flex items-center space-x-2 p-2 rounded-lg cursor-pointer transition-colors duration-200 ${
+              className={`flex w-full cursor-pointer items-center space-x-2 rounded-lg p-2 transition-colors duration-200 ${
                 selectedFile === file.name
                   ? isDarkMode
                     ? 'bg-gray-700'
@@ -81,7 +81,7 @@ const SharedFiles: React.FC<SharedFilesProps> = ({
               }}
             >
               <div
-                className={`w-8 h-8 bg-${file.color}-100 rounded flex items-center justify-center`}
+                className={`h-8 w-8 bg-${file.color}-100 flex items-center justify-center rounded`}
               >
                 <span className={`text-${file.color}-600 text-xs`}>{file.type}</span>
               </div>

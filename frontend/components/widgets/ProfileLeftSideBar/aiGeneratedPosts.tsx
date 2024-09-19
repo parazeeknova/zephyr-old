@@ -18,7 +18,7 @@ const AIGeneratedPosts: React.FC<AIGeneratedPostsProps> = ({ posts, isDarkMode }
   <Card className={`mb-6 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}`}>
     <CardContent className="p-6">
       <h2
-        className={`text-sm font-semibold uppercase mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
+        className={`mb-4 text-sm font-semibold uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
       >
         Synthetic Posts
       </h2>
@@ -32,10 +32,10 @@ const AIGeneratedPosts: React.FC<AIGeneratedPostsProps> = ({ posts, isDarkMode }
             className={`border-b pb-4 last:border-b-0 ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}
           >
             <h3 className="font-semibold">{post.title}</h3>
-            <p className={`text-sm mt-1 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            <p className={`mt-1 text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
               {post.summary}
             </p>
-            <Button variant="link" className="text-orange-500 mt-2 p-0">
+            <Button variant="link" className="mt-2 p-0 text-orange-500">
               Read more
             </Button>
           </motion.div>

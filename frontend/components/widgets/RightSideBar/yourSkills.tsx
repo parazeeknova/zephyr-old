@@ -23,7 +23,7 @@ const YourSkills: React.FC<YourSkillsProps> = ({ isDarkMode, skills }) => (
             variant={isDarkMode ? 'outline' : 'secondary'}
             className={`rounded-full px-3 py-1 text-xs font-semibold ${
               isDarkMode
-                ? 'bg-gray-700 text-gray-300 border-gray-600 hover:bg-gray-600'
+                ? 'border-gray-600 bg-gray-700 text-gray-300 hover:bg-gray-600'
                 : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
             }`}
           >
