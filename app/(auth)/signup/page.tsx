@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import signupImage from '@/assets/signup-image.jpg';
+import SignUpForm from '@/CW/authPage/SignUpForm';
 
 export const metadata: Metadata = {
   title: 'Sign Up',
@@ -23,9 +24,7 @@ export default function SignupPage() {
             <h2 className="mb-2 text-center text-3xl font-bold text-orange-500 sm:mb-4 sm:text-4xl">
               Launch Your Journey
             </h2>
-            <p className="mb-6 text-center text-sm text-gray-500 sm:mb-8 sm:text-base">
-              Elevate your ideas, accelerate your impact.
-            </p>
+            <SignUpForm />
 
             <div className="flex flex-col items-center justify-center">
               <Link href="/login" className="text-sm text-orange-500">

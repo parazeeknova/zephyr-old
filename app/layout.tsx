@@ -18,6 +18,19 @@ export const metadata: Metadata = {
     template: '%s | Zephyr',
     default: 'Zephyr',
   },
+  icons: {
+    icon: [
+      {
+        url: '/favicon-16x16.png',
+        sizes: '16x16',
+      },
+      {
+        url: '/android-chrome-512x512.png',
+        sizes: '512x512',
+      },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
   description:
     'The Next-Generation Blog Accelerator for Content Creation and Collaboration platform',
   keywords:
@@ -40,9 +53,6 @@ export const metadata: Metadata = {
     description:
       'The Next-Generation Blog Accelerator for Content Creation and Collaboration platform',
     images: ['/Banner.png'],
-  },
-  icons: {
-    icon: '/favicon.ico',
   },
 };
 

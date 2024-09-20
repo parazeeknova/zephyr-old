@@ -33,7 +33,9 @@ export async function signUp(credentials: SignUpValues): Promise<{ error: string
     });
 
     if (existingUsername) {
-      return { error: 'Username already taken' };
+      return {
+        error: 'Username already taken',
+      };
     }
 
     const existingEmail = await prisma.user.findFirst({
@@ -46,7 +48,9 @@ export async function signUp(credentials: SignUpValues): Promise<{ error: string
     });
 
     if (existingEmail) {
-      return { error: 'Email already taken' };
+      return {
+        error: 'Email already taken',
+      };
     }
 
     await prisma.user.create({
@@ -67,6 +71,8 @@ export async function signUp(credentials: SignUpValues): Promise<{ error: string
   } catch (error) {
     if (isRedirectError(error)) throw error;
     console.error(error);
-    return { error: 'Something went wrong' };
+    return {
+      error: 'Something went wrong. Please try again.',
+    };
   }
 }
