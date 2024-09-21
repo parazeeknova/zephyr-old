@@ -1,24 +1,25 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import {
   Home,
   PlusCircle,
   UserCircle,
   Search,
   MessageCircle,
-  ArrowUp,
   FileText,
   Calendar,
   Plus,
   UserPlus,
   Star,
+  SearchSlashIcon,
 } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import ScrollUpButton from '@/CW/ScrollUpButton';
 import SearchOverlay from '@/CW/SeachOverlay';
 
 interface FloatingActionBarProps {
@@ -26,19 +27,22 @@ interface FloatingActionBarProps {
 }
 
 const FloatingActionBar: React.FC<FloatingActionBarProps> = ({ setIsChatOpen }) => {
+  const router = useRouter();
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const q = (form.q as HTMLInputElement).value.trim();
+    if (!q) return;
+    router.push(`/search?q=${encodeURIComponent(q)}`);
+  }
+
   const [isExpanded, setIsExpanded] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  // Static data (to be replaced with API calls in the future)
   const searchOverlayData = {
-    recentSearches: [
-      'Project management',
-      'Team collaboration',
-      'Task prioritization',
-      'Agile methodologies',
-      'Remote work best practices',
-    ],
+    recentSearches: ['Project management', 'Task prioritization', 'Agile methodologies'],
     recentPeople: [
       {
         name: 'John Doe',
@@ -51,18 +55,6 @@ const FloatingActionBar: React.FC<FloatingActionBarProps> = ({ setIsChatOpen }) 
         email: 'jane@example.com',
         role: 'UX Designer',
         lastActive: '5 minutes ago',
-      },
-      {
-        name: 'Bob Johnson',
-        email: 'bob@example.com',
-        role: 'Software Engineer',
-        lastActive: '1 day ago',
-      },
-      {
-        name: 'Alice Johnson',
-        email: 'alice@example.com',
-        role: 'Marketing Manager',
-        lastActive: '2 days ago',
       },
     ],
     recentFiles: [
@@ -90,14 +82,6 @@ const FloatingActionBar: React.FC<FloatingActionBarProps> = ({ setIsChatOpen }) 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleSearchClick = () => {
-    setIsSearchOpen(true);
-  };
-
   return (
     <>
       <nav
@@ -112,13 +96,14 @@ const FloatingActionBar: React.FC<FloatingActionBarProps> = ({ setIsChatOpen }) 
         >
           <div className={`flex w-full items-center ${isExpanded ? '' : 'justify-between'}`}>
             <div className="relative w-full">
-              <Input
-                type="search"
-                placeholder="Search..."
-                className="w-full border-none bg-transparent pl-10 text-gray-900 placeholder-gray-500 transition-all duration-300 focus:ring-0"
-                onClick={handleSearchClick}
-                readOnly
-              />
+              <form onSubmit={handleSubmit} method="GET" action="/search">
+                <Input
+                  type="search"
+                  name="q"
+                  placeholder="Search..."
+                  className="w-full border-none bg-transparent pl-10 text-gray-900 placeholder-gray-500 transition-all duration-300 focus:ring-0"
+                />
+              </form>
               <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-gray-500" />
             </div>
             <Button
@@ -145,6 +130,14 @@ const FloatingActionBar: React.FC<FloatingActionBarProps> = ({ setIsChatOpen }) 
               </Button>
               <Button
                 variant="ghost"
+                size="sm"
+                className="rounded-full transition-all duration-300 hover:bg-gray-200"
+                onClick={() => setIsSearchOpen(true)}
+              >
+                <SearchSlashIcon className="h-6 w-6" />
+              </Button>
+              <Button
+                variant="ghost"
                 size="icon"
                 className="rounded-full transition-all duration-300 hover:bg-gray-200"
               >
@@ -163,38 +156,7 @@ const FloatingActionBar: React.FC<FloatingActionBarProps> = ({ setIsChatOpen }) 
           )}
         </div>
       </nav>
-      {isScrolled && (
-        <motion.div
-          className="fixed bottom-20 right-4 z-50"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Button
-            variant="ghost"
-            size="icon"
-            className="group relative h-16 w-16 overflow-hidden rounded-full bg-orange-500 p-2 transition-all duration-300 hover:bg-orange-600"
-            onClick={scrollToTop}
-          >
-            <ArrowUp className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 transform text-gray-200 transition-all duration-300 group-hover:translate-y-[-200%]" />
-            <motion.div
-              className="absolute inset-0 flex items-center justify-center"
-              initial={{ rotate: 0 }}
-              animate={{ rotate: 360 }}
-              transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-            >
-              <svg className="h-full w-full" viewBox="0 0 100 100">
-                <defs>
-                  <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
-                </defs>
-                <text className="fill-white pr-2 text-xs font-semibold uppercase text-gray-200">
-                  <textPath xlinkHref="#circle">Scroll Up • Scroll Up • Scroll Up •</textPath>
-                </text>
-              </svg>
-            </motion.div>
-          </Button>
-        </motion.div>
-      )}
+      <ScrollUpButton isVisible={isScrolled} />
       <SearchOverlay
         onClose={() => setIsSearchOpen(false)}
         isOpen={isSearchOpen}

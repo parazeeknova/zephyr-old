@@ -1,6 +1,14 @@
 'use client';
 
-import { Home, MessageSquare, Bell } from 'lucide-react';
+import {
+  Home,
+  MessageSquare,
+  Bell,
+  GlobeIcon,
+  User2Icon,
+  UsersRoundIcon,
+  CalendarIcon,
+} from 'lucide-react';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
@@ -20,8 +28,8 @@ const Header: React.FC = () => {
       <header className="flex items-center justify-between border-b border-gray-200 bg-white px-4 py-2">
         <div className="flex items-center space-x-4">
           <Link href="/">
-            <h1 className="text-2xl font-bold text-orange-500">
-              <Cover>Zephyr.</Cover>
+            <h1 className="text-2xl font-bold">
+              <Cover className="text-orange-500">Zephyr.</Cover>
             </h1>
           </Link>
           <Button variant="ghost" size="sm" className="rounded-md bg-gray-100 pb-5 pt-5">
@@ -31,13 +39,21 @@ const Header: React.FC = () => {
         </div>
         <div className="flex rounded-md bg-gray-100 p-1">
           <Button variant="ghost" size="sm" className="rounded-full">
-            Explore
+            <GlobeIcon className="mr-2 h-4 w-4" />
+            Discover
           </Button>
+
           <Button variant="ghost" size="sm" className="rounded-full">
+            <User2Icon className="mr-2 h-4 w-4" />
             Community feed
           </Button>
           <Button variant="ghost" size="sm" className="rounded-full">
-            Mutual friends
+            <UsersRoundIcon className="mr-2 h-4 w-4" />
+            Followed Communities
+          </Button>
+          <Button variant="ghost" size="sm" className="rounded-full">
+            <CalendarIcon className="mr-2 h-4 w-4" />
+            Events
           </Button>
         </div>
 
