@@ -32,12 +32,12 @@ const PlainNotification: React.FC<PlainNotificationProps> = ({
         <AvatarFallback>{avatarInitial}</AvatarFallback>
       </Avatar>
       <div className="flex-1">
-        <p className="text-sm">
+        <p className="text-sm text-foreground">
           <span className="font-semibold">{userName}</span> {action}
         </p>
-        {fileName && <p className="text-xs text-gray-400">{fileName}</p>}
-        {message && <p className="text-xs text-gray-700">{message}</p>}
-        <p className="text-xs text-gray-500">
+        {fileName && <p className="text-xs text-muted-foreground">{fileName}</p>}
+        {message && <p className="text-xs text-foreground">{message}</p>}
+        <p className="text-xs text-muted-foreground">
           {timeAgo} • {project}
         </p>
       </div>

@@ -15,16 +15,16 @@ interface UpcomingEventsProps {
 }
 
 const UpcomingEvents: React.FC<UpcomingEventsProps> = ({ events }) => (
-  <Card className="bg-white">
+  <Card className="bg-card">
     <CardContent>
-      <CardTitle className="mb-4 mt-4 text-sm font-semibold uppercase text-gray-500">
+      <CardTitle className="mb-4 mt-4 text-sm font-semibold uppercase text-muted-foreground">
         Upcoming Events
       </CardTitle>
       <ul className="space-y-2">
         {events.map((event, index) => (
           <li key={index} className="flex items-center space-x-2">
-            <Calendar className={`h-4 w-4 text-orange-500`} />
-            <span>{event.name}</span>
+            <Calendar className={`h-4 w-4 text-primary`} />
+            <span className="text-foreground">{event.name}</span>
           </li>
         ))}
       </ul>

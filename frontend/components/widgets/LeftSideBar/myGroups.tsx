@@ -14,18 +14,18 @@ interface MyGroupsProps {
 }
 
 const MyGroups: React.FC<MyGroupsProps> = ({ groups }) => (
-  <Card className="bg-white">
+  <Card className="bg-card">
     <CardContent className="p-4">
-      <CardTitle className="mb-4 text-sm font-semibold uppercase text-gray-500">
+      <CardTitle className="mb-4 text-sm font-semibold uppercase text-muted-foreground">
         My Groups
       </CardTitle>
       <ul className="space-y-3">
         {groups.map((group, index) => (
           <li key={index} className="flex items-center space-x-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gray-100 text-lg">
+            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-muted text-lg">
               {group.icon}
             </div>
-            <span className="text-sm font-medium text-gray-700">{group.name}</span>
+            <span className="text-sm font-medium text-foreground">{group.name}</span>
           </li>
         ))}
       </ul>

@@ -85,7 +85,7 @@ const FloatingActionBar: React.FC<FloatingActionBarProps> = ({ setIsChatOpen }) 
   return (
     <>
       <nav
-        className={`fixed bottom-4 left-1/2 -translate-x-1/2 transform rounded-full bg-white shadow-lg transition-all duration-300 ease-in-out ${
+        className={`fixed bottom-4 left-1/2 -translate-x-1/2 transform rounded-full bg-background shadow-lg transition-all duration-300 ease-in-out ${
           isScrolled ? 'w-auto' : 'w-[calc(100%-2rem)] max-w-2xl'
         } ${isExpanded ? 'h-auto p-4' : 'h-14 px-4 py-2'} ${isSearchOpen ? 'z-40' : 'z-50'}`}
         onMouseEnter={() => setIsExpanded(true)}
@@ -101,57 +101,28 @@ const FloatingActionBar: React.FC<FloatingActionBarProps> = ({ setIsChatOpen }) 
                   type="search"
                   name="q"
                   placeholder="Search..."
-                  className="w-full border-none bg-transparent pl-10 text-gray-900 placeholder-gray-500 transition-all duration-300 focus:ring-0"
+                  className="w-full border-none bg-transparent pl-10 text-foreground placeholder-muted-foreground transition-all duration-300 focus:ring-0"
                 />
               </form>
-              <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-gray-500" />
+              <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-muted-foreground" />
             </div>
             <Button
               variant="ghost"
               size="icon"
-              className="ml-2 rounded-full bg-orange-500 p-2 transition-all duration-300 hover:bg-orange-600"
+              className="ml-2 rounded-full bg-primary p-2 transition-all duration-300 hover:bg-primary/90"
               onClick={() => setIsChatOpen(true)}
             >
               <Link href="/chat">
-                <MessageCircle className="h-5 w-5 text-white" />
+                <MessageCircle className="h-5 w-5 text-primary-foreground" />
               </Link>
             </Button>
           </div>
           {isExpanded && (
             <div className="flex w-full justify-around">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full transition-all duration-300 hover:bg-gray-200"
-              >
-                <Link href="/">
-                  <Home className="h-6 w-6" />
-                </Link>
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="rounded-full transition-all duration-300 hover:bg-gray-200"
-                onClick={() => setIsSearchOpen(true)}
-              >
-                <SearchSlashIcon className="h-6 w-6" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full transition-all duration-300 hover:bg-gray-200"
-              >
-                <PlusCircle className="h-6 w-6" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full transition-all duration-300 hover:bg-gray-200"
-              >
-                <Link href="/profile">
-                  <UserCircle className="h-6 w-6" />
-                </Link>
-              </Button>
+              <ActionButton href="/" icon={Home} />
+              <ActionButton icon={SearchSlashIcon} onClick={() => setIsSearchOpen(true)} />
+              <ActionButton icon={PlusCircle} />
+              <ActionButton href="/profile" icon={UserCircle} />
             </div>
           )}
         </div>
@@ -164,6 +135,27 @@ const FloatingActionBar: React.FC<FloatingActionBarProps> = ({ setIsChatOpen }) 
       />
     </>
   );
+};
+
+interface ActionButtonProps {
+  href?: string;
+  icon: React.ElementType;
+  onClick?: () => void;
+}
+
+const ActionButton: React.FC<ActionButtonProps> = ({ href, icon: Icon, onClick }) => {
+  const button = (
+    <Button
+      variant="ghost"
+      size="icon"
+      className="rounded-full transition-all duration-300 hover:bg-accent hover:text-accent-foreground"
+      onClick={onClick}
+    >
+      <Icon className="h-6 w-6 text-foreground" />
+    </Button>
+  );
+
+  return href ? <Link href={href}>{button}</Link> : button;
 };
 
 export default FloatingActionBar;

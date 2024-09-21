@@ -17,9 +17,11 @@ interface FriendsProps {
 }
 
 const Friends: React.FC<FriendsProps> = ({ friends }) => (
-  <Card className="bg-white">
+  <Card className="bg-card">
     <CardContent className="p-4">
-      <CardTitle className="mb-4 text-sm font-semibold uppercase text-gray-500">Friends</CardTitle>
+      <CardTitle className="mb-4 text-sm font-semibold uppercase text-muted-foreground">
+        Friends
+      </CardTitle>
       <ScrollArea className="h-[calc(100vh-620px)] pr-4">
         <ul className="space-y-3">
           {friends.map((friend, index) => (
@@ -32,7 +34,7 @@ const Friends: React.FC<FriendsProps> = ({ friends }) => (
                   />
                   <AvatarFallback>{friend.name.charAt(0)}</AvatarFallback>
                 </Avatar>
-                <span className="text-sm font-medium text-gray-700">{friend.name}</span>
+                <span className="text-sm font-medium text-foreground">{friend.name}</span>
               </div>
               {friend.status === 'online' && (
                 <div className="h-2 w-2 rounded-full bg-green-500"></div>
@@ -42,7 +44,7 @@ const Friends: React.FC<FriendsProps> = ({ friends }) => (
               )}
               {friend.status === 'busy' && <div className="h-2 w-2 rounded-full bg-red-500"></div>}
               {friend.status === 'offline' && (
-                <span className="text-xs text-gray-400">{friend.lastSeen}</span>
+                <span className="text-xs text-muted-foreground">{friend.lastSeen}</span>
               )}
             </li>
           ))}

@@ -187,12 +187,14 @@ export const FeedView = () => {
   const snapshots = posts.filter((post) => post.images.length > 0);
 
   return (
-    <main className="flex-1 overflow-y-auto bg-white p-6 pb-24">
+    <main className="flex-1 overflow-y-auto bg-background p-6 pb-24">
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-        <Card className={`mb-8 bg-white shadow-lg`}>
+        <Card className="mb-8 bg-card shadow-lg">
           <CardContent className="p-4">
-            <h2 className={`mb-2 text-left text-2xl font-bold uppercase text-gray-500`}>Stories</h2>
-            <p className={`mb-4 text-gray-600`}>Check out the latest stories from your network.</p>
+            <h2 className="mb-2 text-left text-2xl font-bold uppercase text-foreground">Stories</h2>
+            <p className="mb-4 text-muted-foreground">
+              Check out the latest stories from your network.
+            </p>
 
             <div
               className="relative"
@@ -212,17 +214,17 @@ export const FeedView = () => {
               {showLeftButton && (
                 <button
                   onClick={() => scroll('left')}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 transform rounded-full bg-white bg-opacity-50 p-2 shadow-md transition-all duration-200 hover:bg-opacity-75 focus:outline-none"
+                  className="absolute left-0 top-1/2 -translate-y-1/2 transform rounded-full bg-background/50 p-2 shadow-md transition-all duration-200 hover:bg-background/75 focus:outline-none dark:bg-foreground/10 dark:hover:bg-foreground/20"
                 >
-                  <ChevronLeft className="h-6 w-6" />
+                  <ChevronLeft className="h-6 w-6 text-foreground" />
                 </button>
               )}
               {showRightButton && (
                 <button
                   onClick={() => scroll('right')}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 transform rounded-full bg-white bg-opacity-50 p-2 shadow-md transition-all duration-200 hover:bg-opacity-75 focus:outline-none"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 transform rounded-full bg-background/50 p-2 shadow-md transition-all duration-200 hover:bg-background/75 focus:outline-none dark:bg-foreground/10 dark:hover:bg-foreground/20"
                 >
-                  <ChevronRight className="h-6 w-6" />
+                  <ChevronRight className="h-6 w-6 text-foreground" />
                 </button>
               )}
             </div>
@@ -237,9 +239,9 @@ export const FeedView = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <Card className={`mb-8 bg-white shadow-lg`}>
+        <Card className="mb-8 bg-card shadow-lg">
           <CardContent className="p-4">
-            <h2 className={`mb-2 text-left text-2xl font-bold uppercase text-gray-500`}>
+            <h2 className="mb-2 text-left text-2xl font-bold uppercase text-foreground">
               Scribbles
             </h2>
             <div className="grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2">
@@ -251,7 +253,7 @@ export const FeedView = () => {
             </div>
             {scribbles.length > 4 && (
               <div className="mt-4">
-                <h3 className={`mb-2 text-xl font-semibold text-gray-600`}>More Scribbles</h3>
+                <h3 className="mb-2 text-xl font-semibold text-foreground">More Scribbles</h3>
                 <div className="space-y-4">
                   {scribbles.slice(4).map((post, index) => (
                     <PostCard key={`scribble-extra-${index}`} post={post} />
@@ -268,9 +270,9 @@ export const FeedView = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.4 }}
       >
-        <Card className={`mb-8 bg-white shadow-lg`}>
+        <Card className="mb-8 bg-card shadow-lg">
           <CardContent className="p-4">
-            <h2 className={`mb-2 text-left text-2xl font-bold uppercase text-gray-500`}>
+            <h2 className="mb-2 text-left text-2xl font-bold uppercase text-foreground">
               Snapshots
             </h2>
             <div className="space-y-8">
@@ -286,7 +288,7 @@ export const FeedView = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.6 }}
-        className={`py-8 text-center text-gray-600`}
+        className="py-8 text-center text-muted-foreground"
       >
         <p>You&apos;ve reached the end of your feed.</p>
         <p>Check back later for more updates!</p>

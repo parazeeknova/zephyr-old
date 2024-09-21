@@ -41,13 +41,13 @@ const FileNotification: React.FC<FileNotificationProps> = ({
         <AvatarFallback>{avatarInitial}</AvatarFallback>
       </Avatar>
       <div className="flex-1">
-        <p className="text-sm">
+        <p className="text-sm text-foreground">
           <span className="font-semibold">{userName}</span> {action} {fileName}
         </p>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-muted-foreground">
           {timeAgo} • {project}
         </p>
-        <div className="mt-2 rounded bg-gray-800 p-3">
+        <div className="mt-2 rounded bg-muted p-3">
           <p className="flex items-center text-xs font-semibold">
             <Image
               src={imageUrl}
@@ -57,10 +57,10 @@ const FileNotification: React.FC<FileNotificationProps> = ({
               height={height}
             />
           </p>
-          <p className="mt-1 text-xs text-gray-400">{description}</p>
-          <p className="mt-2 text-xs text-orange-500">Link preview</p>
-          <div className="mt-1 flex items-center text-xs text-gray-400">
-            <Link href={linkUrl} className="mr-1 h-4 w-4">
+          <p className="mt-1 text-xs text-muted-foreground">{description}</p>
+          <p className="mt-2 text-xs text-primary">Link preview</p>
+          <div className="mt-1 flex items-center text-xs text-muted-foreground">
+            <Link href={linkUrl} className="mr-1 h-4 w-4 hover:text-foreground">
               {linkUrl}
             </Link>
           </div>

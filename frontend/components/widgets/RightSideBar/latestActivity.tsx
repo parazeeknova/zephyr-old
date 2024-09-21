@@ -21,13 +21,13 @@ interface LatestActivityProps {
 
 const LatestActivity: React.FC<LatestActivityProps> = ({ activities }) => {
   return (
-    <Card className={`bg-white shadow-sm`}>
+    <Card className="bg-card shadow-sm">
       <CardHeader className="p-4">
         <div className="flex items-center justify-between">
-          <CardTitle className={`text-sm font-semibold uppercase text-gray-500`}>
+          <CardTitle className="text-sm font-semibold uppercase text-muted-foreground">
             Latest Activity
           </CardTitle>
-          <MoreHorizontal className={`h-5 w-5 text-gray-400`} />
+          <MoreHorizontal className="h-5 w-5 text-muted-foreground" />
         </div>
       </CardHeader>
       <CardContent className="p-4">
@@ -40,7 +40,7 @@ const LatestActivity: React.FC<LatestActivityProps> = ({ activities }) => {
                   <AvatarFallback>U</AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className={`text-sm text-gray-700`}>
+                  <p className="text-sm text-foreground">
                     {activity.type === 'like' && (
                       <>
                         <span className="font-medium">{activity.users.join(', ')}</span>{' '}
@@ -62,24 +62,16 @@ const LatestActivity: React.FC<LatestActivityProps> = ({ activities }) => {
                       </>
                     )}
                   </p>
-                  <p className={`text-xs text-gray-400`}>{activity.time}</p>
+                  <p className="text-xs text-muted-foreground">{activity.time}</p>
                   {activity.content && (
-                    <p className={`mt-1 text-sm text-gray-600`}>{activity.content}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">{activity.content}</p>
                   )}
                   {activity.type === 'follow' && (
                     <div className="mt-2 flex items-center justify-between">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className={
-                          'border-gray-300 bg-white text-gray-700 hover:bg-gray-100 hover:text-gray-800'
-                        }
-                      >
+                      <Button variant="outline" size="sm">
                         Discard
                       </Button>
-                      <Button size="sm" className={'bg-orange-500 text-white hover:bg-orange-600'}>
-                        Follow Back
-                      </Button>
+                      <Button size="sm">Follow Back</Button>
                     </div>
                   )}
                 </div>

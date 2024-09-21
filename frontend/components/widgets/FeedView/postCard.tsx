@@ -51,7 +51,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <Card className="mb-8 h-full bg-white shadow-md">
+      <Card className="mb-8 h-full bg-card shadow-md">
         <CardContent className="p-4">
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center space-x-2">
@@ -60,26 +60,34 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                 <AvatarFallback>{post.author.charAt(0)}</AvatarFallback>
               </Avatar>
               <div>
-                <h3 className="font-semibold text-gray-800">{post.author}</h3>
+                <h3 className="font-semibold text-foreground">{post.author}</h3>
                 <div className="mb-1 mt-1 flex flex-wrap gap-1">
                   {post.tags.map((tag, index) => (
                     <Badge
                       key={index}
                       variant="secondary"
-                      className="bg-gray-200 text-xs text-gray-700"
+                      className="bg-secondary text-xs text-secondary-foreground"
                     >
                       {tag}
                     </Badge>
                   ))}
                 </div>
-                <p className="text-sm text-gray-500">{post.time}</p>
+                <p className="text-sm text-muted-foreground">{post.time}</p>
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="sm" className="text-gray-500 hover:text-gray-700">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-muted-foreground hover:text-foreground"
+              >
                 <Share2 className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="sm" className="text-gray-500 hover:text-gray-700">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-muted-foreground hover:text-foreground"
+              >
                 <Bookmark className="h-4 w-4" />
               </Button>
             </div>
@@ -87,7 +95,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
-                <div className="mb-2 flex items-center text-lg font-semibold text-gray-800">
+                <div className="mb-2 flex items-center text-lg font-semibold text-foreground">
                   <Flame className="mr-1 h-5 w-5 text-orange-500" />
                   {auraCount}
                 </div>
@@ -97,7 +105,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-          <p className="mb-4 text-gray-700">{post.content}</p>
+          <p className="mb-4 text-foreground">{post.content}</p>
           {post.images.length > 0 && (
             <div
               className={`mb-4 grid gap-4 ${post.images.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}
@@ -122,8 +130,8 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
               onClick={() => handleVote('up')}
               className={`${
                 voteStatus === 'up'
-                  ? 'bg-blue-100 text-blue-600'
-                  : 'text-gray-500 hover:text-blue-600'
+                  ? 'bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300'
+                  : 'text-muted-foreground hover:text-blue-600 dark:hover:text-blue-300'
               }`}
             >
               <ArrowBigUp className="mr-1 h-5 w-5" />
@@ -135,8 +143,8 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
               onClick={() => handleVote('down')}
               className={`${
                 voteStatus === 'down'
-                  ? 'bg-red-100 text-red-600'
-                  : 'text-gray-500 hover:text-red-600'
+                  ? 'bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300'
+                  : 'text-muted-foreground hover:text-red-600 dark:hover:text-red-300'
               }`}
             >
               <ArrowBigDown className="mr-1 h-5 w-5" />
@@ -145,7 +153,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
             <Button
               variant="ghost"
               size="sm"
-              className="text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+              className="text-muted-foreground hover:bg-secondary hover:text-foreground"
             >
               <MessageSquare className="mr-1 h-5 w-5" />
               {post.comments}

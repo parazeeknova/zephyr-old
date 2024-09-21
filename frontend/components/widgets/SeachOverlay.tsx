@@ -57,15 +57,15 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose, isOpen, data }) 
       tabIndex={-1}
     >
       <div
-        className={`max-h-[80vh] w-full max-w-4xl overflow-y-auto rounded-t-2xl bg-white p-6 text-gray-900 shadow-lg`}
+        className={`max-h-[80vh] w-full max-w-4xl overflow-y-auto rounded-t-2xl bg-background p-6 text-foreground shadow-lg`}
       >
         <div className="mb-6">
-          <h3 className={`mb-3 text-lg font-semibold text-gray-600`}>Recent Searches</h3>
+          <h3 className={`mb-3 text-lg font-semibold text-muted-foreground`}>Recent Searches</h3>
           <div className="flex flex-wrap gap-2">
             {recentSearches.map((search, index) => (
               <div
                 key={index}
-                className={`flex items-center rounded-full px-4 py-2 text-sm font-semibold ${'bg-gray-200 text-gray-800'}`}
+                className={`flex items-center rounded-full bg-muted px-4 py-2 text-sm font-semibold text-foreground`}
               >
                 <Clock className="mr-2 h-4 w-4" />
                 {search}
@@ -73,7 +73,7 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose, isOpen, data }) 
                   variant="ghost"
                   size="sm"
                   onClick={() => removeRecentSearch(search)}
-                  className={`ml-2 h-5 w-5 rounded-full p-0 hover:bg-gray-300`}
+                  className={`ml-2 h-5 w-5 rounded-full p-0 hover:bg-muted-foreground/20`}
                 >
                   <X className="h-3 w-3" />
                 </Button>
@@ -83,19 +83,19 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose, isOpen, data }) 
         </div>
 
         <div className="mb-6 flex items-center">
-          <Search className={`h-6 w-6 text-gray-500`} />
+          <Search className={`h-6 w-6 text-muted-foreground`} />
           <Input
             type="text"
             placeholder="Search for actions, people, instruments"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className={`ml-3 flex-grow border-none bg-transparent text-lg text-gray-900 placeholder-gray-500 focus:ring-0`}
+            className={`ml-3 flex-grow border-none bg-transparent text-lg text-foreground placeholder-muted-foreground focus:ring-0`}
           />
           <Button
             variant="ghost"
             size="icon"
             onClick={onClose}
-            className={`text-gray-500 hover:bg-gray-200`}
+            className={`text-muted-foreground hover:bg-muted`}
           >
             <X className="h-6 w-6" />
           </Button>
@@ -107,7 +107,7 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose, isOpen, data }) 
               key={label}
               variant="secondary"
               size="sm"
-              className={`flex items-center whitespace-nowrap rounded-full bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-300`}
+              className={`flex items-center whitespace-nowrap rounded-full bg-muted px-4 py-2 text-sm font-semibold text-foreground hover:bg-muted-foreground/20`}
             >
               {[Filter, User, Building, FileText, Calendar][index] &&
                 React.createElement([Filter, User, Building, FileText, Calendar][index], {
@@ -119,21 +119,21 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose, isOpen, data }) 
           <Button
             variant="secondary"
             size="sm"
-            className={`flex items-center whitespace-nowrap rounded-full bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-300`}
+            className={`flex items-center whitespace-nowrap rounded-full bg-muted px-4 py-2 text-sm font-semibold text-foreground hover:bg-muted-foreground/20`}
           >
             <MoreHorizontal className="h-4 w-4" />
           </Button>
         </div>
 
         <div className="mb-6 text-center">
-          <h3 className={`mb-3 text-lg font-semibold text-gray-600`}>Quick actions</h3>
+          <h3 className={`mb-3 text-lg font-semibold text-muted-foreground`}>Quick actions</h3>
           <div className="flex justify-center space-x-3">
             {data.quickActions.map(({ icon: Icon, label }) => (
               <Button
                 key={label}
                 variant="secondary"
                 size="sm"
-                className={`rounded-full bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300`}
+                className={`rounded-full bg-muted px-4 py-2 text-foreground hover:bg-muted-foreground/20`}
               >
                 <Icon className="mr-2 h-4 w-4" />
                 {label}
@@ -143,12 +143,12 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose, isOpen, data }) 
         </div>
 
         <div className="mb-6">
-          <h3 className={`mb-3 text-lg font-semibold text-gray-600`}>Recent people</h3>
+          <h3 className={`mb-3 text-lg font-semibold text-muted-foreground`}>Recent people</h3>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {data.recentPeople.map(({ name, email, role, lastActive }) => (
               <div
                 key={email}
-                className={`flex items-center justify-between rounded-lg bg-gray-100 p-3 text-gray-800 hover:bg-gray-200`}
+                className={`flex items-center justify-between rounded-lg bg-muted p-3 text-foreground hover:bg-muted-foreground/20`}
               >
                 <div className="flex items-center">
                   <Avatar className="mr-3 h-10 w-10">
@@ -165,7 +165,7 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose, isOpen, data }) 
                   </Avatar>
                   <div className="flex flex-col items-start">
                     <span className="font-semibold">{name}</span>
-                    <span className="text-xs opacity-70">{email}</span>
+                    <span className="text-xs text-muted-foreground">{email}</span>
                     <span className="text-xs">{role}</span>
                   </div>
                 </div>
@@ -173,7 +173,7 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose, isOpen, data }) 
                   <Button variant="ghost" size="sm" className="mb-1 rounded-full p-1">
                     <MessageSquare className="h-4 w-4" />
                   </Button>
-                  <span className="text-xs opacity-70">Active {lastActive}</span>
+                  <span className="text-xs text-muted-foreground">Active {lastActive}</span>
                 </div>
               </div>
             ))}
@@ -181,18 +181,18 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose, isOpen, data }) 
         </div>
 
         <div className="mb-6">
-          <h3 className={`mb-3 text-lg font-semibold text-gray-600`}>Recent files</h3>
+          <h3 className={`mb-3 text-lg font-semibold text-muted-foreground`}>Recent files</h3>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {data.recentFiles.map(({ name, type, size, lastModified }) => (
               <div
                 key={name}
-                className={`flex items-center justify-between rounded-lg bg-gray-100 p-3 text-gray-800 hover:bg-gray-200`}
+                className={`flex items-center justify-between rounded-lg bg-muted p-3 text-foreground hover:bg-muted-foreground/20`}
               >
                 <div className="flex items-center">
                   <FileText className="mr-3 h-8 w-8" />
                   <div className="flex flex-col items-start">
                     <span className="font-semibold">{name}</span>
-                    <span className="text-xs opacity-70">
+                    <span className="text-xs text-muted-foreground">
                       {type} • {size}
                     </span>
                   </div>
@@ -201,7 +201,7 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose, isOpen, data }) 
                   <Button variant="ghost" size="sm" className="mb-1 rounded-full p-1">
                     <Share2 className="h-4 w-4" />
                   </Button>
-                  <span className="text-xs opacity-70">Modified {lastModified}</span>
+                  <span className="text-xs text-muted-foreground">Modified {lastModified}</span>
                 </div>
               </div>
             ))}
@@ -212,7 +212,7 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose, isOpen, data }) 
           <Button
             variant="secondary"
             size="lg"
-            className={`rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300`}
+            className={`rounded-full bg-muted text-foreground hover:bg-muted-foreground/20`}
           >
             <Upload className="mr-2 h-5 w-5" />
             Upload
@@ -220,7 +220,7 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose, isOpen, data }) 
           <Button
             variant="secondary"
             size="lg"
-            className={`rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300`}
+            className={`rounded-full bg-muted text-foreground hover:bg-muted-foreground/20`}
           >
             <Plus className="mr-2 h-5 w-5" />
             Create
@@ -228,7 +228,7 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose, isOpen, data }) 
           <Button
             variant="secondary"
             size="lg"
-            className={`rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300`}
+            className={`rounded-full bg-muted text-foreground hover:bg-muted-foreground/20`}
           >
             <User className="mr-2 h-5 w-5" />
             Profile

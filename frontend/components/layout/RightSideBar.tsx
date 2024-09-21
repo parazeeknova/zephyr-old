@@ -53,7 +53,7 @@ const RightSidebar: React.FC = () => {
   ];
 
   return (
-    <aside className={`w-80 space-y-4 overflow-y-auto bg-gray-100 p-4 text-gray-900`}>
+    <aside className="w-80 space-y-4 overflow-y-auto bg-background p-4 text-foreground">
       <ProfileCard {...profileData} />
       <YourSkills skills={skills} />
       <ThoughtShare username={profileData.username} />

@@ -27,7 +27,7 @@ const Footer = () => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className={`relative overflow-hidden rounded-t-xl bg-gray-100 px-4 py-12 text-gray-900 shadow-lg shadow-gray-300/50 md:px-6`}
+      className="relative overflow-hidden bg-card px-4 py-12 text-card-foreground shadow-lg md:px-6"
     >
       <div className="absolute inset-0 overflow-hidden">
         <Meteors number={14} />
@@ -35,20 +35,20 @@ const Footer = () => {
       <div className="container mx-auto">
         <div className="mb-8 flex flex-col items-start justify-between md:flex-row">
           <div className="flex flex-col items-start">
-            <div className="mb-4 text-3xl font-bold text-orange-500">Zephyr.</div>
+            <div className="mb-4 text-3xl font-bold text-primary">Zephyr.</div>
             <div className="flex items-center">
               <Dock direction="middle">
                 <DockIcon>
-                  <FaFacebook className="size-6" />
+                  <FaFacebook className="size-6 text-muted-foreground hover:text-primary" />
                 </DockIcon>
                 <DockIcon>
-                  <FaTwitter className="size-6" />
+                  <FaTwitter className="size-6 text-muted-foreground hover:text-primary" />
                 </DockIcon>
                 <DockIcon>
-                  <FaGithub className="size-6" />
+                  <FaGithub className="size-6 text-muted-foreground hover:text-primary" />
                 </DockIcon>
                 <DockIcon>
-                  <FaWhatsapp className="size-6" />
+                  <FaWhatsapp className="size-6 text-muted-foreground hover:text-primary" />
                 </DockIcon>
               </Dock>
             </div>
@@ -90,11 +90,11 @@ const FooterColumn: React.FC<{
   itemVariants: Variants;
 }> = ({ title, links, itemVariants }) => (
   <motion.div variants={itemVariants}>
-    <h3 className={`mb-4 font-bold text-gray-700`}>{title}</h3>
+    <h3 className="mb-4 font-bold text-muted-foreground">{title}</h3>
     <ul className="space-y-2">
       {links.map((link) => (
         <li key={link}>
-          <Link href="/" className={`text-gray-600 hover:text-gray-900 hover:underline`}>
+          <Link href="/" className="text-muted-foreground hover:text-primary hover:underline">
             {link}
           </Link>
         </li>
@@ -106,15 +106,15 @@ const FooterColumn: React.FC<{
 const FooterBottom: React.FC<{ itemVariants: Variants }> = ({ itemVariants }) => (
   <motion.div
     variants={itemVariants}
-    className={`mt-12 flex flex-col items-center justify-between border-t pt-8 md:flex-row`}
+    className="mt-12 flex flex-col items-center justify-between border-t border-border pt-8 md:flex-row"
   >
-    <p className={`text-sm text-gray-600`}>
+    <p className="text-sm text-muted-foreground">
       © {new Date().getFullYear()} Zephyr — Terms & Privacy Policy
     </p>
     <div className="mt-4 flex items-center md:mt-0">
-      <span className={`mr-2 text-sm text-gray-600`}>MADE WITH</span>
+      <span className="mr-2 text-sm text-muted-foreground">MADE WITH</span>
       <svg
-        className={`h-6 w-6 text-gray-900`}
+        className="h-6 w-6 text-primary"
         fill="none"
         height="24"
         stroke="currentColor"

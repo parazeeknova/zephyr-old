@@ -1,4 +1,3 @@
-// Notification.tsx
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
@@ -58,7 +57,9 @@ const Notification: React.FC<NotificationProps> = ({ isOpen, onClose }) => {
           </>
         );
       case 'following':
-        return <p className="text-center text-gray-500">You have no following notifications</p>;
+        return (
+          <p className="text-center text-muted-foreground">You have no following notifications</p>
+        );
       case 'archived':
         return (
           <FileNotification
@@ -87,15 +88,15 @@ const Notification: React.FC<NotificationProps> = ({ isOpen, onClose }) => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2 }}
-          className={`fixed right-4 top-16 z-50 w-96 overflow-hidden rounded-lg border border-gray-200 bg-white text-gray-800 shadow-lg`}
+          className="fixed right-4 top-16 z-50 w-96 overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-lg"
         >
-          <div className="flex items-center justify-between border-b border-gray-200 p-4">
-            <h2 className="text-lg font-semibold uppercase text-gray-500">Notifications</h2>
+          <div className="flex items-center justify-between border-b border-border p-4">
+            <h2 className="text-lg font-semibold uppercase text-muted-foreground">Notifications</h2>
             <div className="flex items-center space-x-2">
               <Button
                 variant="ghost"
                 size="sm"
-                className="bg-orange-500 text-xs font-semibold text-gray-200 hover:text-orange-500"
+                className="bg-primary text-xs font-semibold text-primary-foreground hover:bg-primary/90"
               >
                 Mark all as read
               </Button>
@@ -104,18 +105,18 @@ const Notification: React.FC<NotificationProps> = ({ isOpen, onClose }) => {
               </Button>
             </div>
           </div>
-          <div className="flex border-b border-gray-200 text-sm">
+          <div className="flex border-b border-border text-sm">
             <Button
               variant="ghost"
               className={`flex-1 px-4 py-2 font-semibold ${
                 activeTab === 'inbox'
-                  ? 'border-b-2 border-orange-500 text-orange-500'
-                  : 'text-gray-400'
+                  ? 'border-b-2 border-primary text-primary'
+                  : 'text-muted-foreground'
               }`}
               onClick={() => setActiveTab('inbox')}
             >
               Inbox{' '}
-              <span className="ml-1 rounded-full bg-red-500 px-1.5 py-0.5 text-xs font-semibold text-white">
+              <span className="ml-1 rounded-full bg-destructive px-1.5 py-0.5 text-xs font-semibold text-destructive-foreground">
                 8
               </span>
             </Button>
@@ -123,13 +124,13 @@ const Notification: React.FC<NotificationProps> = ({ isOpen, onClose }) => {
               variant="ghost"
               className={`flex-1 px-4 py-2 font-semibold ${
                 activeTab === 'following'
-                  ? 'border-b-2 border-orange-500 text-orange-500'
-                  : 'text-gray-400'
+                  ? 'border-b-2 border-primary text-primary'
+                  : 'text-muted-foreground'
               }`}
               onClick={() => setActiveTab('following')}
             >
               Following{' '}
-              <span className="ml-1 rounded-full bg-red-500 px-1.5 py-0.5 text-xs font-semibold text-white">
+              <span className="ml-1 rounded-full bg-destructive px-1.5 py-0.5 text-xs font-semibold text-destructive-foreground">
                 24
               </span>
             </Button>
@@ -137,8 +138,8 @@ const Notification: React.FC<NotificationProps> = ({ isOpen, onClose }) => {
               variant="ghost"
               className={`flex-1 px-4 py-2 font-semibold ${
                 activeTab === 'archived'
-                  ? 'border-b-2 border-orange-500 text-orange-500'
-                  : 'text-gray-400'
+                  ? 'border-b-2 border-primary text-primary'
+                  : 'text-muted-foreground'
               }`}
               onClick={() => setActiveTab('archived')}
             >
@@ -148,10 +149,10 @@ const Notification: React.FC<NotificationProps> = ({ isOpen, onClose }) => {
           <div className="max-h-[calc(100vh-200px)] overflow-y-auto p-4">
             {renderNotificationContent()}
           </div>
-          <div className="border-t border-gray-200 p-4">
+          <div className="border-t border-border p-4">
             <Button
               variant="ghost"
-              className="w-full text-sm font-semibold text-gray-600 hover:text-gray-300"
+              className="w-full text-sm font-semibold text-muted-foreground hover:text-foreground"
             >
               View all notifications
             </Button>

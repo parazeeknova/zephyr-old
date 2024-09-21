@@ -17,9 +17,9 @@ interface SuggestedConnectionsProps {
 }
 
 const SuggestedConnections: React.FC<SuggestedConnectionsProps> = ({ connections }) => (
-  <Card className={`bg-white shadow-md`}>
+  <Card className="bg-card shadow-md">
     <CardHeader>
-      <CardTitle className={`text-sm font-semibold uppercase text-gray-500`}>
+      <CardTitle className="text-sm font-semibold uppercase text-muted-foreground">
         Suggested Connections
       </CardTitle>
     </CardHeader>
@@ -38,13 +38,11 @@ const SuggestedConnections: React.FC<SuggestedConnectionsProps> = ({ connections
                 </AvatarFallback>
               </Avatar>
               <div>
-                <p className={`font-medium text-gray-900`}>{connection.name}</p>
-                <p className={`text-sm text-gray-500`}>{connection.profession}</p>
+                <p className="font-medium text-foreground">{connection.name}</p>
+                <p className="text-sm text-muted-foreground">{connection.profession}</p>
               </div>
             </div>
-            <Button size="sm" className={`bg-orange-500 text-gray-200 hover:bg-orange-600`}>
-              Connect
-            </Button>
+            <Button size="sm">Connect</Button>
           </li>
         ))}
       </ul>
