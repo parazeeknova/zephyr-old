@@ -22,7 +22,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 bg-white px-4 py-2">
+      <header className="flex items-center justify-between border-b border-gray-200 bg-white px-4 py-2">
         <div className="flex items-center space-x-4">
           <Link href="/">
             <h1 className="text-2xl font-bold text-orange-500">
@@ -30,21 +30,45 @@ const Header: React.FC = () => {
             </h1>
           </Link>
           <Link href="/">
-            <Button variant="ghost" size="icon">
-              <Home className="h-5 w-5" />
+            <Button
+              variant="ghost"
+              size="sm"
+              className="rounded-md bg-gray-100 pb-5 pt-5 hover:bg-gray-100"
+            >
+              <Home className="mr-2 h-4 w-4" />
+              <p className="text-sm font-extrabold text-gray-700">Home</p>
             </Button>
           </Link>
-          <Link href="/chat">
-            <Button variant="ghost" size="icon">
-              <MessageSquare className="h-5 w-5" />
-            </Button>
-          </Link>
-          <Button variant="ghost" size="icon" onClick={toggleNotification}>
-            <Bell className="h-5 w-5" />
+        </div>
+        <div className="flex rounded-md bg-gray-100 p-1">
+          <Button variant="ghost" size="sm" className="rounded-full">
+            Explore
+          </Button>
+          <Button variant="ghost" size="sm" className="rounded-full">
+            Community feed
+          </Button>
+          <Button variant="ghost" size="sm" className="rounded-full">
+            Blogs
+          </Button>
+          <Button variant="ghost" size="sm" className="rounded-full">
+            Events
           </Button>
         </div>
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" className="rounded-full bg-gray-100">
+            <Link href="/chat">
+              <MessageSquare className="h-5 w-5" />
+            </Link>
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleNotification}
+            className="rounded-full bg-gray-100"
+          >
+            <Bell className="h-5 w-5" />
+          </Button>
+          <Button variant="ghost" size="icon" className="rounded-full bg-gray-100">
             <Settings className="h-5 w-5" />
           </Button>
           <DropdownMenu>
@@ -52,7 +76,7 @@ const Header: React.FC = () => {
               <Button variant="ghost" className="flex items-center space-x-2">
                 <Avatar>
                   <AvatarImage src="/useri.jpg" alt="User avatar" />
-                  <AvatarFallback>CN</AvatarFallback>
+                  <AvatarFallback>HN</AvatarFallback>
                 </Avatar>
                 <span className="font-medium">Parazeeknova</span>
                 <ChevronDown className="h-4 w-4" />

@@ -27,11 +27,12 @@ export default function ZephyrHomePage() {
     <div className="flex min-h-screen flex-col bg-gray-50 text-gray-900">
       <div className="flex flex-1 overflow-hidden">
         <LeftSideBar />
-        <FeedView />
+        <main className="flex-1 overflow-y-auto">
+          <FeedView />
+        </main>
         <RightSideBar />
-        <FloatingActionBar setIsChatOpen={setIsChatOpen} />
       </div>
-
+      <FloatingActionBar setIsChatOpen={setIsChatOpen} />
       <Footer />
     </div>
   );
