@@ -11,18 +11,14 @@ import { Chat, SharedFile } from '@/CW/Chats/types';
 import UploadButton from '@/CW/Chats/uploadButton';
 import ProfileCard from '@/CW/RightSideBar/profileCard';
 
-interface ChatSectionProps {
-  isDarkMode: boolean;
-}
-
 interface Message {
   id: number;
-  sender: 'Sam' | 'Randi';
+  sender: 'Sam' | 'Rebeccah';
   content: string;
   timestamp: string;
 }
 
-const ChatSection: React.FC<ChatSectionProps> = ({ isDarkMode }) => {
+const ChatSection: React.FC = () => {
   const pathname = usePathname();
   const [activeChat, setActiveChat] = useState<string>('2');
   const [activeSection, setActiveSection] = useState<string>('chats');
@@ -39,7 +35,7 @@ const ChatSection: React.FC<ChatSectionProps> = ({ isDarkMode }) => {
       { id: '4', name: 'Jessica Naomi', lastMessage: 'I will handle that Aaron. Thanks!' },
       { id: '5', name: 'Alberto Greyhold', lastMessage: 'Okay fine' },
       { id: '6', name: 'Amalia Chen', lastMessage: 'Thank You!' },
-      { id: '7', name: 'Rudi Hadisuwarno', lastMessage: 'Wazzup bro?' },
+      { id: '7', name: 'Rebeccha Hadisuwarno', lastMessage: 'Wazzup bro?' },
     ],
     [],
   );
@@ -149,7 +145,7 @@ const ChatSection: React.FC<ChatSectionProps> = ({ isDarkMode }) => {
       setMessages([
         {
           id: 1,
-          sender: 'Randi',
+          sender: 'Rebeccah',
           content: `Hi Aaron, this is ${currentChat.name}`,
           timestamp: '09:00 AM',
         },
@@ -161,7 +157,7 @@ const ChatSection: React.FC<ChatSectionProps> = ({ isDarkMode }) => {
         },
         {
           id: 3,
-          sender: 'Randi',
+          sender: 'Rebeccah',
           content: currentChat.lastMessage,
           timestamp: '09:05 AM',
         },
@@ -183,30 +179,20 @@ const ChatSection: React.FC<ChatSectionProps> = ({ isDarkMode }) => {
         setActiveChat={handleSetActiveChat}
         sections={sections}
         user={{
-          name: 'Aaron Stanley',
-          initials: 'AS',
+          name: 'Rebeccah Hadisuwarno',
+          initials: 'RH',
           status: 'Online',
         }}
-        isDarkMode={isDarkMode}
       />
       <div className="flex flex-1 flex-col">
-        <ChatArea
-          chat={currentChat}
-          messages={messages}
-          isDarkMode={isDarkMode}
-          onSendMessage={handleSendMessage}
-        />
+        <ChatArea chat={currentChat} messages={messages} onSendMessage={handleSendMessage} />
       </div>
-      <div
-        className={`flex h-screen w-80 flex-col overflow-hidden ${
-          isDarkMode ? 'bg-gray-800' : 'bg-white'
-        }`}
-      >
+      <div className="flex h-screen w-80 flex-col overflow-hidden bg-card">
         <div className="flex-1 space-y-4 overflow-y-auto p-4">
-          <ProfileCard {...profileData} isDarkMode={isDarkMode} />
-          <SharedFiles files={sharedFiles} initialDisplayCount={3} isDarkMode={isDarkMode} />
-          <SharedPhotos photos={sharedPhotos} initialDisplayCount={6} isDarkMode={isDarkMode} />
-          <UploadButton isDarkMode={isDarkMode} />
+          <ProfileCard {...profileData} />
+          <SharedFiles files={sharedFiles} initialDisplayCount={3} />
+          <SharedPhotos photos={sharedPhotos} initialDisplayCount={6} />
+          <UploadButton />
         </div>
       </div>
     </div>

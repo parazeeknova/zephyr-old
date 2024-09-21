@@ -9,11 +9,7 @@ interface UploadFile {
   size: number;
 }
 
-interface UploadButtonProps {
-  isDarkMode: boolean;
-}
-
-const UploadButton: React.FC<UploadButtonProps> = ({ isDarkMode }) => {
+const UploadButton: React.FC = () => {
   const [isUploadOpen, setIsUploadOpen] = useState(false);
   const [uploadFiles, setUploadFiles] = useState<UploadFile[]>([]);
 
@@ -47,7 +43,7 @@ const UploadButton: React.FC<UploadButtonProps> = ({ isDarkMode }) => {
       >
         <motion.button
           onClick={toggleUpload}
-          className="rounded-full bg-orange-500 p-4 text-white shadow-md transition-colors hover:bg-orange-600"
+          className="rounded-full bg-primary p-4 text-primary-foreground shadow-md transition-colors hover:bg-primary/90"
         >
           <Upload className="h-8 w-8" />
         </motion.button>
@@ -58,33 +54,23 @@ const UploadButton: React.FC<UploadButtonProps> = ({ isDarkMode }) => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className={`fixed bottom-24 right-8 w-80 rounded-xl border p-6 shadow-lg ${
-              isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
-            }`}
+            className="fixed bottom-24 right-8 w-80 rounded-xl border border-border bg-card p-6 shadow-lg"
           >
             <div className="mb-4 flex items-center justify-between">
-              <h5
-                className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
-              >
-                Upload Files
-              </h5>
+              <h5 className="text-lg font-semibold text-foreground">Upload Files</h5>
               <motion.button
                 onClick={toggleUpload}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <X className={`h-6 w-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} />
+                <X className="h-6 w-6 text-muted-foreground" />
               </motion.button>
             </div>
             <input
               type="file"
               multiple
               onChange={handleFileChange}
-              className={`mb-4 w-full rounded border p-2 ${
-                isDarkMode
-                  ? 'border-gray-600 bg-gray-700 text-white'
-                  : 'border-gray-300 bg-white text-gray-900'
-              }`}
+              className="mb-4 w-full rounded border border-input bg-background p-2 text-foreground"
             />
             <div className="max-h-40 overflow-y-auto">
               {uploadFiles.map((file, index) => (
@@ -92,14 +78,10 @@ const UploadButton: React.FC<UploadButtonProps> = ({ isDarkMode }) => {
                   key={index}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className={`mb-2 rounded p-2 text-sm ${
-                    isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-900'
-                  }`}
+                  className="mb-2 rounded bg-muted p-2 text-sm text-foreground"
                 >
                   <span className="font-medium">{file.name}</span>
-                  <span className={`ml-2 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                    {formatFileSize(file.size)}
-                  </span>
+                  <span className="ml-2 text-muted-foreground">{formatFileSize(file.size)}</span>
                 </motion.div>
               ))}
             </div>

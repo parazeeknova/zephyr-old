@@ -5,10 +5,9 @@ import React, { useState } from 'react';
 
 interface TypeBarProps {
   onSendMessage: (message: string) => void;
-  isDarkMode: boolean;
 }
 
-const TypeBar: React.FC<TypeBarProps> = ({ onSendMessage, isDarkMode }) => {
+const TypeBar: React.FC<TypeBarProps> = ({ onSendMessage }) => {
   const [message, setMessage] = useState('');
 
   const handleSend = () => {
@@ -20,24 +19,16 @@ const TypeBar: React.FC<TypeBarProps> = ({ onSendMessage, isDarkMode }) => {
 
   return (
     <div className="mb-4 flex w-full items-center justify-center px-4">
-      <div
-        className={`flex w-[500px] items-center space-x-2 rounded-xl border-t p-4 shadow-md ${
-          isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
-        }`}
-      >
+      <div className="flex w-[500px] items-center space-x-2 rounded-xl border-t border-border bg-card p-4 shadow-md">
         <input
-          className={`flex-1 rounded-full border p-2 ${
-            isDarkMode
-              ? 'border-gray-600 bg-gray-700 text-white'
-              : 'border-gray-300 bg-white text-gray-900'
-          }`}
+          className="flex-1 rounded-full border border-input bg-background p-2 text-foreground"
           placeholder="Type in your messages..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyPress={(e) => e.key === 'Enter' && handleSend()}
         />
         <button
-          className="rounded-full bg-orange-500 p-2 text-white transition-colors duration-200 hover:bg-orange-600"
+          className="rounded-full bg-primary p-2 text-primary-foreground transition-colors duration-200 hover:bg-primary/90"
           onClick={handleSend}
           aria-label="Send message"
         >

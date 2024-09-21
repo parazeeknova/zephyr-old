@@ -26,7 +26,6 @@ interface SidebarProps {
   setActiveChat: (chatId: string) => void;
   sections: Record<string, string[]>;
   user: { name: string; initials: string; status: string };
-  isDarkMode: boolean;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -41,7 +40,6 @@ const Sidebar: React.FC<SidebarProps> = ({
   setActiveChat,
   sections,
   user,
-  isDarkMode,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -80,13 +78,15 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <div
-      className={`flex h-screen ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
+      className="flex h-screen bg-background"
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
     >
       {/* Side icons */}
       <div
-        className={`flex flex-col items-center py-4 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'} ${isExpanded ? 'w-16' : 'w-14'} transition-all duration-300`}
+        className={`flex flex-col items-center bg-muted py-4 ${
+          isExpanded ? 'w-16' : 'w-14'
+        } transition-all duration-300`}
       >
         <TooltipProvider>
           {Object.entries(sectionIcons).map(([section, icon]) => (
@@ -99,10 +99,10 @@ const Sidebar: React.FC<SidebarProps> = ({
                   whileTap="tap"
                 >
                   <Button
-                    variant="ghost"
+                    variant={activeSection === section ? 'default' : 'ghost'}
                     size="icon"
                     onClick={() => setActiveSection(section)}
-                    className={`mb-4 ${activeSection === section ? 'bg-orange-500 text-white' : ''}`}
+                    className="mb-4"
                   >
                     {icon}
                   </Button>
@@ -129,28 +129,20 @@ const Sidebar: React.FC<SidebarProps> = ({
             x: { type: 'spring', stiffness: 300, damping: 30 },
             opacity: { duration: 0.2 },
           }}
-          className={`flex-1 overflow-hidden ${isExpanded ? 'w-80' : 'w-0'} transition-all duration-300`}
+          className={`flex-1 overflow-hidden ${
+            isExpanded ? 'w-80' : 'w-0'
+          } transition-all duration-300`}
         >
-          <div className={`flex h-full flex-col p-3 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
+          <div className="flex h-full flex-col bg-background p-3">
             {/* User profile section */}
             {isExpanded && (
-              <div
-                className={`mb-4 flex items-center space-x-3 rounded-lg p-2 ${isDarkMode ? 'bg-gray-700' : 'bg-white'}`}
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-500 font-bold text-white">
+              <div className="mb-4 flex items-center space-x-3 rounded-lg bg-card p-2">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground">
                   {user.initials}
                 </div>
                 <div className="overflow-hidden">
-                  <h3
-                    className={`truncate font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
-                  >
-                    {user.name}
-                  </h3>
-                  <p
-                    className={`truncate text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
-                  >
-                    {user.status}
-                  </p>
+                  <h3 className="truncate font-semibold text-foreground">{user.name}</h3>
+                  <p className="truncate text-sm text-muted-foreground">{user.status}</p>
                 </div>
               </div>
             )}
@@ -161,23 +153,17 @@ const Sidebar: React.FC<SidebarProps> = ({
                 <input
                   type="text"
                   placeholder="Search..."
-                  className={`w-full rounded-full border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 ${
-                    isDarkMode
-                      ? 'border-gray-600 bg-gray-700 text-white'
-                      : 'border-gray-300 bg-white text-gray-900'
-                  }`}
+                  className="w-full rounded-full border border-input bg-background px-4 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <Search className="absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
+                <Search className="absolute right-3 top-2.5 h-5 w-5 text-muted-foreground" />
               </div>
             )}
 
             {/* Content section */}
             {isExpanded && (
-              <ScrollArea
-                className={`w-full flex-1 pr-1 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
-              >
+              <ScrollArea className="w-full flex-1 pr-1">
                 <motion.ul
                   className="space-y-2"
                   initial="hidden"
@@ -198,27 +184,15 @@ const Sidebar: React.FC<SidebarProps> = ({
                           custom={index}
                           className={`m-1 flex cursor-pointer items-center space-x-3 overflow-hidden rounded-xl border p-2 ${
                             activeChat === chat.id
-                              ? isDarkMode
-                                ? 'border-gray-600 bg-gray-700'
-                                : 'border-orange-200 bg-orange-100'
-                              : isDarkMode
-                                ? 'border-gray-700 hover:bg-gray-700'
-                                : 'border-gray-200 hover:bg-gray-100'
+                              ? 'border-primary bg-accent'
+                              : 'border-border hover:bg-accent'
                           }`}
                           onClick={() => setActiveChat(chat.id)}
                         >
-                          <div
-                            className={`h-10 w-10 flex-shrink-0 rounded-full ${isDarkMode ? 'bg-gray-600' : 'bg-gray-200'}`}
-                          ></div>
+                          <div className="h-10 w-10 flex-shrink-0 rounded-full bg-muted"></div>
                           <div className="min-w-0 flex-1">
-                            <h3
-                              className={`truncate font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
-                            >
-                              {chat.name}
-                            </h3>
-                            <p
-                              className={`truncate text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
-                            >
+                            <h3 className="truncate font-semibold text-foreground">{chat.name}</h3>
+                            <p className="truncate text-sm text-muted-foreground">
                               {chat.lastMessage}
                             </p>
                           </div>
@@ -229,11 +203,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                           key={index}
                           variants={listItemVariants}
                           custom={index}
-                          className={`cursor-pointer truncate rounded-lg p-2 ${
-                            isDarkMode
-                              ? 'bg-gray-700 text-white hover:bg-gray-600'
-                              : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
-                          }`}
+                          className="cursor-pointer truncate rounded-lg bg-muted p-2 text-foreground hover:bg-accent"
                           onClick={() => console.log(`Clicked on ${item}`)}
                         >
                           {item}

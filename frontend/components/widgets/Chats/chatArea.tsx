@@ -15,11 +15,10 @@ interface Message {
 interface ChatAreaProps {
   chat: Chat;
   messages: Message[];
-  isDarkMode: boolean;
   onSendMessage: (message: string) => void;
 }
 
-const ChatArea: React.FC<ChatAreaProps> = ({ messages, isDarkMode, onSendMessage }) => {
+const ChatArea: React.FC<ChatAreaProps> = ({ messages, onSendMessage }) => {
   const [inputMessage, setInputMessage] = React.useState('');
 
   const handleSendMessage = () => {
@@ -30,11 +29,7 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, isDarkMode, onSendMessage
   };
 
   return (
-    <div
-      className={`flex max-h-[calc(100vh-70px)] flex-1 flex-col overflow-hidden rounded-xl shadow-md ${
-        isDarkMode ? 'bg-gray-800' : 'bg-gray-100'
-      }`}
-    >
+    <div className="flex max-h-[calc(100vh-70px)] flex-1 flex-col overflow-hidden rounded-xl bg-background shadow-md">
       <div className="flex-1 overflow-y-auto p-4">
         <div className="mx-auto flex max-w-xl flex-col space-y-4">
           {messages.map((message) => (
@@ -58,31 +53,19 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, isDarkMode, onSendMessage
                 <div
                   className={`max-w-[70%] rounded-lg p-3 ${
                     message.sender === 'Sam'
-                      ? 'bg-orange-500 text-white'
-                      : isDarkMode
-                        ? 'bg-gray-700 text-white'
-                        : 'bg-white text-gray-900'
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted text-muted-foreground'
                   }`}
                 >
                   <p>{message.content}</p>
-                  <p
-                    className={`mt-1 text-xs ${
-                      message.sender === 'Sam'
-                        ? 'text-orange-200'
-                        : isDarkMode
-                          ? 'text-gray-400'
-                          : 'text-gray-500'
-                    }`}
-                  >
-                    {message.timestamp}
-                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">{message.timestamp}</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
-      <div className={`border-t p-4 ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+      <div className="border-t border-border p-4">
         <div className="flex items-center justify-center space-x-2">
           <div className="flex w-[500px] items-center space-x-2">
             <input
@@ -90,9 +73,7 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, isDarkMode, onSendMessage
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
               placeholder="Enter a prompt here..."
-              className={`flex-1 rounded-lg p-2 ${
-                isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'
-              }`}
+              className="flex-1 rounded-lg bg-background p-2 text-foreground"
               onKeyPress={(e) => {
                 if (e.key === 'Enter') {
                   handleSendMessage();
@@ -101,7 +82,7 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, isDarkMode, onSendMessage
             />
             <button
               onClick={handleSendMessage}
-              className="rounded-lg bg-orange-500 p-2 text-white"
+              className="rounded-lg bg-primary p-2 text-primary-foreground"
               aria-label="Send message"
             >
               <svg

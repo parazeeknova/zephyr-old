@@ -8,14 +8,9 @@ import React, { useState } from 'react';
 interface SharedPhotosProps {
   photos: string[];
   initialDisplayCount?: number;
-  isDarkMode: boolean;
 }
 
-const SharedPhotos: React.FC<SharedPhotosProps> = ({
-  photos,
-  initialDisplayCount = 6,
-  isDarkMode,
-}) => {
+const SharedPhotos: React.FC<SharedPhotosProps> = ({ photos, initialDisplayCount = 6 }) => {
   const [displayCount, setDisplayCount] = useState(initialDisplayCount);
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
@@ -30,17 +25,13 @@ const SharedPhotos: React.FC<SharedPhotosProps> = ({
   };
 
   return (
-    <div
-      className={`relative rounded-xl border p-2 shadow-md ${isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'}`}
-    >
+    <div className="relative rounded-xl border border-border bg-card p-2 shadow-md">
       <div className="mb-2 flex items-center justify-between">
-        <h4 className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-          Shared Images
-        </h4>
+        <h4 className="font-semibold text-foreground">Shared Images</h4>
         {photos.length > initialDisplayCount && (
           <motion.button
             onClick={toggleExpand}
-            className="flex items-center text-sm text-orange-500"
+            className="flex items-center text-sm text-primary"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -65,7 +56,7 @@ const SharedPhotos: React.FC<SharedPhotosProps> = ({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className={`relative aspect-square cursor-pointer overflow-hidden rounded ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'}`}
+              className="relative aspect-square cursor-pointer overflow-hidden rounded bg-muted"
               onClick={() => handlePhotoClick(photo)}
               whileHover={{ scale: 1.5, zIndex: 10 }}
             >
@@ -78,9 +69,9 @@ const SharedPhotos: React.FC<SharedPhotosProps> = ({
               />
               {selectedPhoto === photo && (
                 <motion.div
-                  className="pointer-events-none absolute inset-0 rounded border-4 border-orange-500"
+                  className="pointer-events-none absolute inset-0 rounded border-4 border-primary"
                   initial={false}
-                  animate={{ borderColor: 'rgb(249 115 22)' }}
+                  animate={{ borderColor: 'hsl(var(--primary))' }}
                   transition={{ duration: 0.2 }}
                 />
               )}

@@ -12,14 +12,9 @@ interface SharedFile {
 interface SharedFilesProps {
   files: SharedFile[];
   initialDisplayCount?: number;
-  isDarkMode: boolean;
 }
 
-const SharedFiles: React.FC<SharedFilesProps> = ({
-  files,
-  initialDisplayCount = 3,
-  isDarkMode,
-}) => {
+const SharedFiles: React.FC<SharedFilesProps> = ({ files, initialDisplayCount = 3 }) => {
   const [displayCount, setDisplayCount] = useState(initialDisplayCount);
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
@@ -38,15 +33,11 @@ const SharedFiles: React.FC<SharedFilesProps> = ({
   };
 
   return (
-    <div
-      className={`mb-4 rounded-xl border p-2 shadow-md ${isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'}`}
-    >
+    <div className="mb-4 rounded-xl border border-border bg-card p-2 shadow-md">
       <div className="mb-2 flex items-center justify-between">
-        <h4 className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-          Shared Files
-        </h4>
+        <h4 className="font-semibold text-foreground">Shared Files</h4>
         {files.length > initialDisplayCount && (
-          <button onClick={toggleExpand} className="flex items-center text-sm text-orange-500">
+          <button onClick={toggleExpand} className="flex items-center text-sm text-primary">
             {isExpanded ? (
               <>
                 See Less <ChevronUp className="ml-1 h-4 w-4" />
@@ -65,12 +56,8 @@ const SharedFiles: React.FC<SharedFilesProps> = ({
             <button
               className={`flex w-full cursor-pointer items-center space-x-2 rounded-lg p-2 transition-colors duration-200 ${
                 selectedFile === file.name
-                  ? isDarkMode
-                    ? 'bg-gray-700'
-                    : 'bg-orange-100'
-                  : isDarkMode
-                    ? 'hover:bg-gray-700'
-                    : 'hover:bg-gray-100'
+                  ? 'bg-accent text-accent-foreground'
+                  : 'hover:bg-accent hover:text-accent-foreground'
               }`}
               onClick={() => handleFileClick(file.name)}
               onKeyDown={(e) => {
@@ -81,11 +68,11 @@ const SharedFiles: React.FC<SharedFilesProps> = ({
               }}
             >
               <div
-                className={`h-8 w-8 bg-${file.color}-100 flex items-center justify-center rounded`}
+                className={`flex h-8 w-8 items-center justify-center rounded bg-${file.color}-100`}
               >
                 <span className={`text-${file.color}-600 text-xs`}>{file.type}</span>
               </div>
-              <span className={isDarkMode ? 'text-white' : 'text-gray-900'}>{file.name}</span>
+              <span className="text-foreground">{file.name}</span>
             </button>
           </li>
         ))}
