@@ -1,7 +1,6 @@
-// Header.tsx
 'use client';
 
-import { Home, MessageSquare, Bell, Sun, Moon, Settings, ChevronDown } from 'lucide-react';
+import { Home, MessageSquare, Bell, Settings, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
@@ -15,24 +14,15 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-// Import the new Notification component
-interface HeaderProps {
-  isDarkMode: boolean;
-  toggleDarkMode: () => void;
-}
 
-const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
+const Header: React.FC = () => {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
 
   const toggleNotification = () => setIsNotificationOpen(!isNotificationOpen);
 
   return (
     <>
-      <header
-        className={`sticky top-0 z-10 flex items-center justify-between px-4 py-2 ${
-          isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
-        } border-b`}
-      >
+      <header className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 bg-white px-4 py-2">
         <div className="flex items-center space-x-4">
           <Link href="/">
             <h1 className="text-2xl font-bold text-orange-500">
@@ -54,9 +44,6 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
           </Button>
         </div>
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="icon" onClick={toggleDarkMode}>
-            {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-          </Button>
           <Button variant="ghost" size="icon">
             <Settings className="h-5 w-5" />
           </Button>
@@ -71,10 +58,7 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
                 <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent
-              align="end"
-              className={isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}
-            >
+            <DropdownMenuContent align="end" className="bg-white">
               <Link href="/profile">
                 <DropdownMenuItem>Profile</DropdownMenuItem>
               </Link>
@@ -85,11 +69,7 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
           </DropdownMenu>
         </div>
       </header>
-      <Notification
-        isOpen={isNotificationOpen}
-        onClose={toggleNotification}
-        isDarkMode={isDarkMode}
-      />
+      <Notification isOpen={isNotificationOpen} onClose={toggleNotification} />
     </>
   );
 };

@@ -7,11 +7,7 @@ import MyGroups from '@/CW/LeftSideBar/myGroups';
 import TrendingTopics from '@/CW/LeftSideBar/TrendingTopics';
 import UpcomingEvents from '@/CW/LeftSideBar/UpcomingEvents';
 
-interface LeftSideBarProps {
-  isDarkMode: boolean;
-}
-
-const LeftSideBar: React.FC<LeftSideBarProps> = ({ isDarkMode }) => {
+const LeftSideBar: React.FC = () => {
   // These would typically come from an API or state management
   const myGroupsData = [
     { name: 'Picktab Studio', icon: '🎨' },
@@ -48,11 +44,11 @@ const LeftSideBar: React.FC<LeftSideBarProps> = ({ isDarkMode }) => {
   ];
 
   return (
-    <aside className={`w-64 space-y-4 p-4 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
-      <MyGroups isDarkMode={isDarkMode} groups={myGroupsData} />
-      <Friends isDarkMode={isDarkMode} friends={friendsData} />
-      <TrendingTopics isDarkMode={isDarkMode} topics={trendingTopicsData} />
-      <UpcomingEvents isDarkMode={isDarkMode} events={upcomingEventsData} />
+    <aside className="w-64 space-y-4 bg-gray-100 p-4">
+      <MyGroups groups={myGroupsData} />
+      <Friends friends={friendsData} />
+      <TrendingTopics topics={trendingTopicsData} />
+      <UpcomingEvents events={upcomingEventsData} />
     </aside>
   );
 };

@@ -8,11 +8,7 @@ import SuggestedConnections from '@/CW/RightSideBar/suggestedConnections';
 import ThoughtShare from '@/CW/RightSideBar/thoughtShare';
 import YourSkills from '@/CW/RightSideBar/yourSkills';
 
-interface RightSidebarProps {
-  isDarkMode: boolean;
-}
-
-const RightSidebar: React.FC<RightSidebarProps> = ({ isDarkMode }) => {
+const RightSidebar: React.FC = () => {
   // These would typically come from an API or state management
   const profileData = {
     avatarSrc: '/useriii.jpg',
@@ -47,19 +43,22 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ isDarkMode }) => {
     },
   ];
 
-  const skills = ['UI Design', 'UX Research', 'Prototyping', 'Wireframing', 'User Testing'];
+  const skills = [
+    'UI Design',
+    'UX Research',
+    'Prototyping',
+    'Wireframing',
+    'User Testing',
+    'Peskyness',
+  ];
 
   return (
-    <aside
-      className={`w-80 space-y-4 overflow-y-auto p-4 ${
-        isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'
-      }`}
-    >
-      <ProfileCard isDarkMode={isDarkMode} {...profileData} />
-      <YourSkills isDarkMode={isDarkMode} skills={skills} />
-      <ThoughtShare isDarkMode={isDarkMode} username={profileData.username} />
-      <LatestActivity isDarkMode={isDarkMode} activities={activities} />
-      <SuggestedConnections isDarkMode={isDarkMode} connections={connections} />
+    <aside className={`w-80 space-y-4 overflow-y-auto bg-gray-100 p-4 text-gray-900`}>
+      <ProfileCard {...profileData} />
+      <YourSkills skills={skills} />
+      <ThoughtShare username={profileData.username} />
+      <LatestActivity activities={activities} />
+      <SuggestedConnections connections={connections} />
     </aside>
   );
 };

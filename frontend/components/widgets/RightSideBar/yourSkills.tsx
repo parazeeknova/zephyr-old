@@ -6,26 +6,20 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface YourSkillsProps {
-  isDarkMode: boolean;
   skills: string[];
 }
 
-const YourSkills: React.FC<YourSkillsProps> = ({ isDarkMode, skills }) => (
-  <Card className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
+const YourSkills: React.FC<YourSkillsProps> = ({ skills }) => (
+  <Card className={`bg-white shadow-md`}>
     <CardHeader>
-      <CardTitle className={isDarkMode ? 'text-white' : 'text-gray-900'}>Your Skills</CardTitle>
+      <CardTitle className={`text-sm font-semibold uppercase text-gray-500`}>Your Skills</CardTitle>
     </CardHeader>
     <CardContent>
       <div className="flex flex-wrap gap-2">
         {skills.map((skill, index) => (
           <Badge
             key={index}
-            variant={isDarkMode ? 'outline' : 'secondary'}
-            className={`rounded-full px-3 py-1 text-xs font-semibold ${
-              isDarkMode
-                ? 'border-gray-600 bg-gray-700 text-gray-300 hover:bg-gray-600'
-                : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-            }`}
+            className={`rounded-full bg-gray-200 px-3 py-1 text-xs font-semibold text-gray-800 hover:bg-gray-300`}
           >
             {skill}
           </Badge>

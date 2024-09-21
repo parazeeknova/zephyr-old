@@ -8,11 +8,7 @@ import { FaFacebook, FaTwitter, FaGithub, FaWhatsapp } from 'react-icons/fa';
 import { Dock, DockIcon } from '@/components/magicui/dock';
 import { Meteors } from '@/CW/Meteors';
 
-interface FooterProps {
-  isDarkMode: boolean;
-}
-
-const Footer: React.FC<FooterProps> = ({ isDarkMode }) => {
+const Footer = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -31,11 +27,7 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode }) => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className={`relative overflow-hidden px-4 py-12 md:px-6 ${
-        isDarkMode
-          ? 'bg-gray-900 text-white shadow-lg shadow-gray-800/50'
-          : 'bg-gray-100 text-gray-900 shadow-lg shadow-gray-300/50'
-      } rounded-t-xl`}
+      className={`relative overflow-hidden rounded-t-xl bg-gray-100 px-4 py-12 text-gray-900 shadow-lg shadow-gray-300/50 md:px-6`}
     >
       <div className="absolute inset-0 overflow-hidden">
         <Meteors number={14} />
@@ -63,19 +55,16 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode }) => {
           </div>
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             <FooterColumn
-              isDarkMode={isDarkMode}
               title="GO"
               links={['Integrations', 'Help Center', 'Pricing']}
               itemVariants={itemVariants}
             />
             <FooterColumn
-              isDarkMode={isDarkMode}
               title="COMPANY"
               links={['About Us', 'Blog', 'Case Studies', 'Talk to Sales', 'Support']}
               itemVariants={itemVariants}
             />
             <FooterColumn
-              isDarkMode={isDarkMode}
               title="SOLUTIONS"
               links={[
                 'Social Community',
@@ -89,7 +78,7 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode }) => {
             />
           </div>
         </div>
-        <FooterBottom isDarkMode={isDarkMode} itemVariants={itemVariants} />
+        <FooterBottom itemVariants={itemVariants} />
       </div>
     </motion.footer>
   );
@@ -98,18 +87,14 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode }) => {
 const FooterColumn: React.FC<{
   title: string;
   links: string[];
-  isDarkMode: boolean;
   itemVariants: Variants;
-}> = ({ title, links, isDarkMode, itemVariants }) => (
+}> = ({ title, links, itemVariants }) => (
   <motion.div variants={itemVariants}>
-    <h3 className={`mb-4 font-bold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{title}</h3>
+    <h3 className={`mb-4 font-bold text-gray-700`}>{title}</h3>
     <ul className="space-y-2">
       {links.map((link) => (
         <li key={link}>
-          <Link
-            href="#"
-            className={`hover:underline ${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
-          >
+          <Link href="/" className={`text-gray-600 hover:text-gray-900 hover:underline`}>
             {link}
           </Link>
         </li>
@@ -118,25 +103,18 @@ const FooterColumn: React.FC<{
   </motion.div>
 );
 
-const FooterBottom: React.FC<{ isDarkMode: boolean; itemVariants: Variants }> = ({
-  isDarkMode,
-  itemVariants,
-}) => (
+const FooterBottom: React.FC<{ itemVariants: Variants }> = ({ itemVariants }) => (
   <motion.div
     variants={itemVariants}
-    className={`mt-12 border-t pt-8 ${
-      isDarkMode ? 'border-gray-700' : 'border-gray-300'
-    } flex flex-col items-center justify-between md:flex-row`}
+    className={`mt-12 flex flex-col items-center justify-between border-t pt-8 md:flex-row`}
   >
-    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+    <p className={`text-sm text-gray-600`}>
       © {new Date().getFullYear()} Zephyr — Terms & Privacy Policy
     </p>
     <div className="mt-4 flex items-center md:mt-0">
-      <span className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'} mr-2`}>
-        MADE WITH
-      </span>
+      <span className={`mr-2 text-sm text-gray-600`}>MADE WITH</span>
       <svg
-        className={`h-6 w-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
+        className={`h-6 w-6 text-gray-900`}
         fill="none"
         height="24"
         stroke="currentColor"

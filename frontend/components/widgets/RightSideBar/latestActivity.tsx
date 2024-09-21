@@ -5,7 +5,7 @@ import React from 'react';
 
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface ActivityItem {
@@ -16,19 +16,18 @@ interface ActivityItem {
 }
 
 interface LatestActivityProps {
-  isDarkMode: boolean;
   activities: ActivityItem[];
 }
 
-const LatestActivity: React.FC<LatestActivityProps> = ({ isDarkMode, activities }) => {
+const LatestActivity: React.FC<LatestActivityProps> = ({ activities }) => {
   return (
-    <Card className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
+    <Card className={`bg-white shadow-sm`}>
       <CardHeader className="p-4">
         <div className="flex items-center justify-between">
-          <h3 className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+          <CardTitle className={`text-sm font-semibold uppercase text-gray-500`}>
             Latest Activity
-          </h3>
-          <MoreHorizontal className={`h-5 w-5 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} />
+          </CardTitle>
+          <MoreHorizontal className={`h-5 w-5 text-gray-400`} />
         </div>
       </CardHeader>
       <CardContent className="p-4">
@@ -41,7 +40,7 @@ const LatestActivity: React.FC<LatestActivityProps> = ({ isDarkMode, activities 
                   <AvatarFallback>U</AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  <p className={`text-sm text-gray-700`}>
                     {activity.type === 'like' && (
                       <>
                         <span className="font-medium">{activity.users.join(', ')}</span>{' '}
@@ -63,35 +62,22 @@ const LatestActivity: React.FC<LatestActivityProps> = ({ isDarkMode, activities 
                       </>
                     )}
                   </p>
-                  <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>
-                    {activity.time}
-                  </p>
+                  <p className={`text-xs text-gray-400`}>{activity.time}</p>
                   {activity.content && (
-                    <p className={`mt-1 text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                      {activity.content}
-                    </p>
+                    <p className={`mt-1 text-sm text-gray-600`}>{activity.content}</p>
                   )}
                   {activity.type === 'follow' && (
                     <div className="mt-2 flex items-center justify-between">
                       <Button
-                        variant={isDarkMode ? 'outline' : 'secondary'}
+                        variant="outline"
                         size="sm"
                         className={
-                          isDarkMode
-                            ? 'border-gray-600 bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
-                            : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                          'border-gray-300 bg-white text-gray-700 hover:bg-gray-100 hover:text-gray-800'
                         }
                       >
                         Discard
                       </Button>
-                      <Button
-                        size="sm"
-                        className={
-                          isDarkMode
-                            ? 'bg-orange-600 text-gray-200 hover:bg-orange-700'
-                            : 'bg-orange-500 text-gray-200 hover:bg-orange-600'
-                        }
-                      >
+                      <Button size="sm" className={'bg-orange-500 text-white hover:bg-orange-600'}>
                         Follow Back
                       </Button>
                     </div>

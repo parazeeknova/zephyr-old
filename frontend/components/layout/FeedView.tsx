@@ -9,10 +9,6 @@ import { Separator } from '@/components/ui/separator';
 import PostCard from '@/CW/FeedView/postCard';
 import StoryCard from '@/CW/FeedView/storyCard';
 
-interface FeedViewProps {
-  isDarkMode: boolean;
-}
-
 const stories = [
   {
     title: 'Thinking Components',
@@ -156,7 +152,7 @@ const posts = [
   },
 ];
 
-export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
+export const FeedView = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
@@ -191,18 +187,13 @@ export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
   const snapshots = posts.filter((post) => post.images.length > 0);
 
   return (
-    <main className={`flex-1 overflow-y-auto p-6 pb-24 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
+    <main className="flex-1 overflow-y-auto bg-white p-6 pb-24">
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-        <Card className={`mb-8 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <Card className={`mb-8 bg-white shadow-lg`}>
           <CardContent className="p-4">
-            <h2
-              className={`mb-2 text-left text-2xl font-bold ${isDarkMode ? 'text-gray-300' : 'text-gray-500'} uppercase`}
-            >
-              Stories
-            </h2>
-            <p className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'} mb-4`}>
-              Check out the latest stories from your network.
-            </p>
+            <h2 className={`mb-2 text-left text-2xl font-bold uppercase text-gray-500`}>Stories</h2>
+            <p className={`mb-4 text-gray-600`}>Check out the latest stories from your network.</p>
+
             <div
               className="relative"
               onMouseEnter={() => setIsHovering(true)}
@@ -215,7 +206,7 @@ export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
                 style={{ paddingBottom: '10px' }}
               >
                 {stories.map((story, index) => (
-                  <StoryCard key={index} story={story} isDarkMode={isDarkMode} />
+                  <StoryCard key={index} story={story} />
                 ))}
               </div>
               {showLeftButton && (
@@ -246,30 +237,24 @@ export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <Card className={`mb-8 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <Card className={`mb-8 bg-white shadow-lg`}>
           <CardContent className="p-4">
-            <h2
-              className={`mb-2 text-left text-2xl font-bold ${isDarkMode ? 'text-gray-300' : 'text-gray-500'} uppercase`}
-            >
+            <h2 className={`mb-2 text-left text-2xl font-bold uppercase text-gray-500`}>
               Scribbles
             </h2>
             <div className="grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2">
               {scribbles.slice(0, 4).map((post, index) => (
                 <div key={`scribble-${index}`} className="h-full">
-                  <PostCard post={post} isDarkMode={isDarkMode} />
+                  <PostCard post={post} />
                 </div>
               ))}
             </div>
             {scribbles.length > 4 && (
               <div className="mt-4">
-                <h3
-                  className={`mb-2 text-xl font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
-                >
-                  More Scribbles
-                </h3>
+                <h3 className={`mb-2 text-xl font-semibold text-gray-600`}>More Scribbles</h3>
                 <div className="space-y-4">
                   {scribbles.slice(4).map((post, index) => (
-                    <PostCard key={`scribble-extra-${index}`} post={post} isDarkMode={isDarkMode} />
+                    <PostCard key={`scribble-extra-${index}`} post={post} />
                   ))}
                 </div>
               </div>
@@ -283,16 +268,14 @@ export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.4 }}
       >
-        <Card className={`mb-8 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <Card className={`mb-8 bg-white shadow-lg`}>
           <CardContent className="p-4">
-            <h2
-              className={`mb-2 text-left text-2xl font-bold ${isDarkMode ? 'text-gray-300' : 'text-gray-500'} uppercase`}
-            >
+            <h2 className={`mb-2 text-left text-2xl font-bold uppercase text-gray-500`}>
               Snapshots
             </h2>
             <div className="space-y-8">
               {snapshots.map((post, index) => (
-                <PostCard key={`snapshot-${index}`} post={post} isDarkMode={isDarkMode} />
+                <PostCard key={`snapshot-${index}`} post={post} />
               ))}
             </div>
           </CardContent>
@@ -303,7 +286,7 @@ export const FeedView: React.FC<FeedViewProps> = ({ isDarkMode }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.6 }}
-        className={`py-8 text-center ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}
+        className={`py-8 text-center text-gray-600`}
       >
         <p>You&apos;ve reached the end of your feed.</p>
         <p>Check back later for more updates!</p>

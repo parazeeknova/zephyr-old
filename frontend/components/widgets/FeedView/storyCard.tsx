@@ -16,16 +16,11 @@ interface StoryCardProps {
     width: number;
     height: number;
   };
-  isDarkMode: boolean;
 }
 
-const StoryCard: React.FC<StoryCardProps> = ({ story, isDarkMode }) => (
+const StoryCard: React.FC<StoryCardProps> = ({ story }) => (
   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-    <Card
-      className={`h-[300px] w-[200px] flex-shrink-0 ${
-        isDarkMode ? 'bg-gray-800' : 'bg-white'
-      } overflow-hidden shadow-lg`}
-    >
+    <Card className="h-[300px] w-[200px] flex-shrink-0 overflow-hidden shadow-lg">
       <CardContent className="flex h-full flex-col overflow-x-hidden p-0">
         <div className="relative h-[220px] w-full">
           <Image src={story.image} alt={story.title} className="object-cover" fill sizes="200px" />
@@ -36,14 +31,8 @@ const StoryCard: React.FC<StoryCardProps> = ({ story, isDarkMode }) => (
             <AvatarFallback>{story.creator.charAt(0)}</AvatarFallback>
           </Avatar>
           <div className="flex-grow overflow-hidden">
-            <h3
-              className={`truncate text-sm font-semibold ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}
-            >
-              {story.title}
-            </h3>
-            <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'} truncate`}>
-              {story.creator}
-            </p>
+            <h3 className="truncate text-sm font-semibold text-gray-800">{story.title}</h3>
+            <p className="truncate text-xs text-gray-500">{story.creator}</p>
           </div>
         </div>
       </CardContent>

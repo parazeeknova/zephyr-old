@@ -3,7 +3,7 @@
 import { Calendar } from 'lucide-react';
 import React from 'react';
 
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardTitle } from '@/components/ui/card';
 
 interface Event {
   name: string;
@@ -11,22 +11,19 @@ interface Event {
 }
 
 interface UpcomingEventsProps {
-  isDarkMode: boolean;
   events: Event[];
 }
 
-const UpcomingEvents: React.FC<UpcomingEventsProps> = ({ isDarkMode, events }) => (
-  <Card className={isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}>
+const UpcomingEvents: React.FC<UpcomingEventsProps> = ({ events }) => (
+  <Card className="bg-white">
     <CardContent>
-      <h2
-        className={`mb-4 mt-4 text-sm font-semibold uppercase ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
-      >
-        UPCOMING EVENTS
-      </h2>
+      <CardTitle className="mb-4 mt-4 text-sm font-semibold uppercase text-gray-500">
+        Upcoming Events
+      </CardTitle>
       <ul className="space-y-2">
         {events.map((event, index) => (
           <li key={index} className="flex items-center space-x-2">
-            <Calendar className={`h-4 w-4 ${event.color}`} />
+            <Calendar className={`h-4 w-4 text-orange-500`} />
             <span>{event.name}</span>
           </li>
         ))}

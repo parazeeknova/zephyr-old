@@ -22,7 +22,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 interface SearchOverlayProps {
-  isDarkMode: boolean;
   onClose: () => void;
   isOpen: boolean;
   data: {
@@ -34,7 +33,7 @@ interface SearchOverlayProps {
   };
 }
 
-const SearchOverlay: React.FC<SearchOverlayProps> = ({ isDarkMode, onClose, isOpen, data }) => {
+const SearchOverlay: React.FC<SearchOverlayProps> = ({ onClose, isOpen, data }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const overlayRef = useRef<HTMLDivElement>(null);
   const [recentSearches, setRecentSearches] = useState(data.recentSearches);
@@ -58,23 +57,15 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ isDarkMode, onClose, isOp
       tabIndex={-1}
     >
       <div
-        className={`${
-          isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
-        } max-h-[80vh] w-full max-w-4xl overflow-y-auto rounded-t-2xl p-6 shadow-lg`}
+        className={`max-h-[80vh] w-full max-w-4xl overflow-y-auto rounded-t-2xl bg-white p-6 text-gray-900 shadow-lg`}
       >
         <div className="mb-6">
-          <h3
-            className={`mb-3 text-lg font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
-          >
-            Recent Searches
-          </h3>
+          <h3 className={`mb-3 text-lg font-semibold text-gray-600`}>Recent Searches</h3>
           <div className="flex flex-wrap gap-2">
             {recentSearches.map((search, index) => (
               <div
                 key={index}
-                className={`flex items-center rounded-full px-4 py-2 text-sm font-semibold ${
-                  isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-800'
-                }`}
+                className={`flex items-center rounded-full px-4 py-2 text-sm font-semibold ${'bg-gray-200 text-gray-800'}`}
               >
                 <Clock className="mr-2 h-4 w-4" />
                 {search}
@@ -82,9 +73,7 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ isDarkMode, onClose, isOp
                   variant="ghost"
                   size="sm"
                   onClick={() => removeRecentSearch(search)}
-                  className={`ml-2 h-5 w-5 rounded-full p-0 ${
-                    isDarkMode ? 'hover:bg-gray-600' : 'hover:bg-gray-300'
-                  }`}
+                  className={`ml-2 h-5 w-5 rounded-full p-0 hover:bg-gray-300`}
                 >
                   <X className="h-3 w-3" />
                 </Button>
@@ -94,23 +83,19 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ isDarkMode, onClose, isOp
         </div>
 
         <div className="mb-6 flex items-center">
-          <Search className={`h-6 w-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`} />
+          <Search className={`h-6 w-6 text-gray-500`} />
           <Input
             type="text"
             placeholder="Search for actions, people, instruments"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className={`ml-3 flex-grow border-none bg-transparent text-lg focus:ring-0 ${
-              isDarkMode ? 'text-white placeholder-gray-400' : 'text-gray-900 placeholder-gray-500'
-            }`}
+            className={`ml-3 flex-grow border-none bg-transparent text-lg text-gray-900 placeholder-gray-500 focus:ring-0`}
           />
           <Button
             variant="ghost"
             size="icon"
             onClick={onClose}
-            className={
-              isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-500 hover:bg-gray-200'
-            }
+            className={`text-gray-500 hover:bg-gray-200`}
           >
             <X className="h-6 w-6" />
           </Button>
@@ -120,13 +105,9 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ isDarkMode, onClose, isOp
           {data.filterOptions.map((label, index) => (
             <Button
               key={label}
-              variant={isDarkMode ? 'outline' : 'secondary'}
+              variant="secondary"
               size="sm"
-              className={`flex items-center whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold ${
-                isDarkMode
-                  ? 'border-gray-600 bg-gray-700 text-gray-300 hover:bg-gray-600'
-                  : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-              }`}
+              className={`flex items-center whitespace-nowrap rounded-full bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-300`}
             >
               {[Filter, User, Building, FileText, Calendar][index] &&
                 React.createElement([Filter, User, Building, FileText, Calendar][index], {
@@ -136,35 +117,23 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ isDarkMode, onClose, isOp
             </Button>
           ))}
           <Button
-            variant={isDarkMode ? 'outline' : 'secondary'}
+            variant="secondary"
             size="sm"
-            className={`flex items-center whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold ${
-              isDarkMode
-                ? 'border-gray-600 bg-gray-700 text-gray-300 hover:bg-gray-600'
-                : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-            }`}
+            className={`flex items-center whitespace-nowrap rounded-full bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-300`}
           >
             <MoreHorizontal className="h-4 w-4" />
           </Button>
         </div>
 
         <div className="mb-6 text-center">
-          <h3
-            className={`mb-3 text-lg font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
-          >
-            Quick actions
-          </h3>
+          <h3 className={`mb-3 text-lg font-semibold text-gray-600`}>Quick actions</h3>
           <div className="flex justify-center space-x-3">
             {data.quickActions.map(({ icon: Icon, label }) => (
               <Button
                 key={label}
-                variant={isDarkMode ? 'outline' : 'secondary'}
+                variant="secondary"
                 size="sm"
-                className={`rounded-full px-4 py-2 ${
-                  isDarkMode
-                    ? 'border-gray-600 bg-gray-700 text-gray-300 hover:bg-gray-600'
-                    : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-                }`}
+                className={`rounded-full bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300`}
               >
                 <Icon className="mr-2 h-4 w-4" />
                 {label}
@@ -174,20 +143,12 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ isDarkMode, onClose, isOp
         </div>
 
         <div className="mb-6">
-          <h3
-            className={`mb-3 text-lg font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
-          >
-            Recent people
-          </h3>
+          <h3 className={`mb-3 text-lg font-semibold text-gray-600`}>Recent people</h3>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {data.recentPeople.map(({ name, email, role, lastActive }) => (
               <div
                 key={email}
-                className={`flex items-center justify-between rounded-lg p-3 ${
-                  isDarkMode
-                    ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                    : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
-                }`}
+                className={`flex items-center justify-between rounded-lg bg-gray-100 p-3 text-gray-800 hover:bg-gray-200`}
               >
                 <div className="flex items-center">
                   <Avatar className="mr-3 h-10 w-10">
@@ -220,20 +181,12 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ isDarkMode, onClose, isOp
         </div>
 
         <div className="mb-6">
-          <h3
-            className={`mb-3 text-lg font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
-          >
-            Recent files
-          </h3>
+          <h3 className={`mb-3 text-lg font-semibold text-gray-600`}>Recent files</h3>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {data.recentFiles.map(({ name, type, size, lastModified }) => (
               <div
                 key={name}
-                className={`flex items-center justify-between rounded-lg p-3 ${
-                  isDarkMode
-                    ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                    : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
-                }`}
+                className={`flex items-center justify-between rounded-lg bg-gray-100 p-3 text-gray-800 hover:bg-gray-200`}
               >
                 <div className="flex items-center">
                   <FileText className="mr-3 h-8 w-8" />
@@ -257,37 +210,25 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ isDarkMode, onClose, isOp
 
         <div className="mt-6 flex justify-center space-x-4">
           <Button
-            variant={isDarkMode ? 'outline' : 'secondary'}
+            variant="secondary"
             size="lg"
-            className={`rounded-full ${
-              isDarkMode
-                ? 'border-gray-600 bg-gray-700 text-gray-300 hover:bg-gray-600'
-                : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-            }`}
+            className={`rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300`}
           >
             <Upload className="mr-2 h-5 w-5" />
             Upload
           </Button>
           <Button
-            variant={isDarkMode ? 'outline' : 'secondary'}
+            variant="secondary"
             size="lg"
-            className={`rounded-full ${
-              isDarkMode
-                ? 'border-gray-600 bg-gray-700 text-gray-300 hover:bg-gray-600'
-                : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-            }`}
+            className={`rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300`}
           >
             <Plus className="mr-2 h-5 w-5" />
             Create
           </Button>
           <Button
-            variant={isDarkMode ? 'outline' : 'secondary'}
+            variant="secondary"
             size="lg"
-            className={`rounded-full ${
-              isDarkMode
-                ? 'border-gray-600 bg-gray-700 text-gray-300 hover:bg-gray-600'
-                : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-            }`}
+            className={`rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300`}
           >
             <User className="mr-2 h-5 w-5" />
             Profile

@@ -13,14 +13,13 @@ interface Connection {
 }
 
 interface SuggestedConnectionsProps {
-  isDarkMode: boolean;
   connections: Connection[];
 }
 
-const SuggestedConnections: React.FC<SuggestedConnectionsProps> = ({ isDarkMode, connections }) => (
-  <Card className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
+const SuggestedConnections: React.FC<SuggestedConnectionsProps> = ({ connections }) => (
+  <Card className={`bg-white shadow-md`}>
     <CardHeader>
-      <CardTitle className={isDarkMode ? 'text-white' : 'text-gray-900'}>
+      <CardTitle className={`text-sm font-semibold uppercase text-gray-500`}>
         Suggested Connections
       </CardTitle>
     </CardHeader>
@@ -39,22 +38,11 @@ const SuggestedConnections: React.FC<SuggestedConnectionsProps> = ({ isDarkMode,
                 </AvatarFallback>
               </Avatar>
               <div>
-                <p className={`font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                  {connection.name}
-                </p>
-                <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}>
-                  {connection.profession}
-                </p>
+                <p className={`font-medium text-gray-900`}>{connection.name}</p>
+                <p className={`text-sm text-gray-500`}>{connection.profession}</p>
               </div>
             </div>
-            <Button
-              size="sm"
-              className={
-                isDarkMode
-                  ? 'bg-orange-600 text-gray-200 hover:bg-orange-700'
-                  : 'bg-orange-500 text-gray-200 hover:bg-orange-600'
-              }
-            >
+            <Button size="sm" className={`bg-orange-500 text-gray-200 hover:bg-orange-600`}>
               Connect
             </Button>
           </li>

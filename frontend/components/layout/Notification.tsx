@@ -13,10 +13,9 @@ import PlainNotification from '@/CW/Header/plainNotification';
 interface NotificationProps {
   isOpen: boolean;
   onClose: () => void;
-  isDarkMode: boolean;
 }
 
-const Notification: React.FC<NotificationProps> = ({ isOpen, onClose, isDarkMode }) => {
+const Notification: React.FC<NotificationProps> = ({ isOpen, onClose }) => {
   const [activeTab, setActiveTab] = useState<'inbox' | 'following' | 'archived'>('inbox');
 
   const renderNotificationContent = () => {
@@ -88,11 +87,7 @@ const Notification: React.FC<NotificationProps> = ({ isOpen, onClose, isDarkMode
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2 }}
-          className={`fixed right-4 top-16 w-96 ${
-            isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'
-          } z-50 overflow-hidden rounded-lg border shadow-lg ${
-            isDarkMode ? 'border-gray-700' : 'border-gray-200'
-          }`}
+          className={`fixed right-4 top-16 z-50 w-96 overflow-hidden rounded-lg border border-gray-200 bg-white text-gray-800 shadow-lg`}
         >
           <div className="flex items-center justify-between border-b border-gray-200 p-4">
             <h2 className="text-lg font-semibold uppercase text-gray-500">Notifications</h2>

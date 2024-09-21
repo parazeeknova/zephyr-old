@@ -25,10 +25,9 @@ interface PostCardProps {
     tags: string[];
     aura: number;
   };
-  isDarkMode: boolean;
 }
 
-const PostCard: React.FC<PostCardProps> = ({ post, isDarkMode }) => {
+const PostCard: React.FC<PostCardProps> = ({ post }) => {
   const [voteStatus, setVoteStatus] = useState<'up' | 'down' | null>(null);
   const [auraCount, setAuraCount] = useState(post.aura);
 
@@ -52,7 +51,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, isDarkMode }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <Card className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} mb-8 h-full shadow-lg`}>
+      <Card className="mb-8 h-full bg-white shadow-md">
         <CardContent className="p-4">
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center space-x-2">
@@ -61,38 +60,26 @@ const PostCard: React.FC<PostCardProps> = ({ post, isDarkMode }) => {
                 <AvatarFallback>{post.author.charAt(0)}</AvatarFallback>
               </Avatar>
               <div>
-                <h3 className={`font-semibold ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
-                  {post.author}
-                </h3>
+                <h3 className="font-semibold text-gray-800">{post.author}</h3>
                 <div className="mb-1 mt-1 flex flex-wrap gap-1">
                   {post.tags.map((tag, index) => (
                     <Badge
                       key={index}
                       variant="secondary"
-                      className={`text-xs ${isDarkMode ? 'bg-gray-700 text-gray-300' : ''}`}
+                      className="bg-gray-200 text-xs text-gray-700"
                     >
                       {tag}
                     </Badge>
                   ))}
                 </div>
-                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                  {post.time}
-                </p>
+                <p className="text-sm text-gray-500">{post.time}</p>
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                className={isDarkMode ? 'text-gray-300 hover:text-gray-100' : ''}
-              >
+              <Button variant="ghost" size="sm" className="text-gray-500 hover:text-gray-700">
                 <Share2 className="h-4 w-4" />
               </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                className={isDarkMode ? 'text-gray-300 hover:text-gray-100' : ''}
-              >
+              <Button variant="ghost" size="sm" className="text-gray-500 hover:text-gray-700">
                 <Bookmark className="h-4 w-4" />
               </Button>
             </div>
@@ -100,9 +87,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, isDarkMode }) => {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
-                <div
-                  className={`mb-2 text-lg font-semibold ${isDarkMode ? 'text-gray-200' : 'text-gray-800'} flex items-center`}
-                >
+                <div className="mb-2 flex items-center text-lg font-semibold text-gray-800">
                   <Flame className="mr-1 h-5 w-5 text-orange-500" />
                   {auraCount}
                 </div>
@@ -112,7 +97,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, isDarkMode }) => {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-          <p className={`mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{post.content}</p>
+          <p className="mb-4 text-gray-700">{post.content}</p>
           {post.images.length > 0 && (
             <div
               className={`mb-4 grid gap-4 ${post.images.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}
@@ -135,7 +120,11 @@ const PostCard: React.FC<PostCardProps> = ({ post, isDarkMode }) => {
               variant="ghost"
               size="sm"
               onClick={() => handleVote('up')}
-              className={`${isDarkMode ? 'text-gray-300 hover:bg-gray-700 hover:text-gray-200' : ''} ${voteStatus === 'up' ? 'bg-blue-100 text-blue-600' : ''}`}
+              className={`${
+                voteStatus === 'up'
+                  ? 'bg-blue-100 text-blue-600'
+                  : 'text-gray-500 hover:text-blue-600'
+              }`}
             >
               <ArrowBigUp className="mr-1 h-5 w-5" />
               Upvote
@@ -144,7 +133,11 @@ const PostCard: React.FC<PostCardProps> = ({ post, isDarkMode }) => {
               variant="ghost"
               size="sm"
               onClick={() => handleVote('down')}
-              className={`${isDarkMode ? 'text-gray-300 hover:bg-gray-700 hover:text-gray-200' : ''} ${voteStatus === 'down' ? 'bg-red-100 text-red-600' : ''}`}
+              className={`${
+                voteStatus === 'down'
+                  ? 'bg-red-100 text-red-600'
+                  : 'text-gray-500 hover:text-red-600'
+              }`}
             >
               <ArrowBigDown className="mr-1 h-5 w-5" />
               Downvote
@@ -152,7 +145,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, isDarkMode }) => {
             <Button
               variant="ghost"
               size="sm"
-              className={isDarkMode ? 'text-gray-300 hover:bg-gray-700 hover:text-gray-200' : ''}
+              className="text-gray-500 hover:bg-gray-100 hover:text-gray-700"
             >
               <MessageSquare className="mr-1 h-5 w-5" />
               {post.comments}

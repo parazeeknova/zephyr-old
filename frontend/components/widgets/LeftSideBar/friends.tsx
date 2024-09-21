@@ -3,7 +3,7 @@
 import React from 'react';
 
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 interface Friend {
@@ -13,14 +13,13 @@ interface Friend {
 }
 
 interface FriendsProps {
-  isDarkMode: boolean;
   friends: Friend[];
 }
 
-const Friends: React.FC<FriendsProps> = ({ isDarkMode, friends }) => (
-  <Card className={isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}>
+const Friends: React.FC<FriendsProps> = ({ friends }) => (
+  <Card className="bg-white">
     <CardContent className="p-4">
-      {/* ... existing code ... */}
+      <CardTitle className="mb-4 text-sm font-semibold uppercase text-gray-500">Friends</CardTitle>
       <ScrollArea className="h-[calc(100vh-620px)] pr-4">
         <ul className="space-y-3">
           {friends.map((friend, index) => (
@@ -33,11 +32,7 @@ const Friends: React.FC<FriendsProps> = ({ isDarkMode, friends }) => (
                   />
                   <AvatarFallback>{friend.name.charAt(0)}</AvatarFallback>
                 </Avatar>
-                <span
-                  className={`text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
-                >
-                  {friend.name}
-                </span>
+                <span className="text-sm font-medium text-gray-700">{friend.name}</span>
               </div>
               {friend.status === 'online' && (
                 <div className="h-2 w-2 rounded-full bg-green-500"></div>
@@ -47,9 +42,7 @@ const Friends: React.FC<FriendsProps> = ({ isDarkMode, friends }) => (
               )}
               {friend.status === 'busy' && <div className="h-2 w-2 rounded-full bg-red-500"></div>}
               {friend.status === 'offline' && (
-                <span className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
-                  {friend.lastSeen}
-                </span>
+                <span className="text-xs text-gray-400">{friend.lastSeen}</span>
               )}
             </li>
           ))}
