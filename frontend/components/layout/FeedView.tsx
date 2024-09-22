@@ -6,6 +6,7 @@ import React, { useRef, useState, useEffect } from 'react';
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import PostCard from '@/CW/FeedView/postCard';
 import StoryCard from '@/CW/FeedView/storyCard';
 import { PostData } from '@/lib/types';
@@ -98,18 +99,20 @@ export const FeedView: React.FC<FeedViewProps> = ({ posts }) => {
     }
   };
 
-  const scribbles = posts.filter((post) => !post.images || post.images.length === 0);
-  const snapshots = posts.filter((post) => post.images && post.images.length > 0);
+  const allPosts = [...posts].sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+  );
+  const scribbles = allPosts.filter((post) => !post.images || post.images.length === 0);
+  const snapshots = allPosts.filter((post) => post.images && post.images.length > 0);
 
   return (
     <main className="flex-1 overflow-y-auto bg-background p-6 pb-24">
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-        <div className="mb-8">
-          <PostEditor />
-        </div>
         <Card className="mb-8 bg-card shadow-lg">
           <CardContent className="p-4">
-            <h2 className="mb-2 text-left text-2xl font-bold uppercase text-foreground">Stories</h2>
+            <h2 className="mb-2 text-left text-2xl font-semibold uppercase text-foreground">
+              Stories
+            </h2>
             <p className="mb-4 text-muted-foreground">
               Check out the latest stories from your network.
             </p>
@@ -152,6 +155,10 @@ export const FeedView: React.FC<FeedViewProps> = ({ posts }) => {
 
       <Separator className="my-8" />
 
+      <div className="mb-8">
+        <PostEditor />
+      </div>
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -159,45 +166,52 @@ export const FeedView: React.FC<FeedViewProps> = ({ posts }) => {
       >
         <Card className="mb-8 bg-card shadow-lg">
           <CardContent className="p-4">
-            <h2 className="mb-2 text-left text-2xl font-bold uppercase text-foreground">
-              Scribbles
+            <h2 className="mb-2 text-left text-2xl font-semibold uppercase text-foreground">
+              Fleets
             </h2>
-            <div className="grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2">
-              {scribbles.slice(0, 4).map((post) => (
-                <div key={post.id} className="h-full">
-                  <PostCard post={post} />
-                </div>
-              ))}
-            </div>
-            {scribbles.length > 4 && (
-              <div className="mt-4">
-                <h3 className="mb-2 text-xl font-semibold text-foreground">More Scribbles</h3>
-                <div className="space-y-4">
-                  {scribbles.slice(4).map((post, index) => (
-                    <PostCard key={`scribble-extra-${index}`} post={post} />
-                  ))}
-                </div>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </motion.div>
+            <p className="mb-4 text-muted-foreground">
+              Check out the latest fleets from around the world.
+            </p>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-      >
-        <Card className="mb-8 bg-card shadow-lg">
-          <CardContent className="p-4">
-            <h2 className="mb-2 text-left text-2xl font-bold uppercase text-foreground">
-              Snapshots
-            </h2>
-            <div className="space-y-8">
-              {snapshots.map((post, index) => (
-                <PostCard key={`snapshot-${index}`} post={post} />
-              ))}
-            </div>
+            <Tabs defaultValue="all" className="w-full">
+              <div className="mb-6 flex justify-center">
+                <TabsList className="grid w-full max-w-md grid-cols-3">
+                  <TabsTrigger value="all">All</TabsTrigger>
+                  <TabsTrigger value="scribbles">Scribbles</TabsTrigger>
+                  <TabsTrigger value="snapshots">Snapshots</TabsTrigger>
+                </TabsList>
+              </div>
+
+              <TabsContent value="all">
+                <div className="flex justify-center">
+                  <div className="w-full max-w-6xl space-y-8">
+                    {allPosts.map((post, index) => (
+                      <PostCard key={`all-${index}`} post={post} />
+                    ))}
+                  </div>
+                </div>
+              </TabsContent>
+              <TabsContent value="scribbles">
+                <div className="flex justify-center">
+                  <div className="w-full max-w-5xl">
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                      {scribbles.map((post, index) => (
+                        <PostCard key={`scribble-${index}`} post={post} />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+              <TabsContent value="snapshots">
+                <div className="flex justify-center">
+                  <div className="w-full max-w-6xl space-y-8">
+                    {snapshots.map((post, index) => (
+                      <PostCard key={`snapshot-${index}`} post={post} />
+                    ))}
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
           </CardContent>
         </Card>
       </motion.div>

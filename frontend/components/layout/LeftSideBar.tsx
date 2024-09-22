@@ -6,7 +6,6 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Friends from '@/CW/LeftSideBar/friends';
 import MyGroups from '@/CW/LeftSideBar/myGroups';
-import TrendingTopics from '@/CW/LeftSideBar/TrendingTopics';
 import UpcomingEvents from '@/CW/LeftSideBar/UpcomingEvents';
 
 const LeftSideBar: React.FC = () => {
@@ -82,14 +81,17 @@ const LeftSideBar: React.FC = () => {
             className={`mb-4 ${isCollapsed && !isHovered ? 'h-8 w-8 pl-2' : 'w-full'}`}
           >
             <Menu
-              className={`${isCollapsed && !isHovered ? 'h-6 w-6 text-muted-foreground' : 'h-6 w-6'}`}
+              className={`text-muted-foreground ${
+                isCollapsed && !isHovered ? 'h-6 w-6 text-muted-foreground' : 'h-6 w-6'
+              }`}
             />
             {(!isCollapsed || isHovered) && (
-              <p className="ps-2 font-semibold uppercase sm:inline">Overview</p>
+              <p className="ps-2 font-semibold uppercase text-muted-foreground sm:inline">
+                Overview
+              </p>
             )}
           </Button>
           <div className="space-y-4">
-            <TrendingTopics isCollapsed={isCollapsed && !isHovered} />
             <MyGroups groups={myGroupsData} isCollapsed={isCollapsed && !isHovered} />
             <Friends friends={friendsData} isCollapsed={isCollapsed && !isHovered} />
             <UpcomingEvents events={upcomingEventsData} isCollapsed={isCollapsed && !isHovered} />

@@ -3,17 +3,12 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import Footer from '@/C/Footer';
-import { default as FeedView } from '@/CL/FeedView';
+import ForYouFeed from '@/C/layout/ForYouFeed';
 import FloatingActionBar from '@/CL/FloatingActionBar';
 import LeftSideBar from '@/CL/LeftSideBar';
 import RightSideBar from '@/CL/RightSideBar';
-import { PostData } from '@/lib/types';
 
-interface ZephyrHomePageProps {
-  posts: PostData[];
-}
-
-export default function ZephyrHomePage({ posts }: ZephyrHomePageProps) {
+export default function ZephyrHomePage() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isScrolled, setIsScrolled] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -49,7 +44,7 @@ export default function ZephyrHomePage({ posts }: ZephyrHomePageProps) {
       <div className="flex flex-1 overflow-hidden">
         <LeftSideBar />
         <main className="flex-1 overflow-y-auto">
-          <FeedView posts={posts} />
+          <ForYouFeed />
         </main>
         {screenSize !== 'small' && <RightSideBar />}
       </div>

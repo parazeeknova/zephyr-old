@@ -20,3 +20,8 @@ export type PostData = Prisma.PostGetPayload<{
 export type UserData = Prisma.UserGetPayload<{
   select: typeof userDataSelect;
 }>;
+
+export interface PostsPage {
+  posts: PostData[];
+  nextCursor: string | null;
+}

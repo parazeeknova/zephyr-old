@@ -40,8 +40,9 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
+      className="pb-0"
     >
-      <Card className="mb-8 h-full bg-card shadow-md">
+      <Card className="border-b border-t border-border bg-background">
         <CardContent className="p-4">
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center space-x-2">

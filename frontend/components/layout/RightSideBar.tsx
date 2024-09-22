@@ -6,7 +6,7 @@ import LatestActivity from '@/CW/RightSideBar/latestActivity';
 import ProfileCard from '@/CW/RightSideBar/profileCard';
 import SuggestedConnections from '@/CW/RightSideBar/suggestedConnections';
 import ThoughtShare from '@/CW/RightSideBar/thoughtShare';
-import YourSkills from '@/CW/RightSideBar/yourSkills';
+import TrendingTopics from '@/CW/RightSideBar/TrendingTopics';
 
 const RightSidebar: React.FC = () => {
   // These would typically come from an API or state management
@@ -30,20 +30,11 @@ const RightSidebar: React.FC = () => {
     { type: 'follow' as const, users: ['Jelly'], time: '5m ago' },
   ];
 
-  const skills = [
-    'UI Design',
-    'UX Research',
-    'Prototyping',
-    'Wireframing',
-    'User Testing',
-    'Peskyness',
-  ];
-
   return (
     <aside className="w-80 space-y-4 overflow-y-auto bg-background p-4 text-foreground">
       <ProfileCard {...profileData} />
       <SuggestedConnections />
-      <YourSkills skills={skills} />
+      <TrendingTopics />
       <ThoughtShare username={profileData.username} />
       <LatestActivity activities={activities} />
     </aside>
