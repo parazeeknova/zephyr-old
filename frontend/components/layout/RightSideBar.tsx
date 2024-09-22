@@ -30,19 +30,6 @@ const RightSidebar: React.FC = () => {
     { type: 'follow' as const, users: ['Jelly'], time: '5m ago' },
   ];
 
-  const connections = [
-    {
-      name: 'Emma Watson',
-      profession: 'UI Designer',
-      avatarSrc: '/useri.jpg?height=32&width=32',
-    },
-    {
-      name: 'John Doe',
-      profession: 'Frontend Developer',
-      avatarSrc: '/userii.jpg?height=32&width=32',
-    },
-  ];
-
   const skills = [
     'UI Design',
     'UX Research',
@@ -55,10 +42,10 @@ const RightSidebar: React.FC = () => {
   return (
     <aside className="w-80 space-y-4 overflow-y-auto bg-background p-4 text-foreground">
       <ProfileCard {...profileData} />
+      <SuggestedConnections />
       <YourSkills skills={skills} />
       <ThoughtShare username={profileData.username} />
       <LatestActivity activities={activities} />
-      <SuggestedConnections connections={connections} />
     </aside>
   );
 };

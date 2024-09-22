@@ -55,12 +55,6 @@ const LeftSideBar: React.FC = () => {
     { name: 'Jamet Tinkling', status: 'offline', lastSeen: '23 min' },
   ];
 
-  const trendingTopicsData = [
-    { name: '#TechInnovation', color: 'text-blue-500 dark:text-blue-400' },
-    { name: '#SustainableLiving', color: 'text-green-500 dark:text-green-400' },
-    { name: '#ArtificialIntelligence', color: 'text-purple-500 dark:text-purple-400' },
-  ];
-
   const upcomingEventsData = [
     { name: 'Tech Conference 2023', color: 'text-red-500 dark:text-red-400' },
     { name: 'Design Meetup', color: 'text-yellow-500 dark:text-yellow-400' },
@@ -95,7 +89,7 @@ const LeftSideBar: React.FC = () => {
             )}
           </Button>
           <div className="space-y-4">
-            <TrendingTopics topics={trendingTopicsData} isCollapsed={isCollapsed && !isHovered} />
+            <TrendingTopics isCollapsed={isCollapsed && !isHovered} />
             <MyGroups groups={myGroupsData} isCollapsed={isCollapsed && !isHovered} />
             <Friends friends={friendsData} isCollapsed={isCollapsed && !isHovered} />
             <UpcomingEvents events={upcomingEventsData} isCollapsed={isCollapsed && !isHovered} />
