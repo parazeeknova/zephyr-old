@@ -11,17 +11,12 @@ interface FriendsProps {
     role: string;
     avatar: string;
   }>;
-  isDarkMode: boolean;
 }
 
-const Friends: React.FC<FriendsProps> = ({ friends, isDarkMode }) => (
-  <Card className={`mb-6 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}`}>
+const Friends: React.FC<FriendsProps> = ({ friends }) => (
+  <Card className="mb-6 bg-card text-card-foreground">
     <CardContent className="p-6">
-      <h2
-        className={`mb-4 text-sm font-semibold uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
-      >
-        My Friends
-      </h2>
+      <h2 className="mb-4 text-sm font-semibold uppercase text-muted-foreground">My Friends</h2>
       <div className="space-y-4">
         {friends.map((friend, index) => (
           <div key={index} className="flex items-center space-x-3">
@@ -31,9 +26,7 @@ const Friends: React.FC<FriendsProps> = ({ friends, isDarkMode }) => (
             </Avatar>
             <div>
               <p className="text-sm font-medium">{friend.name}</p>
-              <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                {friend.role}
-              </p>
+              <p className="text-xs text-muted-foreground">{friend.role}</p>
             </div>
           </div>
         ))}

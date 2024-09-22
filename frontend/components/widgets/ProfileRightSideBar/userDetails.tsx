@@ -24,11 +24,10 @@ interface ProfileCardProps {
       username: string;
     }>;
   };
-  isDarkMode: boolean;
 }
 
-const ProfileCard: React.FC<ProfileCardProps> = ({ data, isDarkMode }) => (
-  <Card className={`sticky top-8 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}`}>
+const ProfileCard: React.FC<ProfileCardProps> = ({ data }) => (
+  <Card className="sticky top-8 bg-card text-card-foreground">
     <CardContent className="p-6">
       <div className="mb-4 flex items-center space-x-4">
         <Avatar className="h-16 w-16">
@@ -37,7 +36,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ data, isDarkMode }) => (
         </Avatar>
         <div>
           <h2 className="text-xl font-semibold">{data.name}</h2>
-          <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>{data.role}</p>
+          <p className="text-muted-foreground">{data.role}</p>
         </div>
       </div>
       <div className="mb-4 flex justify-evenly">
@@ -54,22 +53,15 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ data, isDarkMode }) => (
           <p className="pl-1 text-lg">{data.aura}</p>
         </div>
       </div>
-      <p className={`mb-4 text-center text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-        {data.bio}
-      </p>
+      <p className="mb-4 text-center text-sm text-muted-foreground">{data.bio}</p>
       <div className="flex items-center justify-center">
-        <Button className="mb-2 w-full max-w-xs bg-orange-500 text-white hover:bg-orange-600">
+        <Button className="mb-2 w-full max-w-xs bg-primary text-primary-foreground hover:bg-primary/90">
           Edit Profile
         </Button>
       </div>
       <div className="mb-1 mt-2 grid grid-cols-2 gap-2">
         {data.socialMedia.map((social, index) => (
-          <Button
-            key={index}
-            variant="outline"
-            size="sm"
-            className={`w-full justify-evenly ${isDarkMode ? 'bg-gray-700 text-white' : ''}`}
-          >
+          <Button key={index} variant="outline" size="sm" className="w-full justify-evenly">
             {social.platform === 'Twitter' && <TwitterIcon className="mr-2 h-4 w-4" />}
             {social.platform === 'Instagram' && <InstagramIcon className="mr-2 h-4 w-4" />}
             {social.platform === 'GitHub' && <GitHubIcon className="mr-2 h-4 w-4" />}

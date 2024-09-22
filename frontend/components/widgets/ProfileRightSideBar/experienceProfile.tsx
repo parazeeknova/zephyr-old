@@ -15,19 +15,12 @@ interface ExperienceProps {
     location: string;
     logo: string;
   }>;
-  isDarkMode: boolean;
 }
 
-const Experience: React.FC<ExperienceProps> = ({ data, isDarkMode }) => (
-  <Card className={`${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}`}>
+const Experience: React.FC<ExperienceProps> = ({ data }) => (
+  <Card className="bg-card text-card-foreground">
     <CardContent className="p-4">
-      <h2
-        className={`mb-4 text-sm font-semibold uppercase ${
-          isDarkMode ? 'text-gray-300' : 'text-gray-500'
-        }`}
-      >
-        Experience
-      </h2>
+      <h2 className="mb-4 text-sm font-semibold uppercase text-muted-foreground">Experience</h2>
       <div className="space-y-4">
         {data.map((job, index) => (
           <motion.div
@@ -43,17 +36,9 @@ const Experience: React.FC<ExperienceProps> = ({ data, isDarkMode }) => (
             </Avatar>
             <div>
               <h3 className="font-semibold">{job.company}</h3>
-              <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                {job.role}
-              </p>
-              <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                {job.period}
-              </p>
-              <div
-                className={`mt-1 flex items-center text-sm ${
-                  isDarkMode ? 'text-gray-400' : 'text-gray-500'
-                }`}
-              >
+              <p className="text-sm text-muted-foreground">{job.role}</p>
+              <p className="text-sm text-muted-foreground">{job.period}</p>
+              <div className="mt-1 flex items-center text-sm text-muted-foreground">
                 <MapPin className="mr-1 h-4 w-4" />
                 {job.location}
               </div>

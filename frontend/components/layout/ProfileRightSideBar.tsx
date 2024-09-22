@@ -68,23 +68,15 @@ const tempData = {
   ],
 };
 
-interface RightSidebarProps {
-  isDarkMode: boolean;
-}
-
-const RightSidebar: React.FC<RightSidebarProps> = ({ isDarkMode }) => (
-  <aside
-    className={`flex w-96 flex-col overflow-auto p-6 pt-0 ${
-      isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'
-    }`}
-  >
+const RightSidebar: React.FC = () => (
+  <aside className="flex w-96 flex-col overflow-auto bg-card p-6 pt-0 text-card-foreground">
     <div className="space-y-12">
-      <ProfileCard data={tempData.userDetails} isDarkMode={isDarkMode} />
-      <Experience data={tempData.experience} isDarkMode={isDarkMode} />
+      <ProfileCard data={tempData.userDetails} />
+      <Experience data={tempData.experience} />
     </div>
     <div className="space-y-5 pt-5">
-      <FollowedTopics topics={tempData.followedTopics} isDarkMode={isDarkMode} />
-      <InterestedCommunities communities={tempData.interestedCommunities} isDarkMode={isDarkMode} />
+      <FollowedTopics topics={tempData.followedTopics} />
+      <InterestedCommunities communities={tempData.interestedCommunities} />
     </div>
   </aside>
 );

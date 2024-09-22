@@ -8,18 +8,12 @@ import { Card, CardContent } from '@/components/ui/card';
 
 interface InterestedCommunitiesProps {
   communities: string[];
-  isDarkMode: boolean;
 }
 
-const InterestedCommunities: React.FC<InterestedCommunitiesProps> = ({
-  communities,
-  isDarkMode,
-}) => (
-  <Card className={isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}>
+const InterestedCommunities: React.FC<InterestedCommunitiesProps> = ({ communities }) => (
+  <Card className="bg-card text-card-foreground">
     <CardContent className="p-6">
-      <h2
-        className={`mb-4 text-sm font-semibold uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
-      >
+      <h2 className="mb-4 text-sm font-semibold uppercase text-muted-foreground">
         Interested Communities
       </h2>
       <div className="space-y-4">
@@ -32,11 +26,7 @@ const InterestedCommunities: React.FC<InterestedCommunitiesProps> = ({
             className="flex items-center justify-between"
           >
             <span>{community}</span>
-            <Button
-              variant="outline"
-              size="sm"
-              className={isDarkMode ? 'bg-gray-700 text-white' : ''}
-            >
+            <Button variant="outline" size="sm">
               Join
             </Button>
           </motion.div>

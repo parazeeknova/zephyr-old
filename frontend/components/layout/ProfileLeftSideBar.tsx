@@ -55,20 +55,12 @@ const tempData = {
   ],
 };
 
-interface LeftSidebarProps {
-  isDarkMode: boolean;
-}
-
-const LeftSidebar: React.FC<LeftSidebarProps> = ({ isDarkMode }) => (
-  <aside
-    className={`flex w-96 flex-col overflow-auto p-6 ${
-      isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'
-    }`}
-  >
-    <AIGeneratedPosts posts={tempData.aiGeneratedPosts} isDarkMode={isDarkMode} />
-    <RecentActivity activities={tempData.recentActivity} isDarkMode={isDarkMode} />
-    <Analytics data={tempData.analytics} isDarkMode={isDarkMode} />
-    <Friends friends={tempData.friends} isDarkMode={isDarkMode} />
+const LeftSidebar: React.FC = () => (
+  <aside className="flex w-96 flex-col overflow-auto bg-card p-6 text-card-foreground">
+    <AIGeneratedPosts posts={tempData.aiGeneratedPosts} />
+    <RecentActivity activities={tempData.recentActivity} />
+    <Analytics data={tempData.analytics} />
+    <Friends friends={tempData.friends} />
   </aside>
 );
 

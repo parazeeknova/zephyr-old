@@ -11,15 +11,12 @@ interface AIGeneratedPostsProps {
     title: string;
     summary: string;
   }>;
-  isDarkMode: boolean;
 }
 
-const AIGeneratedPosts: React.FC<AIGeneratedPostsProps> = ({ posts, isDarkMode }) => (
-  <Card className={`mb-6 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}`}>
+const AIGeneratedPosts: React.FC<AIGeneratedPostsProps> = ({ posts }) => (
+  <Card className="mb-6 bg-card text-card-foreground">
     <CardContent className="p-6">
-      <h2
-        className={`mb-4 text-sm font-semibold uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
-      >
+      <h2 className="mb-4 text-sm font-semibold uppercase text-muted-foreground">
         Synthetic Posts
       </h2>
       <div className="space-y-4">
@@ -29,13 +26,11 @@ const AIGeneratedPosts: React.FC<AIGeneratedPostsProps> = ({ posts, isDarkMode }
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className={`border-b pb-4 last:border-b-0 ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}
+            className="border-b border-border pb-4 last:border-b-0"
           >
             <h3 className="font-semibold">{post.title}</h3>
-            <p className={`mt-1 text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-              {post.summary}
-            </p>
-            <Button variant="link" className="mt-2 p-0 text-orange-500">
+            <p className="mt-1 text-sm text-muted-foreground">{post.summary}</p>
+            <Button variant="link" className="mt-2 p-0 text-primary">
               Read more
             </Button>
           </motion.div>

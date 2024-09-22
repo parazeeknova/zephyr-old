@@ -163,16 +163,12 @@ const tempData = {
   ],
 };
 
-interface ProfileFeedViewProps {
-  isDarkMode: boolean;
-}
-
-const ProfileFeedView: React.FC<ProfileFeedViewProps> = ({ isDarkMode }) => (
+const ProfileFeedView: React.FC = () => (
   <motion.main
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 0.5 }}
-    className={`flex-1 overflow-auto p-8 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}
+    className="flex-1 overflow-auto bg-background p-8 text-foreground"
   >
     <motion.div
       initial={{ y: -20, opacity: 0 }}
@@ -180,12 +176,10 @@ const ProfileFeedView: React.FC<ProfileFeedViewProps> = ({ isDarkMode }) => (
       transition={{ delay: 0.2, duration: 0.5 }}
       className="mb-6 flex items-center justify-between"
     >
-      <h1
-        className={`mb-2 text-left text-2xl font-bold uppercase ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}
-      >
+      <h1 className="mb-2 text-left text-2xl font-bold uppercase text-muted-foreground">
         User Profile
       </h1>
-      <Button className="bg-orange-500 text-white hover:bg-orange-600">Engage</Button>
+      <Button>Engage</Button>
     </motion.div>
     <motion.div
       initial={{ opacity: 0 }}
@@ -193,10 +187,10 @@ const ProfileFeedView: React.FC<ProfileFeedViewProps> = ({ isDarkMode }) => (
       transition={{ delay: 0.4, duration: 0.5 }}
       className="space-y-4"
     >
-      <MyPosts data={tempData.myPosts} isDarkMode={isDarkMode} />
-      <Skills skills={tempData.skills} isDarkMode={isDarkMode} />
-      <Recommendations people={tempData.recommendedPeople} isDarkMode={isDarkMode} />
-      <RecommendedPosts posts={tempData.recommendedPosts} isDarkMode={isDarkMode} />
+      <MyPosts data={tempData.myPosts} />
+      <Skills skills={tempData.skills} />
+      <Recommendations people={tempData.recommendedPeople} />
+      <RecommendedPosts posts={tempData.recommendedPosts} />
     </motion.div>
   </motion.main>
 );

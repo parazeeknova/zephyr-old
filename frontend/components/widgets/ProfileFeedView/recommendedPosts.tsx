@@ -16,12 +16,11 @@ interface RecommendedPost {
 
 interface RecommendedPostsProps {
   posts: RecommendedPost[];
-  isDarkMode: boolean;
 }
 
 const PostContent: React.FC<{ post: RecommendedPost }> = ({ post }) => {
   return (
-    <div className="relative h-full w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition-all hover:shadow-lg dark:border-gray-800 dark:bg-gray-950">
+    <div className="relative h-full w-full overflow-hidden rounded-xl border border-border bg-card shadow-md transition-all hover:shadow-lg">
       <Image
         src={post.thumbnail}
         alt={post.title}
@@ -37,7 +36,7 @@ const PostContent: React.FC<{ post: RecommendedPost }> = ({ post }) => {
   );
 };
 
-const RecommendedPosts: React.FC<RecommendedPostsProps> = ({ posts, isDarkMode }) => {
+const RecommendedPosts: React.FC<RecommendedPostsProps> = ({ posts }) => {
   const cardsWithContent = posts.map((post) => ({
     ...post,
     content: <PostContent post={post} />,
@@ -54,9 +53,7 @@ const RecommendedPosts: React.FC<RecommendedPostsProps> = ({ posts, isDarkMode }
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className={`mb-10 mt-10 text-left text-2xl font-bold uppercase ${
-          isDarkMode ? 'text-gray-300' : 'text-gray-500'
-        }`}
+        className="mb-10 mt-10 text-left text-2xl font-bold uppercase text-muted-foreground"
       >
         Curated chronicles
       </motion.h2>
@@ -64,11 +61,7 @@ const RecommendedPosts: React.FC<RecommendedPostsProps> = ({ posts, isDarkMode }
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.4, duration: 0.5 }}
-        className={`h-screen w-full overflow-auto ${
-          isDarkMode
-            ? 'rounded-xl border border-gray-200 bg-gray-800 text-white'
-            : 'rounded-xl border border-gray-200 bg-white text-gray-800'
-        }`}
+        className="h-screen w-full overflow-auto rounded-xl border border-border bg-card text-card-foreground"
       >
         <LayoutGrid cards={cardsWithContent} />
       </motion.div>
