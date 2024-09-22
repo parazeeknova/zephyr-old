@@ -14,22 +14,33 @@ interface TrendingTopicsProps {
   topics: Topic[];
 }
 
-const TrendingTopics: React.FC<TrendingTopicsProps> = ({ topics }) => (
-  <Card className="bg-card shadow-sm">
-    <CardContent>
-      <CardTitle className="mb-4 mt-4 text-sm font-semibold uppercase text-muted-foreground">
-        Trending Topics
-      </CardTitle>
-      <ul className="space-y-2">
-        {topics.map((topic, index) => (
-          <li key={index} className="flex items-center space-x-2">
-            <TrendingUp className={`h-4 w-4 text-primary`} />
-            <span className="cursor-pointer text-foreground transition-colors duration-200 hover:text-primary">
-              {topic.name}
-            </span>
-          </li>
-        ))}
-      </ul>
+const TrendingTopics: React.FC<TrendingTopicsProps & { isCollapsed: boolean }> = ({
+  topics,
+  isCollapsed,
+}) => (
+  <Card
+    className={`bg-card shadow-sm transition-all duration-300 ease-in-out ${isCollapsed ? 'w-12 overflow-hidden' : 'w-full'}`}
+  >
+    <CardContent className={`${isCollapsed ? 'p-2' : 'p-4'}`}>
+      {isCollapsed ? (
+        <TrendingUp className="h-6 w-6 text-muted-foreground" />
+      ) : (
+        <>
+          <CardTitle className="mb-4 mt-4 flex items-center text-sm font-semibold uppercase text-muted-foreground">
+            Trending Topics
+          </CardTitle>
+          <ul className="space-y-2">
+            {topics.map((topic, index) => (
+              <li key={index} className="flex items-center space-x-2">
+                <TrendingUp className={`h-4 w-4 text-primary`} />
+                <span className="cursor-pointer text-foreground transition-colors duration-200 hover:text-primary">
+                  {topic.name}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </CardContent>
   </Card>
 );
