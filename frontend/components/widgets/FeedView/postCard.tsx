@@ -3,41 +3,33 @@
 import { motion } from 'framer-motion';
 import { ArrowBigUp, ArrowBigDown, MessageSquare, Share2, Bookmark, Flame } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState } from 'react';
 
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { Badge } from '@/components/ui/badge';
+import UserAvatar from '@/C/UserAvatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { PostData } from '@/lib/types';
+import { formatRelativeDate } from '@/lib/utils';
 
 interface PostCardProps {
-  post: {
-    author: string;
-    avatar: string;
-    time: string;
-    content: string;
-    images: string[];
-    comments: number;
-    shares: number;
-    tags: string[];
-    aura: number;
-  };
+  post: PostData;
 }
 
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
   const [voteStatus, setVoteStatus] = useState<'up' | 'down' | null>(null);
-  const [auraCount, setAuraCount] = useState(post.aura);
+  const [auraCount, setAuraCount] = useState(post.aura || 0);
 
   const handleVote = (value: 'up' | 'down') => {
     setVoteStatus((prevStatus) => {
       if (prevStatus === value) {
         // If clicking the same button, remove the aura
-        setAuraCount(post.aura);
+        setAuraCount(post.aura || 0);
         return null;
       } else {
         // If changing vote or voting for the first time
-        setAuraCount(post.aura + (value === 'up' ? 1 : -1));
+        setAuraCount((post.aura || 0) + (value === 'up' ? 1 : -1));
         return value;
       }
     });
@@ -53,24 +45,18 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         <CardContent className="p-4">
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <Avatar>
-                <AvatarImage src={post.avatar} alt={`${post.author}'s avatar`} />
-                <AvatarFallback>{post.author.charAt(0)}</AvatarFallback>
-              </Avatar>
+              <Link href={`/users/${post.user.username}`}>
+                <UserAvatar avatarUrl={post.user.avatarUrl} />
+              </Link>
               <div>
-                <h3 className="font-semibold text-foreground">{post.author}</h3>
-                <div className="mb-1 mt-1 flex flex-wrap gap-1">
-                  {post.tags.map((tag, index) => (
-                    <Badge
-                      key={index}
-                      variant="secondary"
-                      className="bg-secondary text-xs text-secondary-foreground"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-                <p className="text-sm text-muted-foreground">{post.time}</p>
+                <Link href={`/users/${post.user.username}`}>
+                  <h3 className="font-semibold text-foreground">{post.user.displayName}</h3>
+                </Link>
+                <Link href={`/posts/${post.id}`}>
+                  <p className="text-sm text-muted-foreground">
+                    {formatRelativeDate(post.createdAt)}
+                  </p>
+                </Link>
               </div>
             </div>
             <div className="flex items-center space-x-2">
@@ -104,7 +90,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
             </Tooltip>
           </TooltipProvider>
           <p className="mb-4 text-foreground">{post.content}</p>
-          {post.images.length > 0 && (
+          {post.images && post.images.length > 0 && (
             <div
               className={`mb-4 grid gap-4 ${post.images.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}
             >
@@ -154,7 +140,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
               className="text-muted-foreground hover:bg-secondary hover:text-foreground"
             >
               <MessageSquare className="mr-1 h-5 w-5" />
-              {post.comments}
+              {post.comments?.length || 0}
             </Button>
           </div>
         </CardContent>

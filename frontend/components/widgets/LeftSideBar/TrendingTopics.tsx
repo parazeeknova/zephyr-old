@@ -26,10 +26,10 @@ const TrendingTopics: React.FC<TrendingTopicsProps & { isCollapsed: boolean }> =
         <TrendingUp className="h-6 w-6 text-muted-foreground" />
       ) : (
         <>
-          <CardTitle className="mb-4 mt-4 flex items-center text-sm font-semibold uppercase text-muted-foreground">
+          <CardTitle className="mb-4 mt-1 flex items-center text-sm font-semibold uppercase text-muted-foreground">
             Trending Topics
           </CardTitle>
-          <ul className="space-y-2">
+          <ul className="flex flex-col space-y-2">
             {topics.map((topic, index) => (
               <li key={index} className="flex items-center space-x-2">
                 <TrendingUp className={`h-4 w-4 text-primary`} />

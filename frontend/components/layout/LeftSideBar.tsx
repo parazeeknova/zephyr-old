@@ -95,9 +95,9 @@ const LeftSideBar: React.FC = () => {
             )}
           </Button>
           <div className="space-y-4">
+            <TrendingTopics topics={trendingTopicsData} isCollapsed={isCollapsed && !isHovered} />
             <MyGroups groups={myGroupsData} isCollapsed={isCollapsed && !isHovered} />
             <Friends friends={friendsData} isCollapsed={isCollapsed && !isHovered} />
-            <TrendingTopics topics={trendingTopicsData} isCollapsed={isCollapsed && !isHovered} />
             <UpcomingEvents events={upcomingEventsData} isCollapsed={isCollapsed && !isHovered} />
           </div>
         </>

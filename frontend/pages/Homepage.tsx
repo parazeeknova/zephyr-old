@@ -7,8 +7,13 @@ import { default as FeedView } from '@/CL/FeedView';
 import FloatingActionBar from '@/CL/FloatingActionBar';
 import LeftSideBar from '@/CL/LeftSideBar';
 import RightSideBar from '@/CL/RightSideBar';
+import { PostData } from '@/lib/types';
 
-export default function ZephyrHomePage() {
+interface ZephyrHomePageProps {
+  posts: PostData[];
+}
+
+export default function ZephyrHomePage({ posts }: ZephyrHomePageProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isScrolled, setIsScrolled] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -44,7 +49,7 @@ export default function ZephyrHomePage() {
       <div className="flex flex-1 overflow-hidden">
         <LeftSideBar />
         <main className="flex-1 overflow-y-auto">
-          <FeedView />
+          <FeedView posts={posts} />
         </main>
         {screenSize !== 'small' && <RightSideBar />}
       </div>

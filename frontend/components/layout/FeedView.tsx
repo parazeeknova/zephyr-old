@@ -8,6 +8,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import PostCard from '@/CW/FeedView/postCard';
 import StoryCard from '@/CW/FeedView/storyCard';
+import { PostData } from '@/lib/types';
 
 import PostEditor from '../posts/editor/PostEditor';
 
@@ -62,87 +63,11 @@ const stories = [
   },
 ];
 
-const posts = [
-  {
-    author: 'Raiden Shogun',
-    avatar: '/user-girlaltstyled-default.png',
-    time: 'just now',
-    content:
-      'Created some 8bit animations for my favorite games, feel free to check it out my profile for more, i do take commissions! Second is neir and first is some random character #8bit #Animation #Games 🎮🎯',
-    images: ['/placeholdergifi.gif', '/placeholdergifii.gif'],
-    comments: 0,
-    shares: 0,
-    tags: ['8bit', 'Animation', 'Games', 'Commissions'],
-    aura: 100,
-  },
-  {
-    author: 'Sarah Johnson',
-    avatar: '/useri.jpg',
-    time: '1 hour ago',
-    content:
-      "Excited to share a sneak peek of my upcoming project illustration! It's been a labor of love, and I can't wait for you all to see the final product. 🎨📚 #Illustration",
-    images: ['/Banner.png'],
-    comments: 0,
-    shares: 0,
-    tags: ['Illustration', 'Desiger', 'Art'],
-    aura: 200,
-  },
-  {
-    author: 'Tech Insider',
-    avatar: '/user-boyalt-default.png',
-    time: '2 hours ago',
-    content:
-      'Breaking: Major tech company announces revolutionary AI chip that promises to double processing speed while halving energy consumption. This could be a game-changer for the industry. #TechNews #AI',
-    images: [],
-    comments: 0,
-    shares: 0,
-    tags: ['Technology', 'AI', 'Innovation'],
-    aura: 300,
-  },
-  {
-    author: 'CodeMaster',
-    avatar: '/useriii.jpg',
-    time: '2 days ago',
-    content:
-      "Just released a new open-source library for React that simplifies state management. It's lightweight, easy to use, and perfect for small to medium-sized projects. Check it out on GitHub and let me know what you think! 💻🚀 #ReactJS #OpenSource #WebDevelopment",
-    images: ['/blogii.png', '/blogiii.png'],
-    comments: 0,
-    shares: 0,
-    tags: ['Web Development', 'React', 'Open Source'],
-    aura: 400,
-  },
-  {
-    author: 'Alvin Elian',
-    avatar: '/user-boy-default.png',
-    time: '3 minutes ago',
-    content:
-      'Here are some of my latest works, created with passion and dedication. Let me know what you think! #Anime #Art #Design #Illustration 🎨🖌️',
-    images: [
-      '/placeholderi.jpg',
-      '/placeholderii.jpg',
-      '/placeholderiii.jpg',
-      '/placeholderiv.jpg',
-    ],
-    comments: 0,
-    shares: 0,
-    tags: ['Anime', 'Art', 'Design', 'Illustration'],
-    aura: 690,
-  },
-  {
-    author: 'Babu Rao',
-    avatar: '/user-boyalt-default.png',
-    time: '2 hours ago',
-    content:
-      'Fhir is a new AI model called Hera fhiri that can generate realistic images from text descriptions. It uses a combination of natural language processing and computer vision to create images that are indistinguishable from real ones. #AI #Art #Technology',
-    images: [],
-    comments: 0,
-    shares: 0,
-    tags: ['Technology', 'AI', 'Innovation'],
-    aura: 69,
-  },
-];
+interface FeedViewProps {
+  posts: PostData[];
+}
 
-export const FeedView = () => {
+export const FeedView: React.FC<FeedViewProps> = ({ posts }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
@@ -173,8 +98,8 @@ export const FeedView = () => {
     }
   };
 
-  const scribbles = posts.filter((post) => post.images.length === 0);
-  const snapshots = posts.filter((post) => post.images.length > 0);
+  const scribbles = posts.filter((post) => !post.images || post.images.length === 0);
+  const snapshots = posts.filter((post) => post.images && post.images.length > 0);
 
   return (
     <main className="flex-1 overflow-y-auto bg-background p-6 pb-24">
@@ -238,8 +163,8 @@ export const FeedView = () => {
               Scribbles
             </h2>
             <div className="grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2">
-              {scribbles.slice(0, 4).map((post, index) => (
-                <div key={`scribble-${index}`} className="h-full">
+              {scribbles.slice(0, 4).map((post) => (
+                <div key={post.id} className="h-full">
                   <PostCard post={post} />
                 </div>
               ))}
