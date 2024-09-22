@@ -1,7 +1,7 @@
 'use client';
 
 import { Menu } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Button } from '@/components/ui/button';
 import Friends from '@/CW/LeftSideBar/friends';
@@ -12,6 +12,25 @@ import UpcomingEvents from '@/CW/LeftSideBar/UpcomingEvents';
 const LeftSideBar: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [screenSize, setScreenSize] = useState('large');
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setScreenSize('small');
+      } else if (window.innerWidth < 1024) {
+        setScreenSize('medium');
+        setIsCollapsed(true);
+      } else {
+        setScreenSize('large');
+        setIsCollapsed(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // These would typically come from an API or state management
   const myGroupsData = [
@@ -48,30 +67,41 @@ const LeftSideBar: React.FC = () => {
     { name: 'Hackathon', color: 'text-green-500 dark:text-green-400' },
   ];
 
+  const sidebarWidth = () => {
+    if (screenSize === 'small') return 'w-0';
+    if (screenSize === 'medium' || (isCollapsed && !isHovered)) return 'w-16';
+    return 'w-64';
+  };
+
   return (
     <aside
-      className={`transition-all duration-300 ease-in-out ${
-        isCollapsed && !isHovered ? 'w-16' : 'w-64'
-      } bg-background p-4`}
+      className={`transition-all duration-300 ease-in-out ${sidebarWidth()} bg-background p-4`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={() => setIsCollapsed(!isCollapsed)}
-        className={`mb-4 ${isCollapsed && !isHovered ? 'h-8 w-8 pl-2' : 'w-full'}`}
-      >
-        <Menu
-          className={`${isCollapsed && !isHovered ? 'h-6 w-6 text-muted-foreground' : 'h-6 w-6'}`}
-        />
-      </Button>
-      <div className="space-y-4">
-        <MyGroups groups={myGroupsData} isCollapsed={isCollapsed && !isHovered} />
-        <Friends friends={friendsData} isCollapsed={isCollapsed && !isHovered} />
-        <TrendingTopics topics={trendingTopicsData} isCollapsed={isCollapsed && !isHovered} />
-        <UpcomingEvents events={upcomingEventsData} isCollapsed={isCollapsed && !isHovered} />
-      </div>
+      {screenSize !== 'small' && (
+        <>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            className={`mb-4 ${isCollapsed && !isHovered ? 'h-8 w-8 pl-2' : 'w-full'}`}
+          >
+            <Menu
+              className={`${isCollapsed && !isHovered ? 'h-6 w-6 text-muted-foreground' : 'h-6 w-6'}`}
+            />
+            {(!isCollapsed || isHovered) && (
+              <p className="ps-2 font-semibold uppercase sm:inline">Overview</p>
+            )}
+          </Button>
+          <div className="space-y-4">
+            <MyGroups groups={myGroupsData} isCollapsed={isCollapsed && !isHovered} />
+            <Friends friends={friendsData} isCollapsed={isCollapsed && !isHovered} />
+            <TrendingTopics topics={trendingTopicsData} isCollapsed={isCollapsed && !isHovered} />
+            <UpcomingEvents events={upcomingEventsData} isCollapsed={isCollapsed && !isHovered} />
+          </div>
+        </>
+      )}
     </aside>
   );
 };

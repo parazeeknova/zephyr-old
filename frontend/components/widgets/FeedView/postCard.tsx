@@ -18,8 +18,6 @@ interface PostCardProps {
     time: string;
     content: string;
     images: string[];
-    width: number;
-    height: number;
     comments: number;
     shares: number;
     tags: string[];
@@ -116,8 +114,8 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                   src={img}
                   alt={`Post image ${index + 1}`}
                   className="h-auto w-full rounded-lg object-cover"
-                  width={post.width}
-                  height={post.height}
+                  width={1080}
+                  height={1080}
                   unoptimized={img.endsWith('.gif')}
                 />
               ))}

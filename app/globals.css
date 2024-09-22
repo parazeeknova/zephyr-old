@@ -112,6 +112,10 @@ body:hover::-webkit-scrollbar-thumb {
   }
 }
 
+.tiptap .ProseMirror {
+  outline: none !important;
+}
+
 @layer base {
   * {
     @apply border-border;

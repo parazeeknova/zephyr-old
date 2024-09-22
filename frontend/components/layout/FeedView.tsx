@@ -9,6 +9,8 @@ import { Separator } from '@/components/ui/separator';
 import PostCard from '@/CW/FeedView/postCard';
 import StoryCard from '@/CW/FeedView/storyCard';
 
+import PostEditor from '../posts/editor/PostEditor';
+
 const stories = [
   {
     title: 'Thinking Components',
@@ -70,8 +72,6 @@ const posts = [
     images: ['/placeholdergifi.gif', '/placeholdergifii.gif'],
     comments: 0,
     shares: 0,
-    width: 800,
-    height: 800,
     tags: ['8bit', 'Animation', 'Games', 'Commissions'],
     aura: 100,
   },
@@ -84,8 +84,6 @@ const posts = [
     images: ['/Banner.png'],
     comments: 0,
     shares: 0,
-    width: 1200,
-    height: 800,
     tags: ['Illustration', 'Desiger', 'Art'],
     aura: 200,
   },
@@ -98,8 +96,6 @@ const posts = [
     images: [],
     comments: 0,
     shares: 0,
-    width: 0,
-    height: 0,
     tags: ['Technology', 'AI', 'Innovation'],
     aura: 300,
   },
@@ -112,8 +108,6 @@ const posts = [
     images: ['/blogii.png', '/blogiii.png'],
     comments: 0,
     shares: 0,
-    width: 1400,
-    height: 900,
     tags: ['Web Development', 'React', 'Open Source'],
     aura: 400,
   },
@@ -131,8 +125,6 @@ const posts = [
     ],
     comments: 0,
     shares: 0,
-    width: 800,
-    height: 400,
     tags: ['Anime', 'Art', 'Design', 'Illustration'],
     aura: 690,
   },
@@ -145,8 +137,6 @@ const posts = [
     images: [],
     comments: 0,
     shares: 0,
-    width: 0,
-    height: 0,
     tags: ['Technology', 'AI', 'Innovation'],
     aura: 69,
   },
@@ -189,6 +179,9 @@ export const FeedView = () => {
   return (
     <main className="flex-1 overflow-y-auto bg-background p-6 pb-24">
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+        <div className="mb-8">
+          <PostEditor />
+        </div>
         <Card className="mb-8 bg-card shadow-lg">
           <CardContent className="p-4">
             <h2 className="mb-2 text-left text-2xl font-bold uppercase text-foreground">Stories</h2>

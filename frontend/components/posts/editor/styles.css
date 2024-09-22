@@ -1,0 +1,25 @@
+.tiptap p.is-editor-empty:first-child::before {
+  color: theme('colors.muted.foreground');
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.tiptap .ProseMirror {
+  outline: none !important;
+}
+
+.tiptap .ProseMirror:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.editor-content {
+  outline: none !important;
+}
+
+.editor-content:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+}

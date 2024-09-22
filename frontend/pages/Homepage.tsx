@@ -13,14 +13,20 @@ export default function ZephyrHomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [screenSize, setScreenSize] = useState('large');
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 50);
   }, []);
 
   const handleResize = useCallback(() => {
-    setIsMobile(window.innerWidth < 768);
+    if (window.innerWidth < 768) {
+      setScreenSize('small');
+    } else if (window.innerWidth < 1024) {
+      setScreenSize('medium');
+    } else {
+      setScreenSize('large');
+    }
   }, []);
 
   useEffect(() => {
@@ -36,13 +42,13 @@ export default function ZephyrHomePage() {
   return (
     <div className="flex min-h-screen flex-col bg-gray-50 text-gray-900">
       <div className="flex flex-1 overflow-hidden">
-        {!isMobile && <LeftSideBar />}
+        <LeftSideBar />
         <main className="flex-1 overflow-y-auto">
           <FeedView />
         </main>
-        {!isMobile && <RightSideBar />}
+        {screenSize !== 'small' && <RightSideBar />}
       </div>
-      {!isMobile && <FloatingActionBar setIsChatOpen={setIsChatOpen} />}
+      {screenSize !== 'small' && <FloatingActionBar setIsChatOpen={setIsChatOpen} />}
       <Footer />
     </div>
   );
