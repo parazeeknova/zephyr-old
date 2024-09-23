@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Card, CardContent } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const StoryCardSkeleton: React.FC = () => (
@@ -74,9 +73,7 @@ export default function PostsLoadingSkeleton() {
         </CardContent>
       </Card>
 
-      <Separator className="my-8" />
-
-      <div className="mb-8">
+      <div className="mb-6 mt-4">
         <PostEditorSkeleton />
       </div>
 

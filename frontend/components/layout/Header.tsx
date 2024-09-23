@@ -5,10 +5,10 @@ import {
   MessageSquare,
   Bell,
   GlobeIcon,
-  User2Icon,
   UsersRoundIcon,
   CalendarIcon,
   Bookmark,
+  HomeIcon,
 } from 'lucide-react';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -34,24 +34,25 @@ const Header: React.FC = () => {
               <Cover className="text-primary">Zephyr.</Cover>
             </h1>
           </Link>
-        </div>
-        <div className="hidden rounded-md bg-muted p-1 md:flex">
-          <Button variant="ghost" size="sm" className="rounded-full">
-            <GlobeIcon className="mr-2 h-4 w-4" />
-            Discover
-          </Button>
-          <Button variant="ghost" size="sm" className="rounded-full">
-            <User2Icon className="mr-2 h-4 w-4" />
-            Community feed
-          </Button>
-          <Button variant="ghost" size="sm" className="rounded-full">
-            <UsersRoundIcon className="mr-2 h-4 w-4" />
-            Followed Communities
-          </Button>
-          <Button variant="ghost" size="sm" className="rounded-full">
-            <CalendarIcon className="mr-2 h-4 w-4" />
-            Events
-          </Button>
+          <div className="hidden space-x-4 md:flex">
+            <Button variant="ghost" size="icon" className="rounded-full bg-muted" title="Home">
+              <HomeIcon className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="icon" className="rounded-full bg-muted" title="Discover">
+              <GlobeIcon className="h-5 w-5" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full bg-muted"
+              title="Communities"
+            >
+              <UsersRoundIcon className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="icon" className="rounded-full bg-muted" title="Events">
+              <CalendarIcon className="h-5 w-5" />
+            </Button>
+          </div>
         </div>
 
         <div className="hidden items-center space-x-4 md:flex">

@@ -5,7 +5,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import React, { useRef, useState, useEffect } from 'react';
 
 import { Card, CardContent } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import PostCard from '@/CW/FeedView/postCard';
 import StoryCard from '@/CW/FeedView/storyCard';
@@ -153,9 +152,7 @@ export const FeedView: React.FC<FeedViewProps> = ({ posts }) => {
         </Card>
       </motion.div>
 
-      <Separator className="my-8" />
-
-      <div className="mb-8">
+      <div className="mb-6 mt-4">
         <PostEditor />
       </div>
 
