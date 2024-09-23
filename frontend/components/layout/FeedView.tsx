@@ -215,16 +215,6 @@ export const FeedView: React.FC<FeedViewProps> = ({ posts }) => {
           </CardContent>
         </Card>
       </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
-        className="py-8 text-center text-muted-foreground"
-      >
-        <p>You&apos;ve reached the end of your feed.</p>
-        <p>Check back later for more updates!</p>
-      </motion.div>
     </main>
   );
 };

@@ -21,18 +21,23 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
   const [voteStatus, setVoteStatus] = useState<'up' | 'down' | null>(null);
   const [auraCount, setAuraCount] = useState(post.aura || 0);
 
-  const handleVote = (value: 'up' | 'down') => {
-    setVoteStatus((prevStatus) => {
-      if (prevStatus === value) {
-        // If clicking the same button, remove the aura
-        setAuraCount(post.aura || 0);
-        return null;
-      } else {
-        // If changing vote or voting for the first time
-        setAuraCount((post.aura || 0) + (value === 'up' ? 1 : -1));
-        return value;
+  const handleVote = async (value: 'up' | 'down') => {
+    const voteValue = value === 'up' ? 1 : -1;
+    try {
+      const response = await fetch(`/api/posts/${post.id}/vote`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ value: voteValue }),
+      });
+
+      if (response.ok) {
+        const updatedPost = await response.json();
+        setAuraCount(updatedPost.aura);
+        setVoteStatus(value);
       }
-    });
+    } catch (error) {
+      console.error('Error voting:', error);
+    }
   };
 
   return (
