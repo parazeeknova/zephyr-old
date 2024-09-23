@@ -5,8 +5,8 @@ import Link from 'next/link';
 import React, { useEffect, useState, useTransition } from 'react';
 
 import { getSuggestedConnections } from '@/BE/actions/userActions';
+import FollowButton from '@/C/FollowButton';
 import UserAvatar from '@/C/UserAvatar';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { UserData } from '@/lib/types';
 
@@ -48,7 +48,15 @@ const SuggestedConnections: React.FC = () => {
                     </Link>
                   </div>
                 </div>
-                <Button size="sm">Connect</Button>
+                <FollowButton
+                  userId={connection.id}
+                  initialState={{
+                    followers: connection._count.followers,
+                    isFollowedByUser: connection.followers.some(
+                      ({ followerId }) => followerId === connection.id,
+                    ),
+                  }}
+                />
               </li>
             ))}
           </ul>

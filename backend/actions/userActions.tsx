@@ -2,7 +2,7 @@
 
 import { validateRequest } from '@/BE/auth';
 import prisma from '@/lib/prisma';
-import { userDataSelect } from '@/lib/types';
+import { getUserDataSelect } from '@/lib/types';
 
 export async function getSuggestedConnections() {
   const { user } = await validateRequest();
@@ -14,8 +14,13 @@ export async function getSuggestedConnections() {
       NOT: {
         id: user.id,
       },
+      followers: {
+        none: {
+          followerId: user.id,
+        },
+      },
     },
-    select: userDataSelect,
+    select: getUserDataSelect(user.id),
     take: 5,
   });
 
