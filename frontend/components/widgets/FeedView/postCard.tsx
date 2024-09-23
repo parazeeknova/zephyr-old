@@ -6,6 +6,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
+import { useSession } from '@/BE/SessionProvider';
+import PostMoreButton from '@/C/posts/PostMoreButton';
 import UserAvatar from '@/C/UserAvatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -18,6 +20,8 @@ interface PostCardProps {
 }
 
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
+  const { user } = useSession();
+
   const [voteStatus, setVoteStatus] = useState<'up' | 'down' | null>(null);
   const [auraCount, setAuraCount] = useState(post.aura || 0);
 
@@ -47,7 +51,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
       transition={{ duration: 0.5 }}
       className="pb-0"
     >
-      <Card className="border-b border-t border-border bg-background">
+      <Card className="group/post border-b border-t border-border bg-background">
         <CardContent className="p-4">
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center space-x-2">
@@ -66,6 +70,12 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
               </div>
             </div>
             <div className="flex items-center space-x-2">
+              {post.user.id === user.id && (
+                <PostMoreButton
+                  post={post}
+                  className="opacity-0 transition-opacity group-hover/post:opacity-100"
+                />
+              )}
               <Button
                 variant="ghost"
                 size="sm"
