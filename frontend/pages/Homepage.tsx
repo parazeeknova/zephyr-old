@@ -3,7 +3,6 @@
 import { HomeIcon, TrendingUpIcon, UsersIcon } from 'lucide-react';
 import { useState, useEffect, useCallback } from 'react';
 
-import Footer from '@/C/Footer';
 import FollowingFeed from '@/C/layout/Following';
 import ForYouFeed from '@/C/layout/ForYouFeed';
 import FloatingActionBar from '@/CL/FloatingActionBar';
@@ -84,7 +83,6 @@ export default function ZephyrHomePage() {
         {screenSize !== 'small' && <RightSideBar />}
       </div>
       {screenSize !== 'small' && <FloatingActionBar setIsChatOpen={setIsChatOpen} />}
-      <Footer />
     </div>
   );
 }

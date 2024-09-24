@@ -7,7 +7,7 @@ import StarterKit from '@tiptap/starter-kit';
 import { useSubmitPostMutation } from '@/BE/posts/editor/mutations';
 import { useSession } from '@/BE/SessionProvider';
 import UserAvatar from '@/C/UserAvatar';
-import './styles.css';
+import '@/C/posts/editor/styles.css';
 import LoadingButton from '@/C/widgets/authPage/LoadingButton';
 
 export default function PostEditor() {
@@ -46,7 +46,7 @@ export default function PostEditor() {
         <UserAvatar avatarUrl={user.avatarUrl} className="hidden sm:inline" />
         <EditorContent
           editor={editor}
-          className="editor-content max-h-[20rem] w-full flex-grow overflow-y-auto rounded-2xl bg-secondary px-5 py-5 focus:outline-none"
+          className="editor-content max-h-[20rem] w-full flex-grow overflow-y-auto rounded-2xl bg-secondary px-5 py-5"
         />
       </div>
       <div className="flex justify-end">

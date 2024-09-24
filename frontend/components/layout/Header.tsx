@@ -29,11 +29,6 @@ const Header: React.FC = () => {
       {/* Header */}
       <header className="flex items-center justify-between border-b border-border bg-background px-4 py-2">
         <div className="flex items-center space-x-4">
-          <Link href="/">
-            <h1 className="text-2xl font-bold">
-              <Cover className="text-primary">Zephyr.</Cover>
-            </h1>
-          </Link>
           <div className="hidden space-x-4 md:flex">
             <Button variant="ghost" size="icon" className="rounded-full bg-muted" title="Home">
               <HomeIcon className="h-5 w-5" />
@@ -54,6 +49,12 @@ const Header: React.FC = () => {
             </Button>
           </div>
         </div>
+
+        <Link href="/">
+          <h1 className="flex-grow text-center text-2xl font-bold">
+            <Cover className="text-primary">Zephyr.</Cover>
+          </h1>
+        </Link>
 
         <div className="hidden items-center space-x-4 md:flex">
           <UserButton />

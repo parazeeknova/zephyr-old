@@ -6,20 +6,6 @@
   pointer-events: none;
 }
 
-.tiptap .ProseMirror {
-  outline: none !important;
-}
-
-.tiptap .ProseMirror:focus {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-.editor-content {
-  outline: none !important;
-}
-
-.editor-content:focus-within {
-  outline: none !important;
-  box-shadow: none !important;
+.ProseMirror:focus {
+  outline: none;
 }
