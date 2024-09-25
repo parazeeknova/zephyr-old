@@ -2,27 +2,47 @@
 
 import { validateRequest } from '@/BE/auth';
 import prisma from '@/lib/prisma';
-import { getUserDataSelect } from '@/lib/types';
 
 export async function getSuggestedConnections() {
-  const { user } = await validateRequest();
+  try {
+    const { user } = await validateRequest();
 
-  if (!user) return [];
+    if (!user) {
+      throw new Error('User not authenticated');
+    }
 
-  const suggestedUsers = await prisma.user.findMany({
-    where: {
-      NOT: {
-        id: user.id,
-      },
-      followers: {
-        none: {
-          followerId: user.id,
+    const suggestedUsers = await prisma.user.findMany({
+      where: {
+        NOT: {
+          OR: [
+            { id: user.id },
+            {
+              followers: {
+                some: {
+                  followerId: user.id,
+                },
+              },
+            },
+          ],
         },
       },
-    },
-    select: getUserDataSelect(user.id),
-    take: 5,
-  });
+      select: {
+        id: true,
+        username: true,
+        displayName: true,
+        avatarUrl: true,
+        _count: {
+          select: {
+            followers: true,
+          },
+        },
+      },
+      take: 5,
+    });
 
-  return suggestedUsers;
+    return JSON.parse(JSON.stringify(suggestedUsers));
+  } catch (error) {
+    console.error('Error in getSuggestedConnections:', error);
+    throw new Error('Failed to fetch suggested connections');
+  }
 }

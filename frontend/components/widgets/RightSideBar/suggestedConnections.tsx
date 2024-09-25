@@ -1,25 +1,45 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
-import React, { useEffect, useState, useTransition } from 'react';
+import React from 'react';
 
 import { getSuggestedConnections } from '@/BE/actions/userActions';
 import FollowButton from '@/C/FollowButton';
 import UserAvatar from '@/C/UserAvatar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { UserData } from '@/lib/types';
+
+interface SerializableUserData {
+  id: string;
+  username: string;
+  displayName: string;
+  avatarUrl: string | null;
+  followers: { followerId: string }[];
+  _count: {
+    followers: number;
+  };
+}
 
 const SuggestedConnections: React.FC = () => {
-  const [connections, setConnections] = useState<UserData[]>([]);
-  const [isPending, startTransition] = useTransition();
+  const {
+    data: connections,
+    isLoading,
+    error,
+  } = useQuery<SerializableUserData[]>({
+    queryKey: ['suggested-connections'],
+    queryFn: async () => {
+      const result = await getSuggestedConnections();
+      if (result instanceof Error) {
+        throw result;
+      }
+      return result;
+    },
+  });
 
-  useEffect(() => {
-    startTransition(async () => {
-      const suggestedUsers = await getSuggestedConnections();
-      setConnections(suggestedUsers);
-    });
-  }, []);
+  console.log('Connections:', connections);
+  console.log('Is Loading:', isLoading);
+  if (error) console.error('Error fetching suggested connections:', error);
 
   return (
     <Card className="bg-card shadow-md">
@@ -29,9 +49,14 @@ const SuggestedConnections: React.FC = () => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        {isPending ? (
+        {isLoading ? (
           <Loader2 className="mx-auto animate-spin" />
-        ) : (
+        ) : error ? (
+          <div>
+            <p>Error loading suggested connections.</p>
+            <p>Error details: {error instanceof Error ? error.message : String(error)}</p>
+          </div>
+        ) : connections && connections.length > 0 ? (
           <ul className="space-y-4">
             {connections.map((connection) => (
               <li key={connection.id} className="flex items-center justify-between">
@@ -52,14 +77,16 @@ const SuggestedConnections: React.FC = () => {
                   userId={connection.id}
                   initialState={{
                     followers: connection._count.followers,
-                    isFollowedByUser: connection.followers.some(
-                      ({ followerId }) => followerId === connection.id,
-                    ),
+                    isFollowedByUser: false,
                   }}
+                  // @ts-expect-error FollowButton expects a userData prop that includes followers, which is not present in SerializableUserData
+                  userData={connection}
                 />
               </li>
             ))}
           </ul>
+        ) : (
+          <p>No suggested connections available.</p>
         )}
       </CardContent>
     </Card>

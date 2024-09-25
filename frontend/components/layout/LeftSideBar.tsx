@@ -39,21 +39,6 @@ const LeftSideBar: React.FC = () => {
     { name: 'Figma Jam', icon: '💡' },
   ];
 
-  const friendsData = [
-    { name: 'Jelly Rendi', status: 'online' },
-    { name: 'Rizky Kurniawan', status: 'online' },
-    { name: 'Ali Haiqi', status: 'away' },
-    { name: 'Kurnialan', status: 'online' },
-    { name: 'Syah Fatah', status: 'busy' },
-    { name: 'Mindas Kidian', status: 'busy' },
-    { name: 'Budi Doremi', status: 'online' },
-    { name: 'Zidanko', status: 'away' },
-    { name: 'Keanu Satria', status: 'offline', lastSeen: '6 min' },
-    { name: 'Dhimas Rasjad', status: 'offline', lastSeen: '9 min' },
-    { name: 'Arvin Andhika', status: 'offline', lastSeen: '15 min' },
-    { name: 'Jamet Tinkling', status: 'offline', lastSeen: '23 min' },
-  ];
-
   const upcomingEventsData = [
     { name: 'Tech Conference 2023', color: 'text-red-500 dark:text-red-400' },
     { name: 'Design Meetup', color: 'text-yellow-500 dark:text-yellow-400' },
@@ -93,7 +78,7 @@ const LeftSideBar: React.FC = () => {
           </Button>
           <div className="space-y-4">
             <MyGroups groups={myGroupsData} isCollapsed={isCollapsed && !isHovered} />
-            <Friends friends={friendsData} isCollapsed={isCollapsed && !isHovered} />
+            <Friends isCollapsed={isCollapsed && !isHovered} />
             <UpcomingEvents events={upcomingEventsData} isCollapsed={isCollapsed && !isHovered} />
           </div>
         </>

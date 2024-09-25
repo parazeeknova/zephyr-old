@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import kyInstance from '@/lib/ky';
-import { FollowerInfo } from '@/lib/types';
+import { FollowerInfo, UserData } from '@/lib/types';
 
 export default function useFollowerInfo(userId: string, initialState: FollowerInfo) {
   const query = useQuery({
@@ -12,4 +12,11 @@ export default function useFollowerInfo(userId: string, initialState: FollowerIn
   });
 
   return query;
+}
+
+export function useFollowedUsers() {
+  return useQuery({
+    queryKey: ['followed-users'],
+    queryFn: () => kyInstance.get('/api/users/followed').json<UserData[]>(),
+  });
 }

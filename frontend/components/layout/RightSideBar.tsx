@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+import { useSession } from '@/BE/SessionProvider';
 import LatestActivity from '@/CW/RightSideBar/latestActivity';
 import ProfileCard from '@/CW/RightSideBar/profileCard';
 import SuggestedConnections from '@/CW/RightSideBar/suggestedConnections';
@@ -9,10 +10,11 @@ import ThoughtShare from '@/CW/RightSideBar/thoughtShare';
 import TrendingTopics from '@/CW/RightSideBar/TrendingTopics';
 
 const RightSidebar: React.FC = () => {
-  // These would typically come from an API or state management
+  const { user } = useSession();
+
   const profileData = {
-    avatarSrc: '/useriii.jpg',
-    username: 'Parazeeeknova',
+    avatarUrl: user?.avatarUrl,
+    username: user?.username,
     profession: 'Programmer',
     followers: 69,
     following: 6.9,

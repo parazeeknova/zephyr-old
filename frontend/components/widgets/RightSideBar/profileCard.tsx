@@ -1,14 +1,14 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import UserAvatar from '@/C/UserAvatar';
+import { Avatar } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface ProfileCardProps {
-  avatarSrc: string;
+  avatarUrl: string | null | undefined;
   username: string;
   profession: string;
   followers: number;
@@ -17,7 +17,7 @@ interface ProfileCardProps {
 }
 
 const ProfileCard: React.FC<ProfileCardProps> = ({
-  avatarSrc,
+  avatarUrl,
   username,
   profession,
   followers,
@@ -29,23 +29,16 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
       <div className="mb-4 flex items-center space-x-4">
         <div className="relative">
           <div className="h-20 w-20 overflow-hidden rounded-2xl bg-muted">
-            <Image
-              src={avatarSrc}
-              alt="Profile background"
-              className="h-full w-full object-cover"
-              width={80}
-              height={80}
-            />
+            <UserAvatar avatarUrl={avatarUrl} size={80} />
           </div>
           <Avatar className="absolute -bottom-2 -right-2 h-12 w-12 border-4 border-background">
-            <AvatarImage src={avatarSrc} alt={`${username}'s avatar`} />
-            <AvatarFallback>{username[0]}</AvatarFallback>
+            <UserAvatar avatarUrl={avatarUrl} size={48} />
           </Avatar>
         </div>
         <div>
           <h2 className="flex items-center text-lg font-bold">
-            <Link href="/profile" className="text-foreground">
-              {username} <span className="ml-1 text-blue-500">✓</span>
+            <Link href={`/user/${username}`} className="text-foreground">
+              {username}
             </Link>
           </h2>
           <p className="text-sm text-muted-foreground">{profession}</p>

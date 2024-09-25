@@ -1,56 +1,38 @@
-'use client';
-import { QueryKey, useMutation, useQueryClient } from '@tanstack/react-query';
+import React from 'react';
 
 import useFollowerInfo from '@/BE/hooks/userFollowerInfo';
+import { useFollowUserMutation, useUnfollowUserMutation } from '@/BE/users/userMutations';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
-import kyInstance from '@/lib/ky';
-import { FollowerInfo } from '@/lib/types';
 
 interface FollowButtonProps {
   userId: string;
-  initialState: FollowerInfo;
+  initialState: {
+    followers: number;
+    isFollowedByUser: boolean;
+  };
 }
 
-export default function FollowButton({ userId, initialState }: FollowButtonProps) {
-  const { toast } = useToast();
-
-  const queryClient = useQueryClient();
-
+const FollowButton: React.FC<FollowButtonProps> = ({ userId, initialState }) => {
   const { data } = useFollowerInfo(userId, initialState);
+  const followMutation = useFollowUserMutation();
+  const unfollowMutation = useUnfollowUserMutation();
 
-  const queryKey: QueryKey = ['follower-info', userId];
-
-  const { mutate } = useMutation({
-    mutationFn: () =>
-      data.isFollowedByUser
-        ? kyInstance.delete(`/api/users/${userId}/followers`)
-        : kyInstance.post(`/api/users/${userId}/followers`),
-    onMutate: async () => {
-      await queryClient.cancelQueries({ queryKey });
-
-      const previousState = queryClient.getQueryData<FollowerInfo>(queryKey);
-
-      queryClient.setQueryData<FollowerInfo>(queryKey, () => ({
-        followers: (previousState?.followers || 0) + (previousState?.isFollowedByUser ? -1 : 1),
-        isFollowedByUser: !previousState?.isFollowedByUser,
-      }));
-
-      return { previousState };
-    },
-    onError(error, variables, context) {
-      queryClient.setQueryData(queryKey, context?.previousState);
-      console.error(error);
-      toast({
-        variant: 'destructive',
-        description: 'Something went wrong. Please try again.',
-      });
-    },
-  });
+  const handleFollowToggle = () => {
+    if (data.isFollowedByUser) {
+      unfollowMutation.mutate(userId);
+    } else {
+      followMutation.mutate(userId);
+    }
+  };
 
   return (
-    <Button variant={data.isFollowedByUser ? 'secondary' : 'default'} onClick={() => mutate()}>
+    <Button
+      onClick={handleFollowToggle}
+      disabled={followMutation.isPending || unfollowMutation.isPending}
+    >
       {data.isFollowedByUser ? 'Unfollow' : 'Follow'}
     </Button>
   );
-}
+};
+
+export default FollowButton;
