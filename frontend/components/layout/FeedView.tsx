@@ -81,6 +81,10 @@ export const FeedView: React.FC<FeedViewProps> = ({ posts }) => {
     }
   };
 
+  const hotPosts = React.useMemo(() => {
+    return [...posts].sort((a, b) => b.aura - a.aura).slice(0, 2);
+  }, [posts]);
+
   useEffect(() => {
     checkScrollButtons();
     window.addEventListener('resize', checkScrollButtons);
@@ -110,7 +114,7 @@ export const FeedView: React.FC<FeedViewProps> = ({ posts }) => {
         <Card className="mb-8 bg-card shadow-lg">
           <CardContent className="p-4">
             <h2 className="mb-2 text-left text-2xl font-semibold uppercase text-foreground">
-              Stories
+              Stories 🌱
             </h2>
             <p className="mb-4 text-muted-foreground">
               Check out the latest stories from your network.
@@ -157,6 +161,29 @@ export const FeedView: React.FC<FeedViewProps> = ({ posts }) => {
       </div>
 
       <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mb-8"
+      >
+        <Card className="bg-card shadow-lg">
+          <CardContent className="p-4">
+            <h2 className="mb-2 text-left text-2xl font-semibold uppercase text-foreground">
+              Rising Fleets 🚀
+            </h2>
+            <p className="mb-4 text-muted-foreground">
+              Top 2 posts with the highest aura in your fleet.
+            </p>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {hotPosts.map((post, index) => (
+                <PostCard key={`hot-post-${index}`} post={post} />
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -164,7 +191,7 @@ export const FeedView: React.FC<FeedViewProps> = ({ posts }) => {
         <Card className="mb-8 bg-card shadow-lg">
           <CardContent className="p-4">
             <h2 className="mb-2 text-left text-2xl font-semibold uppercase text-foreground">
-              Fleets
+              Fleets 🚢
             </h2>
             <p className="mb-4 text-muted-foreground">
               Check out the latest fleets from around the world.

@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
+import { useVoteMutation } from '@/BE/posts/aura/auraMutations';
 import { useSession } from '@/BE/SessionProvider';
 import PostMoreButton from '@/C/posts/PostMoreButton';
 import UserAvatar from '@/C/UserAvatar';
@@ -14,33 +15,45 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { PostData } from '@/lib/types';
 import { formatRelativeDate } from '@/lib/utils';
-
 interface PostCardProps {
   post: PostData;
 }
 
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
   const { user } = useSession();
+  const voteMutation = useVoteMutation();
 
-  const [voteStatus, setVoteStatus] = useState<'up' | 'down' | null>(null);
+  const [voteStatus, setVoteStatus] = useState<'up' | 'down' | null>(() => {
+    if (!post.userVote) return null;
+    return post.userVote.value > 0 ? 'up' : 'down';
+  });
   const [auraCount, setAuraCount] = useState(post.aura || 0);
 
   const handleVote = async (value: 'up' | 'down') => {
+    if (!user) return;
     const voteValue = value === 'up' ? 1 : -1;
-    try {
-      const response = await fetch(`/api/posts/${post.id}/vote`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ value: voteValue }),
-      });
 
-      if (response.ok) {
-        const updatedPost = await response.json();
-        setAuraCount(updatedPost.aura);
-        setVoteStatus(value);
-      }
+    // Optimistic update
+    const previousVoteStatus = voteStatus;
+    const previousAuraCount = auraCount;
+
+    if (voteStatus === value) {
+      setVoteStatus(null);
+      setAuraCount((prev) => prev - voteValue);
+    } else {
+      setVoteStatus(value);
+      setAuraCount(
+        (prev) =>
+          prev + voteValue + (previousVoteStatus ? (previousVoteStatus === 'up' ? -1 : 1) : 0),
+      );
+    }
+
+    try {
+      await voteMutation.mutateAsync({ postId: post.id, value: voteValue });
     } catch (error) {
-      console.error('Error voting:', error);
+      console.error('Error voting on post:', error);
+      setVoteStatus(previousVoteStatus);
+      setAuraCount(previousAuraCount);
     }
   };
 
@@ -133,10 +146,12 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                   ? 'bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300'
                   : 'text-muted-foreground hover:text-blue-600 dark:hover:text-blue-300'
               }`}
+              disabled={!user}
             >
               <ArrowBigUp className="mr-1 h-5 w-5" />
               Upvote
             </Button>
+            <span>{auraCount}</span>
             <Button
               variant="ghost"
               size="sm"
@@ -146,6 +161,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                   ? 'bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300'
                   : 'text-muted-foreground hover:text-red-600 dark:hover:text-red-300'
               }`}
+              disabled={!user}
             >
               <ArrowBigDown className="mr-1 h-5 w-5" />
               Downvote

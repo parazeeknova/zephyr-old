@@ -33,7 +33,7 @@ const RightSidebar: React.FC = () => {
   ];
 
   return (
-    <aside className="w-80 space-y-4 overflow-y-auto bg-background p-4 text-foreground">
+    <aside className="w-80 space-y-4 overflow-y-auto bg-[hsl(var(--background-alt))] p-4 text-foreground">
       <ProfileCard {...profileData} />
       <SuggestedConnections />
       <TrendingTopics />

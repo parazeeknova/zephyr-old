@@ -1,6 +1,6 @@
 'use client';
 
-import { HomeIcon, TrendingUpIcon, UsersIcon } from 'lucide-react';
+import { HomeIcon, TrendingUpIcon, UsersIcon, RocketIcon } from 'lucide-react';
 import { useState, useEffect, useCallback } from 'react';
 
 import FollowingFeed from '@/C/layout/Following';
@@ -69,6 +69,13 @@ export default function ZephyrHomePage() {
                 >
                   <TrendingUpIcon className="mr-2 h-4 w-4" />
                   Trending
+                </TabsTrigger>
+                <TabsTrigger
+                  value=""
+                  className="rounded-sm px-6 py-2 text-sm font-medium transition-all hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+                >
+                  <RocketIcon className="mr-2 h-4 w-4" />
+                  Recommended
                 </TabsTrigger>
               </TabsList>
             </div>

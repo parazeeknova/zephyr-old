@@ -53,35 +53,33 @@ const LeftSideBar: React.FC = () => {
 
   return (
     <aside
-      className={`transition-all duration-300 ease-in-out ${sidebarWidth()} bg-background p-4`}
+      className={`transition-all duration-300 ease-in-out ${sidebarWidth()} bg-[hsl(var(--background-alt))] p-2`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {screenSize !== 'small' && (
-        <>
+        <div className="flex flex-col space-y-4">
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className={`mb-4 ${isCollapsed && !isHovered ? 'h-8 w-8 pl-2' : 'w-full'}`}
+            className={`${isCollapsed && !isHovered ? 'h-8 w-8 p-0' : 'w-full justify-start px-2'}`}
           >
             <Menu
               className={`text-muted-foreground ${
-                isCollapsed && !isHovered ? 'h-6 w-6 text-muted-foreground' : 'h-6 w-6'
+                isCollapsed && !isHovered ? 'ml-4 h-6 w-6' : 'mr-2 h-6 w-6'
               }`}
             />
             {(!isCollapsed || isHovered) && (
-              <p className="ps-2 font-semibold uppercase text-muted-foreground sm:inline">
-                Overview
-              </p>
+              <span className="font-semibold uppercase text-muted-foreground">Overview</span>
             )}
           </Button>
-          <div className="space-y-4">
+          <div className={`space-y-4 ${isCollapsed && !isHovered ? 'px-0' : 'px-2'}`}>
             <MyGroups groups={myGroupsData} isCollapsed={isCollapsed && !isHovered} />
             <Friends isCollapsed={isCollapsed && !isHovered} />
             <UpcomingEvents events={upcomingEventsData} isCollapsed={isCollapsed && !isHovered} />
           </div>
-        </>
+        </div>
       )}
     </aside>
   );
