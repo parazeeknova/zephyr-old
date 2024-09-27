@@ -37,7 +37,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
         </div>
         <div>
           <h2 className="flex items-center text-lg font-bold">
-            <Link href={`/user/${username}`} className="text-foreground">
+            <Link href={`/users/${username}`} className="text-foreground">
               {username}
             </Link>
           </h2>

@@ -8,7 +8,7 @@ import { FaFacebook, FaTwitter, FaGithub, FaWhatsapp } from 'react-icons/fa';
 import { Dock, DockIcon } from '@/components/magicui/dock';
 import { Meteors } from '@/CW/Meteors';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

@@ -30,9 +30,11 @@ const Header: React.FC = () => {
       <header className="flex items-center justify-between border-b border-border bg-background px-4 py-2">
         <div className="flex items-center space-x-4">
           <div className="hidden space-x-4 md:flex">
-            <Button variant="ghost" size="icon" className="rounded-full bg-muted" title="Home">
-              <HomeIcon className="h-5 w-5" />
-            </Button>
+            <Link href="/">
+              <Button variant="ghost" size="icon" className="rounded-full bg-muted" title="Home">
+                <HomeIcon className="h-5 w-5" />
+              </Button>
+            </Link>
             <Button variant="ghost" size="icon" className="rounded-full bg-muted" title="Discover">
               <GlobeIcon className="h-5 w-5" />
             </Button>

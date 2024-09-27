@@ -56,11 +56,13 @@ const tempData = {
 };
 
 const LeftSidebar: React.FC = () => (
-  <aside className="flex w-96 flex-col overflow-auto bg-card p-6 text-card-foreground">
-    <AIGeneratedPosts posts={tempData.aiGeneratedPosts} />
-    <RecentActivity activities={tempData.recentActivity} />
-    <Analytics data={tempData.analytics} />
-    <Friends friends={tempData.friends} />
+  <aside className="w-96 flex-shrink-0 overflow-y-auto bg-card p-6 text-card-foreground">
+    <div className="space-y-6">
+      <AIGeneratedPosts posts={tempData.aiGeneratedPosts} />
+      <RecentActivity activities={tempData.recentActivity} />
+      <Analytics data={tempData.analytics} />
+      <Friends friends={tempData.friends} />
+    </div>
   </aside>
 );
 

@@ -69,12 +69,10 @@ const tempData = {
 };
 
 const RightSidebar: React.FC = () => (
-  <aside className="flex w-96 flex-col overflow-auto bg-card p-6 pt-0 text-card-foreground">
-    <div className="space-y-12">
+  <aside className="w-96 flex-shrink-0 overflow-y-auto bg-card p-6 text-card-foreground">
+    <div className="space-y-6">
       <ProfileCard data={tempData.userDetails} />
       <Experience data={tempData.experience} />
-    </div>
-    <div className="space-y-5 pt-5">
       <FollowedTopics topics={tempData.followedTopics} />
       <InterestedCommunities communities={tempData.interestedCommunities} />
     </div>
