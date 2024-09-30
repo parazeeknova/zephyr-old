@@ -64,7 +64,7 @@ const Friends: React.FC<FriendsProps> = ({ isCollapsed }) => {
       <Card
         className={`bg-card transition-all duration-300 ease-in-out ${isCollapsed ? 'w-12 overflow-hidden' : 'w-full'}`}
       >
-        <CardContent className={`${isCollapsed ? 'p-2' : 'p-4'}`}>
+        <CardContent className={`${isCollapsed ? 'flex justify-center p-2' : 'p-4'}`}>
           {isCollapsed ? (
             <Users className="h-6 w-6 text-muted-foreground" />
           ) : (

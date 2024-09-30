@@ -27,7 +27,7 @@ interface ProfileCardProps {
 }
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ data }) => (
-  <Card className="sticky top-8 bg-card text-card-foreground">
+  <Card className="sticky top-0 bg-card text-card-foreground">
     <CardContent className="p-6">
       <div className="mb-4 flex items-center space-x-4">
         <Avatar className="h-16 w-16">

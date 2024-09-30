@@ -16,7 +16,7 @@ interface FriendsProps {
 const Friends: React.FC<FriendsProps> = ({ friends }) => (
   <Card className="mb-6 bg-card text-card-foreground">
     <CardContent className="p-6">
-      <h2 className="mb-4 text-sm font-semibold uppercase text-muted-foreground">My Friends</h2>
+      <h2 className="mb-4 text-sm font-semibold uppercase text-muted-foreground">Friends</h2>
       <div className="space-y-4">
         {friends.map((friend, index) => (
           <div key={index} className="flex items-center space-x-3">

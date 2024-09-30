@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Friends from '@/CW/LeftSideBar/friends';
 import MyGroups from '@/CW/LeftSideBar/myGroups';
+import NavigationCard from '@/CW/LeftSideBar/navigationCard';
 import UpcomingEvents from '@/CW/LeftSideBar/UpcomingEvents';
 
 const LeftSideBar: React.FC = () => {
@@ -59,22 +60,24 @@ const LeftSideBar: React.FC = () => {
     >
       {screenSize !== 'small' && (
         <div className="flex flex-col space-y-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsCollapsed(!isCollapsed)}
-            className={`${isCollapsed && !isHovered ? 'h-8 w-8 p-0' : 'w-full justify-start px-2'}`}
+          <div
+            className={`ml-1 flex ${isCollapsed && !isHovered ? 'justify-center' : 'justify-start'}`}
           >
-            <Menu
-              className={`text-muted-foreground ${
-                isCollapsed && !isHovered ? 'ml-4 h-6 w-6' : 'mr-2 h-6 w-6'
-              }`}
-            />
-            {(!isCollapsed || isHovered) && (
-              <span className="font-semibold uppercase text-muted-foreground">Overview</span>
-            )}
-          </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              className={`${isCollapsed && !isHovered ? 'h-8 w-8 p-0' : 'w-full justify-center'}`}
+            >
+              <Menu
+                className={`text-muted-foreground ${
+                  isCollapsed && !isHovered ? 'h-6 w-6' : 'h-6 w-6'
+                }`}
+              />
+            </Button>
+          </div>
           <div className={`space-y-4 ${isCollapsed && !isHovered ? 'px-0' : 'px-2'}`}>
+            <NavigationCard isCollapsed={isCollapsed && !isHovered} />
             <MyGroups groups={myGroupsData} isCollapsed={isCollapsed && !isHovered} />
             <Friends isCollapsed={isCollapsed && !isHovered} />
             <UpcomingEvents events={upcomingEventsData} isCollapsed={isCollapsed && !isHovered} />

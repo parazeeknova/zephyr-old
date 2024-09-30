@@ -2,10 +2,10 @@
 
 import React from 'react';
 
-import Experience from '@/CW/ProfileRightSideBar/experienceProfile';
 import ProfileCard from '@/CW/ProfileRightSideBar/userDetails';
 import FollowedTopics from '@/CW/ProfileRightSideBar/userFollowedTopics';
 import InterestedCommunities from '@/CW/ProfileRightSideBar/userIntrestedCommunities';
+import ThoughtShare from '@/CW/RightSideBar/thoughtShare';
 
 // Temporary static data
 const tempData = {
@@ -24,29 +24,6 @@ const tempData = {
       { platform: 'Reddit', username: 'u/parazeeknova' },
     ],
   },
-  experience: [
-    {
-      company: 'PeskyCorp',
-      role: 'CEO',
-      period: 'Oct 2020 - Present',
-      location: 'Github',
-      logo: '/placeholderi.jpg',
-    },
-    {
-      company: 'Facebook',
-      role: 'Senior UX Designer',
-      period: 'Jun 2018 - Sep 2020',
-      location: 'Poland',
-      logo: '/placeholderii.jpg',
-    },
-    {
-      company: 'Sketch',
-      role: 'Interface Designer',
-      period: 'May 2015 - Jun 2018',
-      location: 'Freelance',
-      logo: '/placeholderiii.jpg',
-    },
-  ],
   followedTopics: [
     'UX Design',
     'UI Trends',
@@ -69,10 +46,10 @@ const tempData = {
 };
 
 const RightSidebar: React.FC = () => (
-  <aside className="w-96 flex-shrink-0 overflow-y-auto bg-card p-6 text-card-foreground">
-    <div className="space-y-6">
+  <aside className="w-96 flex-shrink-0 overflow-y-auto bg-[hsl(var(--background-alt))] p-4 text-card-foreground">
+    <div className="space-y-4">
       <ProfileCard data={tempData.userDetails} />
-      <Experience data={tempData.experience} />
+      <ThoughtShare />
       <FollowedTopics topics={tempData.followedTopics} />
       <InterestedCommunities communities={tempData.interestedCommunities} />
     </div>

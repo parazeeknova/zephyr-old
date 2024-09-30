@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+import NavigationCard from '@/CW/LeftSideBar/navigationCard';
 import AIGeneratedPosts from '@/CW/ProfileLeftSideBar/aiGeneratedPosts';
 import Analytics from '@/CW/ProfileLeftSideBar/analytics';
 import Friends from '@/CW/ProfileLeftSideBar/friendsProfile';
@@ -56,8 +57,9 @@ const tempData = {
 };
 
 const LeftSidebar: React.FC = () => (
-  <aside className="w-96 flex-shrink-0 overflow-y-auto bg-card p-6 text-card-foreground">
-    <div className="space-y-6">
+  <aside className="w-96 flex-shrink-0 overflow-y-auto bg-[hsl(var(--background-alt))] p-4 text-card-foreground">
+    <div className="space-y-4">
+      <NavigationCard />
       <AIGeneratedPosts posts={tempData.aiGeneratedPosts} />
       <RecentActivity activities={tempData.recentActivity} />
       <Analytics data={tempData.analytics} />

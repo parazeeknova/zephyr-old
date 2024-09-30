@@ -84,9 +84,9 @@ const MyPosts: React.FC<MyPostsProps> = ({ data }) => (
                 whileHover={{ scale: 1.05 }}
                 className="relative overflow-hidden rounded-lg shadow-md"
               >
-                <div className="relative h-48 w-full">
+                <div className="h-128 relative w-full">
                   <DirectionAwareHover imageUrl={post.image} className="h-full w-full object-cover">
-                    <div className="p-4">
+                    <div className="p-0">
                       <h3 className="font-semibold text-white">{post.title}</h3>
                       <p className="text-sm text-gray-300">{post.date}</p>
                       <div className="mt-2 flex items-center space-x-4">

@@ -1,15 +1,6 @@
 'use client';
 
-import {
-  Home,
-  MessageSquare,
-  Bell,
-  GlobeIcon,
-  UsersRoundIcon,
-  CalendarIcon,
-  Bookmark,
-  HomeIcon,
-} from 'lucide-react';
+import { Home, MessageSquare, Bell, Bookmark } from 'lucide-react';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
@@ -28,38 +19,15 @@ const Header: React.FC = () => {
     <>
       {/* Header */}
       <header className="flex items-center justify-between border-b border-border bg-background px-4 py-2">
-        <div className="flex items-center space-x-4">
-          <div className="hidden space-x-4 md:flex">
-            <Link href="/">
-              <Button variant="ghost" size="icon" className="rounded-full bg-muted" title="Home">
-                <HomeIcon className="h-5 w-5" />
-              </Button>
-            </Link>
-            <Button variant="ghost" size="icon" className="rounded-full bg-muted" title="Discover">
-              <GlobeIcon className="h-5 w-5" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="rounded-full bg-muted"
-              title="Communities"
-            >
-              <UsersRoundIcon className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" className="rounded-full bg-muted" title="Events">
-              <CalendarIcon className="h-5 w-5" />
-            </Button>
-          </div>
+        <div className="ml-10 flex items-center space-x-4 pl-7">
+          <Link href="/">
+            <h1 className="flex-grow text-center text-2xl font-bold">
+              <Cover className="text-primary">Zephyr.</Cover>
+            </h1>
+          </Link>
         </div>
 
-        <Link href="/">
-          <h1 className="flex-grow text-center text-2xl font-bold">
-            <Cover className="text-primary">Zephyr.</Cover>
-          </h1>
-        </Link>
-
         <div className="hidden items-center space-x-4 md:flex">
-          <UserButton />
           <Button variant="ghost" size="icon" className="rounded-full bg-muted" title="Bookmarks">
             <Link href="/bookmarks">
               <Bookmark className="h-5 w-5" />
@@ -79,6 +47,7 @@ const Header: React.FC = () => {
           >
             <Bell className="h-5 w-5" />
           </Button>
+          <UserButton />
         </div>
       </header>
 
