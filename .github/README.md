@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This repository is archived and no longer maintained due to new project structure, UI and much more. Please refer to the new repository for the latest updates and changes.
+
 <div align="center">
 
   <a href="https://github.com/parazeeknova/zephyr">
